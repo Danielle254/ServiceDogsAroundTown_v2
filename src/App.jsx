@@ -10,10 +10,9 @@ function App() {
 
   return (
     <APIProvider apiKey={apiKey}>
-      <div style={{height: "100vh"}}>
-        <Map zoom={9} center={position} mapId={mapId}>
+      <div className='h-screen'>
+        <Map zoom={12} center={position} mapId={mapId}>
         </Map>
-
       </div>
       
     </APIProvider>
