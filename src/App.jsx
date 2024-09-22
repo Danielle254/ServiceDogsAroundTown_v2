@@ -1,5 +1,6 @@
 import './App.css'
 import DisplayMap from './components/DisplayMap'
+import Banner from './components/Banner'
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
 
   return (
     <div>
+      <Banner />
       <DisplayMap />
     </div>
   )
