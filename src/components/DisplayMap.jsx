@@ -1,5 +1,14 @@
 import React, { useState } from 'react'
-import { APIProvider, Map } from '@vis.gl/react-google-maps'
+import { 
+    APIProvider, 
+    Map, 
+    MapControl,
+    AdvancedMarker,
+    ControlPosition,
+    useAdvancedMarkerRef
+} from '@vis.gl/react-google-maps'
+import PlaceAutocomplete from './PlaceAutocomplete';
+import MapHandler from './MapHandler';
 
 const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
@@ -8,9 +17,10 @@ export default function DisplayMap() {
 
     const [position, setPosition] = useState({lat: 41.4925 , lng: -99.9018});
     const [zoom, setZoom] = useState(4);
+    const [selectedPlace, setSelectedPlace] = useState(null);
+    const [markerRef, marker] = useAdvancedMarkerRef();
     
     function centerMapUserLocation() {
-
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(success, fail);
         } else {
@@ -28,9 +38,10 @@ export default function DisplayMap() {
     }
     
     return (    
-        <APIProvider apiKey={apiKey}>            
-            <div className='h-screen'>
-                <button onClick={centerMapUserLocation} className='absolute top-12 inset-x-1/2 w-32 bg-white z-10'>My City</button>
+        <APIProvider apiKey={apiKey} solutionChannel='GMP_devsite_samples_v3_rgmautocomplete'>            
+            <div className='h-96 w-3/5 mx-auto mt-24'>
+                
+                <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                 <Map 
                 zoom={zoom} 
                 center={position} 
@@ -40,10 +51,16 @@ export default function DisplayMap() {
                 onZoomChanged={(map) => setZoom(map.detail.zoom)}
                 options={{
                     gestureHandling: 'greedy',
-                    draggable: true
+                    draggable: true,
+                    disableDefaultUI: true,
+                    zoomControl: true,
+                    fullscreenControl: true
                 }}
-                >                    
-                </Map>
+                >
+                    <button onClick={centerMapUserLocation} className='relative bottom-14 inset-x-3 w-20 border-2 border-black bg-white z-10'>My City</button>
+                    <AdvancedMarker ref={markerRef} position={null} />                    
+                </Map>                
+                <MapHandler place={selectedPlace} marker={marker} />
             </div>      
         </APIProvider>    
     )
