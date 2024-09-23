@@ -39,8 +39,9 @@ export default function DisplayMap() {
     
     return (    
         <APIProvider apiKey={apiKey} solutionChannel='GMP_devsite_samples_v3_rgmautocomplete'>            
-            <div className='h-screen'>
-                <button onClick={centerMapUserLocation} className='absolute top-24 inset-x-4 w-32 bg-white z-10'>My City</button>
+            <div className='h-96 w-3/5 mx-auto mt-24'>
+                
+                <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                 <Map 
                 zoom={zoom} 
                 center={position} 
@@ -50,16 +51,15 @@ export default function DisplayMap() {
                 onZoomChanged={(map) => setZoom(map.detail.zoom)}
                 options={{
                     gestureHandling: 'greedy',
-                    draggable: true
+                    draggable: true,
+                    disableDefaultUI: true,
+                    zoomControl: true,
+                    fullscreenControl: true
                 }}
                 >
+                    <button onClick={centerMapUserLocation} className='relative bottom-14 inset-x-3 w-20 border-2 border-black bg-white z-10'>My City</button>
                     <AdvancedMarker ref={markerRef} position={null} />                    
-                </Map>
-                <MapControl position={ControlPosition.TOP} >
-                    <div>
-                        <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
-                    </div>
-                </MapControl>
+                </Map>                
                 <MapHandler place={selectedPlace} marker={marker} />
             </div>      
         </APIProvider>    
