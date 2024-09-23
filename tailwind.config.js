@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      spacing: {
+        '500': '32rem'
+      }
       /* colors: {
         charcoal: "#424f51",
         teal: "#67aea7",

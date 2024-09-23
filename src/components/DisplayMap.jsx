@@ -44,7 +44,7 @@ export default function DisplayMap() {
     
     return (    
         <APIProvider apiKey={apiKey} solutionChannel='GMP_devsite_samples_v3_rgmautocomplete'>            
-            <div className='h-96 w-3/5 mx-auto mt-24'>                
+            <div className='h-500 w-3/5 mx-auto mt-24'>                
                 <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                 <Map 
                 zoom={zoom} 
