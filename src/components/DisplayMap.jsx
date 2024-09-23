@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { 
     APIProvider, 
     Map, 
-    MapControl,
     AdvancedMarker,
-    ControlPosition,
-    useAdvancedMarkerRef
+    useAdvancedMarkerRef,
+    InfoWindow
 } from '@vis.gl/react-google-maps'
 import PlaceAutocomplete from './PlaceAutocomplete';
 import MapHandler from './MapHandler';
@@ -19,6 +18,7 @@ export default function DisplayMap() {
     const [zoom, setZoom] = useState(4);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [markerRef, marker] = useAdvancedMarkerRef();
+    const [infoWindowShown, setInfoWindowShown] = useState(false);
     
     function centerMapUserLocation() {
         if (navigator.geolocation) {
@@ -36,11 +36,15 @@ export default function DisplayMap() {
     function fail() {
         alert("Unable to retrieve your location");
     }
+
+    const handleMarkerClick =
+        useCallback(() => setInfoWindowShown(isShown => !isShown), []);
+
+    const handleClose = useCallback(() => setInfoWindowShown(false), []);
     
     return (    
         <APIProvider apiKey={apiKey} solutionChannel='GMP_devsite_samples_v3_rgmautocomplete'>            
-            <div className='h-96 w-3/5 mx-auto mt-24'>
-                
+            <div className='h-96 w-3/5 mx-auto mt-24'>                
                 <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                 <Map 
                 zoom={zoom} 
@@ -58,7 +62,14 @@ export default function DisplayMap() {
                 }}
                 >
                     <button onClick={centerMapUserLocation} className='relative bottom-14 inset-x-3 w-20 border-2 border-black bg-white z-10'>My City</button>
-                    <AdvancedMarker ref={markerRef} position={null} />                    
+                    <AdvancedMarker ref={markerRef} position={null} onClick={handleMarkerClick}/> 
+                    {infoWindowShown && (
+                    <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>
+                        <p className='font-bold text-sm'>{selectedPlace.name}</p>
+                        <p className='py-1'>{selectedPlace.formatted_address}</p>
+                        <button className='border-2 border-black p-1'>Rate & Review</button>
+                    </InfoWindow>  
+                    )}      
                 </Map>                
                 <MapHandler place={selectedPlace} marker={marker} />
             </div>      
