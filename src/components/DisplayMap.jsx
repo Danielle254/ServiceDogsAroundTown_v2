@@ -64,7 +64,7 @@ export default function DisplayMap() {
                     <button onClick={centerMapUserLocation} className='relative bottom-14 inset-x-3 w-20 border-2 border-black bg-white z-10'>My City</button>
                     <AdvancedMarker ref={markerRef} position={null} onClick={handleMarkerClick}/> 
                     {infoWindowShown && (
-                    <InfoWindow anchor={marker} onClose={handleClose} >
+                    <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>
                         <p className='font-bold text-sm'>{selectedPlace.name}</p>
                         <p className='py-1'>{selectedPlace.formatted_address}</p>
                         <button className='border-2 border-black p-1'>Rate & Review</button>
