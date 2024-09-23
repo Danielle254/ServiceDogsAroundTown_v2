@@ -25,8 +25,8 @@ export default function PlaceAutocomplete({onPlaceSelect}) {
     }, [onPlaceSelect, placeAutocomplete]);
 
     return (
-        <div>
-            <input ref={inputRef} className='w-96 h-10 text-lg absolute top-12 inset-x-1/2'/>
+        <div className=''>
+            <input ref={inputRef} className='w-96 h-10 text-lg border-black border-2' placeholder='Search for a Business'/>
         </div>
     )
 }
