@@ -8,9 +8,12 @@ function App() {
   
 
   return (
-    <div>
-      <Banner />
-      <DisplayMap />
+    <div className=''>
+      <div className='max-w-[1200px] mx-auto' >
+        <Banner />
+        <DisplayMap 
+        />
+      </div>
     </div>
   )
 }
