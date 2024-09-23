@@ -65,8 +65,9 @@ export default function DisplayMap() {
                     <AdvancedMarker ref={markerRef} position={null} onClick={handleMarkerClick}/> 
                     {infoWindowShown && (
                     <InfoWindow anchor={marker}   >
-                        <p>{selectedPlace.name}</p>
-                        <p>{selectedPlace.formatted_address}</p>
+                        <p className='font-bold text-sm'>{selectedPlace.name}</p>
+                        <p className='py-1'>{selectedPlace.formatted_address}</p>
+                        <button className='border-2 border-black p-1'>Rate & Review</button>
                     </InfoWindow>  
                     )}      
                 </Map>                
