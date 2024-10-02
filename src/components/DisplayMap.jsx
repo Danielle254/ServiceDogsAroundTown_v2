@@ -67,7 +67,7 @@ export default function DisplayMap(props) {
                     <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>
                         <p className='font-bold text-sm'>{selectedPlace.name}</p>
                         <p className='py-1'>{selectedPlace.formatted_address}</p>
-                        <button className='border-2 border-black p-1' onClick={props.toggleOpenNewPlace}>Rate & Review</button>
+                        <button className='border-2 border-black p-1' onClick={props.openNewPlaceModal}>Rate & Review</button>
                     </InfoWindow>  
                     )}      
                 </Map>                

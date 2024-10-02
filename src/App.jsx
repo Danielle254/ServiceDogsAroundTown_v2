@@ -6,21 +6,19 @@ import { useState } from 'react'
 
 
 function App() {
-  const [openNewPlace, setOpenNewPlace] = useState(false);
+  const [openNewPlace, setOpenNewPlace] = useState(true);
   
-  function toggleOpenNewPlace () {
-    setOpenNewPlace(!openNewPlace);
-  }
 
   return (
     <div className=''>
       <div className='max-w-[1200px] mx-auto' >
         <Banner />
         <DisplayMap 
-        toggleOpenNewPlace={toggleOpenNewPlace}
+        openNewPlaceModal={() => setOpenNewPlace(true)}
         />
         <NewPlace 
         openNewPlace={openNewPlace}
+        closeNewPlace={() => setOpenNewPlace(false)}
         />
       </div>
     </div>
