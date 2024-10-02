@@ -1,6 +1,7 @@
 import './App.css'
 import DisplayMap from './components/DisplayMap'
 import Banner from './components/Banner'
+import NewPlace from './components/NewPlace'
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Banner />
         <DisplayMap 
         />
+        <NewPlace />
       </div>
     </div>
   )
