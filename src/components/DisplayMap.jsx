@@ -12,7 +12,7 @@ import MapHandler from './MapHandler';
 const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
 
-export default function DisplayMap() {
+export default function DisplayMap(props) {
 
     const [position, setPosition] = useState({lat: 41.4925 , lng: -99.9018});
     const [zoom, setZoom] = useState(4);
@@ -67,7 +67,7 @@ export default function DisplayMap() {
                     <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>
                         <p className='font-bold text-sm'>{selectedPlace.name}</p>
                         <p className='py-1'>{selectedPlace.formatted_address}</p>
-                        <button className='border-2 border-black p-1'>Rate & Review</button>
+                        <button className='border-2 border-black p-1' onClick={props.toggleOpenNewPlace}>Rate & Review</button>
                     </InfoWindow>  
                     )}      
                 </Map>                
