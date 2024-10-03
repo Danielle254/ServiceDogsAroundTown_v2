@@ -1,8 +1,22 @@
-# React + Vite
+# Service Dogs Around Town v2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a web application that allows users to search for a local business they've visited on a map, then capture information about their experience as it relates to the comfort and safety of their service dog. Public, multi-user setup. Users can see all existing entries, and general stats about a business will be displayed as well as the detail.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* React + Vite
+* JavaScript
+* Tailwind CSS
+* Google Maps API
+* Firebase
+
+
+## Links
+
+[Project Kanban Board](https://github.com/users/Danielle254/projects/1/views/1)
+
+[Project Planning Document](https://docs.google.com/document/d/1qis5J6LwGeG49rQRjwhjirpdhUqHIUrBGo0ejoxNWIA/edit?usp=sharing)
+
+[Version 1 - Live Link](https://danielle254.github.io/ServiceDogsAroundTown_v1/)
+
+[Version 1 - GitHub Repo](https://github.com/Danielle254/ServiceDogsAroundTown_v1)
