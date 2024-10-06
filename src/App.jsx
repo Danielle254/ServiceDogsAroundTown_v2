@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-import DisplayMap from './components/DisplayMap'
 import Nav from './components/Nav'
+import Footer from './components/Footer';
+import MapPage from './components/MapPage/MapPage';
+import AboutPage from './components/AboutPage/AboutPage'
 
 
 function App() {
@@ -11,13 +13,17 @@ function App() {
 
   return (
     <div className=''>
-      <div className='mx-10 my-4' >
+      <div className='mx-10 my-4'>
         <Nav 
         page={page}
         />
-        <DisplayMap 
+        <MapPage 
         page={page}
         />
+        <AboutPage
+        page={page}
+        />
+        <Footer />
       </div>
     </div>
   )
