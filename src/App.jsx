@@ -1,18 +1,29 @@
+import { useState } from 'react'
 import './App.css'
-import DisplayMap from './components/DisplayMap'
-import Banner from './components/Banner'
+import Nav from './components/Nav'
+import Footer from './components/Footer';
+import MapPage from './components/MapPage/MapPage';
+import AboutPage from './components/AboutPage/AboutPage'
 
 
 function App() {
 
+  const [page, setPage] = useState('map');
   
 
   return (
     <div className=''>
-      <div className='max-w-[1200px] mx-auto' >
-        <Banner />
-        <DisplayMap 
+      <div className='mx-10 my-4'>
+        <Nav 
+        page={page}
         />
+        <MapPage 
+        page={page}
+        />
+        <AboutPage
+        page={page}
+        />
+        <Footer />
       </div>
     </div>
   )
