@@ -1,6 +1,6 @@
 import './App.css'
 import DisplayMap from './components/DisplayMap'
-import Banner from './components/Banner'
+import Nav from './components/Nav'
 
 
 function App() {
@@ -9,8 +9,8 @@ function App() {
 
   return (
     <div className=''>
-      <div className='max-w-[1200px] mx-auto' >
-        <Banner />
+      <div className='mx-10 my-4' >
+        <Nav />
         <DisplayMap 
         />
       </div>

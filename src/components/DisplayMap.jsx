@@ -43,9 +43,11 @@ export default function DisplayMap() {
     const handleClose = useCallback(() => setInfoWindowShown(false), []);
     
     return (    
-        <APIProvider apiKey={apiKey} solutionChannel='GMP_devsite_samples_v3_rgmautocomplete'>            
-            <div className='h-500 w-3/5 mx-auto mt-24'>                
+        <APIProvider apiKey={apiKey} solutionChannel='GMP_devsite_samples_v3_rgmautocomplete'> 
+            <div>                           
+                <button onClick={centerMapUserLocation} className='w-20 border-2 border-black bg-white z-10'>My City</button>
                 <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                <div className='h-500 w-5/6'> 
                 <Map 
                 zoom={zoom} 
                 center={position} 
@@ -60,8 +62,7 @@ export default function DisplayMap() {
                     zoomControl: true,
                     fullscreenControl: true
                 }}
-                >
-                    <button onClick={centerMapUserLocation} className='relative bottom-14 inset-x-3 w-20 border-2 border-black bg-white z-10'>My City</button>
+                >                   
                     <AdvancedMarker ref={markerRef} position={null} onClick={handleMarkerClick}/> 
                     {infoWindowShown && (
                     <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>
@@ -72,6 +73,7 @@ export default function DisplayMap() {
                     )}      
                 </Map>                
                 <MapHandler place={selectedPlace} marker={marker} />
+                </div> 
             </div>      
         </APIProvider>    
     )
