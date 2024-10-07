@@ -25,7 +25,7 @@ export default function PlaceAutocomplete({onPlaceSelect}) {
     }, [onPlaceSelect, placeAutocomplete]);
 
     return (
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col'>
             <label htmlFor={'search'} >Add a Place</label>
             <input id={'search'} ref={inputRef} className=' text-lg border-black border-2' placeholder='' />
         </div>
