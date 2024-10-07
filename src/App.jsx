@@ -9,6 +9,15 @@ import AboutPage from './components/AboutPage/AboutPage'
 function App() {
 
   const [page, setPage] = useState('map');
+
+  function togglePage (buttonId) {
+    if (buttonId === "map") {
+      setPage('map')
+    }
+    if (buttonId === 'about') {
+      setPage('about')
+    } 
+  }
   
 
   return (
@@ -16,6 +25,7 @@ function App() {
       <div className='min-h-screen flex flex-col'>
         <Nav 
         page={page}
+        togglePage={togglePage}
         />
         <MapPage 
         page={page}
