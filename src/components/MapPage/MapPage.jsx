@@ -22,6 +22,9 @@ export default function MapComponent(props) {
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [position, setPosition] = useState({lat: 41.4925 , lng: -99.9018});
     const [zoom, setZoom] = useState(4); 
+    const [mapAction, setMapAction] = useState('add');
+
+    const buttonStyling = 'border-2 border-black bg-white px-2';
 
     function centerMapUserLocation() {
         if (navigator.geolocation) {
@@ -44,7 +47,7 @@ export default function MapComponent(props) {
     
         return (    
             <APIProvider apiKey={apiKey} >  
-            <div className='grid grid-cols-8 grow'>          
+            <div className='grid grid-cols-9 grow'>          
                 <div className='col-span-6'> 
                     <Map 
                     zoom={zoom} 
@@ -72,9 +75,15 @@ export default function MapComponent(props) {
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
-                <div className='col-span-2'>
-                    <button onClick={centerMapUserLocation} className='w-20 border-2 border-black bg-white z-10'>My City</button>
+                <div className='col-span-3 flex flex-col gap-4 p-2 bg-yellow-100'>
+                    <div className='flex flex-row justify-between'>
+                        <button onClick={centerMapUserLocation} className={buttonStyling}>My City</button>
+                        <button className={buttonStyling}>Add New Place</button>
+                        <button className={buttonStyling}>View My Places</button>
+                    </div>
+                    {mapAction === 'add' && 
                     <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                    }
                 </div> 
             </div>                         
             </APIProvider>    
