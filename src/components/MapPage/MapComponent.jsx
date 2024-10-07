@@ -29,7 +29,7 @@ export default function MapComponent(props) {
                 center={props.position} 
                 mapId={mapId} 
                 reuseMaps={true} 
-                onCenterChanged={(map) => setPosition(map.detail.center)}
+                onCenterChanged={(map) => props.updateCenter(map.detail.center)}
                 onZoomChanged={(map) => setZoom(map.detail.zoom)}
                 options={{
                     gestureHandling: 'greedy',

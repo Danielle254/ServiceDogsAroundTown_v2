@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useContext } from 'react'
 import MapComponent from './MapComponent'
 import Sidebar from './Sidebar'
 
@@ -28,6 +28,10 @@ export default function MapPage(props) {
         alert("Unable to retrieve your location");
     }
 
+    function updateCenter(input) {
+        setPosition(input)
+    }
+
     if (props.page === 'map') {
         return (
             <div className='grid grid-cols-8 grow'>
@@ -35,6 +39,7 @@ export default function MapPage(props) {
                 selectedPlace={selectedPlace}
                 position={position}
                 zoom={zoom}
+                updateCenter={updateCenter}
                 />
                 <Sidebar 
                 selectedPlace={selectedPlace}
