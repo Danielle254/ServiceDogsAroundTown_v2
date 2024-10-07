@@ -1,4 +1,4 @@
-import { useMapsLibrary } from '@vis.gl/react-google-maps';
+import { useMapsLibrary } from '@vis.gl/react-google-maps'
 import React, { useEffect, useRef, useState } from 'react'
 
 export default function PlaceAutocomplete({onPlaceSelect}) {
@@ -7,7 +7,7 @@ export default function PlaceAutocomplete({onPlaceSelect}) {
     const places = useMapsLibrary('places');
 
     useEffect(() => {
-        if (!places || !inputRef.current) return;
+        if (!places || !inputRef.current) return;        
 
         const options = {
             fields: ["geometry", "name", "formatted_address"]
