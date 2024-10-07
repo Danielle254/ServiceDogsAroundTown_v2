@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className=''>
-      <div className='mx-10 my-4'>
+      <div className='min-h-screen flex flex-col'>
         <Nav 
         page={page}
         />

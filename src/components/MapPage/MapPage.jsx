@@ -30,7 +30,7 @@ export default function MapPage(props) {
 
     if (props.page === 'map') {
         return (
-            <div className='grid grid-cols-8'>
+            <div className='grid grid-cols-8 grow'>
                 <MapComponent 
                 selectedPlace={selectedPlace}
                 position={position}

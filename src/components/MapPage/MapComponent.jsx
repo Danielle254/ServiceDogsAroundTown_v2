@@ -23,7 +23,7 @@ export default function MapComponent(props) {
     
     return (    
         <APIProvider apiKey={apiKey} solutionChannel='GMP_devsite_samples_v3_rgmautocomplete'>             
-            <div className='h-500 w-full col-span-6'> 
+            <div className='col-span-6'> 
                 <Map 
                 zoom={props.zoom} 
                 center={props.position} 
