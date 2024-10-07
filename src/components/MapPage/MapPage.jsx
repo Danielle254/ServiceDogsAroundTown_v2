@@ -75,10 +75,10 @@ export default function MapComponent(props) {
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
-                <div className='col-span-3 flex flex-col gap-4 p-2 bg-yellow-100'>
+                <div className='col-span-3 flex flex-col gap-8 p-2 bg-yellow-100'>
                     <div className='flex flex-row justify-between'>
                         <button onClick={centerMapUserLocation} className={buttonStyling}>My City</button>
-                        <button className={buttonStyling}>Add New Place</button>
+                        <button className={`${buttonStyling} ${mapAction === 'add' ? 'bg-gray-300' : ''}`}>Add New Place</button>
                         <button className={buttonStyling}>View My Places</button>
                     </div>
                     {mapAction === 'add' && 
