@@ -32,6 +32,10 @@ export default function MapPage(props) {
         setPosition(input)
     }
 
+    function updateZoom(input) {
+        setZoom(input)
+    }
+
     if (props.page === 'map') {
         return (
             <div className='grid grid-cols-8 grow'>
@@ -40,6 +44,7 @@ export default function MapPage(props) {
                 position={position}
                 zoom={zoom}
                 updateCenter={updateCenter}
+                updateZoom={updateZoom}
                 />
                 <Sidebar 
                 selectedPlace={selectedPlace}

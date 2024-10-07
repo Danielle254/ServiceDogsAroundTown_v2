@@ -30,7 +30,7 @@ export default function MapComponent(props) {
                 mapId={mapId} 
                 reuseMaps={true} 
                 onCenterChanged={(map) => props.updateCenter(map.detail.center)}
-                onZoomChanged={(map) => setZoom(map.detail.zoom)}
+                onZoomChanged={(map) => props.updateZoom(map.detail.zoom)}
                 options={{
                     gestureHandling: 'greedy',
                     draggable: true,
