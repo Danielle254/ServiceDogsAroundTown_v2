@@ -24,7 +24,7 @@ export default function MapComponent(props) {
     const [zoom, setZoom] = useState(4); 
     const [mapAction, setMapAction] = useState('add');
 
-    const buttonStyling = 'border-2 border-black bg-white px-2';
+    const buttonStyling = 'px-2 font-bold';
 
     function handleMarkerClick() {        
         setInfoWindowShown(isShown => !isShown);
@@ -112,11 +112,11 @@ export default function MapComponent(props) {
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
-                <div className='col-span-3 flex flex-col gap-8 p-2'>
+                <div className='col-span-3 flex flex-col gap-8 px-2'>
                     <div className='flex flex-row justify-between'>
                         <button onClick={centerMapUserLocation} className={buttonStyling}>My City</button>
-                        <button className={`${buttonStyling} ${mapAction === 'view' ? 'bg-gray-500' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
-                        <button className={`${buttonStyling} ${mapAction === 'add' ? 'bg-gray-500' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
+                        <button className={`${buttonStyling} ${mapAction === 'view' ? 'underline' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
+                        <button className={`${buttonStyling} ${mapAction === 'add' ? 'underline' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                     </div>
                     {mapAction === 'add' && 
                     <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
