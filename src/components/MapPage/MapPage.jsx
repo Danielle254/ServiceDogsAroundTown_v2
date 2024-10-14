@@ -82,9 +82,9 @@ export default function MapComponent(props) {
                         {infoWindowShown && 
                             <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>            
                                 <div>
-                                    <p className='font-bold text-sm'>{selectedPlace.name}</p>
-                                    <p className='py-1'>{selectedPlace.formatted_address}</p>
-                                    <button className='border-2 border-black p-1'>Rate & Review</button>
+                                    <p className='font-bold text-sm text-black'>{selectedPlace.name}</p>
+                                    <p className='py-1 text-black'>{selectedPlace.formatted_address}</p>
+                                    <button className='border-2 border-black p-1 text-black'>Rate & Review</button>
                                 </div>                           
                             </InfoWindow>
                         }
@@ -105,8 +105,8 @@ export default function MapComponent(props) {
                         {activeMarker && 
                             <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
                                 <div>
-                                    <p className='font-bold text-sm'>{activeMarker.name}</p>
-                                    <button className='border-2 border-black p-1'>view details</button>
+                                    <p className='font-bold text-sm text-black'>{activeMarker.name}</p>
+                                    <button className='border-2 border-black p-1 text-black'>view details</button>
                                 </div>
                             </InfoWindow>
                         }                        
