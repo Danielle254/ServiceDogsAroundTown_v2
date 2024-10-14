@@ -56,7 +56,7 @@ export default function MapComponent(props) {
         return (    
             <APIProvider apiKey={apiKey} >  
             <div className='grid grid-cols-9 grow'>          
-                <div className='col-span-6'> 
+                <div className='col-span-6 pl-4'> 
                     <Map 
                     zoom={zoom} 
                     center={position} 
@@ -112,7 +112,7 @@ export default function MapComponent(props) {
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
-                <div className='col-span-3 flex flex-col gap-8 p-2 bg-yellow-100'>
+                <div className='col-span-3 flex flex-col gap-8 p-2'>
                     <div className='flex flex-row justify-between'>
                         <button onClick={centerMapUserLocation} className={buttonStyling}>My City</button>
                         <button className={`${buttonStyling} ${mapAction === 'view' ? 'bg-gray-500' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
