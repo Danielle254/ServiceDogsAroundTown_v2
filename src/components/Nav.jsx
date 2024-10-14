@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Nav(props) {
 
-  const navButtonStyle = 'px-2 rounded-full'
+  const navButtonStyle = 'px-4 rounded-full font-bold'
 
   return (
     <header className='flex flex-row justify-between pb-4 pt-4 px-4'>
