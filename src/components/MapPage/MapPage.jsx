@@ -76,11 +76,13 @@ export default function MapComponent(props) {
                         {props.places.map((coords, index) => 
                         <AdvancedMarker 
                         position={coords} 
-                        key={index}>
+                        key={index}
+                        clickable={true}>
                             <Pin
                                 background={'#00008B'}
                                 borderColor={'#FFFFFF'}
                                 glyphColor={'#90D5FF'}
+                                scale={1.2}
                             />                        
                         </AdvancedMarker>
                         )
