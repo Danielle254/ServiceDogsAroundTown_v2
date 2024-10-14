@@ -72,6 +72,10 @@ export default function MapComponent(props) {
                             <button className='border-2 border-black p-1'>Rate & Review</button>
                         </InfoWindow>  
                         )}      
+                        {props.places.map((coords, index) => 
+                        <AdvancedMarker position={coords} key={index} />
+                        )
+                        }
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
