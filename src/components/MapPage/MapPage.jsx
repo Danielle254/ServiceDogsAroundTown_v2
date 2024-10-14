@@ -20,7 +20,7 @@ export default function MapComponent(props) {
     const [infoWindowShown, setInfoWindowShown] = useState(false);
     const handleClose = useCallback(() => setInfoWindowShown(false), []);
     const [selectedPlace, setSelectedPlace] = useState(null);
-    const [position, setPosition] = useState({lat: 41.4925 , lng: -99.9018});
+    const [position, setPosition] = useState({lat: 40 , lng: -97});
     const [zoom, setZoom] = useState(4); 
     const [mapAction, setMapAction] = useState('add');
 
