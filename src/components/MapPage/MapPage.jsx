@@ -4,7 +4,8 @@ import {
     Map, 
     AdvancedMarker,
     useAdvancedMarkerRef,
-    InfoWindow
+    InfoWindow,
+    Pin
 } from '@vis.gl/react-google-maps'
 import MapHandler from './MapHandler'
 import PlaceAutocomplete from './PlaceAutocomplete';
@@ -73,7 +74,15 @@ export default function MapComponent(props) {
                         </InfoWindow>  
                         )}      
                         {props.places.map((coords, index) => 
-                        <AdvancedMarker position={coords} key={index} />
+                        <AdvancedMarker 
+                        position={coords} 
+                        key={index}>
+                            <Pin
+                                background={'#00008B'}
+                                borderColor={'#FFFFFF'}
+                                glyphColor={'#90D5FF'}
+                            />                        
+                        </AdvancedMarker>
                         )
                         }
                     </Map>                
