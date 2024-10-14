@@ -9,6 +9,7 @@ import AboutPage from './components/AboutPage/AboutPage'
 function App() {
 
   const [page, setPage] = useState('map');
+  const [places, setPlaces] = useState([{lat: 46.75868, lng: -114.08766}, {lat: 46.84997, lng: -114.01759}, {lat: 46.89410, lng: -114.04103}]);
 
   function togglePage (buttonId) {
     if (buttonId === "map") {
@@ -29,6 +30,7 @@ function App() {
         />
         <MapPage 
         page={page}
+        places={places}
         />
         <AboutPage
         page={page}
