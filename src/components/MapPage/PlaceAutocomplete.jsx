@@ -27,7 +27,7 @@ export default function PlaceAutocomplete({onPlaceSelect}) {
     return (
         <div className='flex flex-col'>
             <label htmlFor={'search'} >Type Business Name to Search, then Select</label>
-            <input id={'search'} ref={inputRef} className='text-lg rounded-full mt-1' placeholder='' />
+            <input id={'search'} ref={inputRef} className='text-lg rounded-full mt-1 text-black pl-1' placeholder='' />
         </div>
     )
 }
