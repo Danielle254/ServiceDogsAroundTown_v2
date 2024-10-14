@@ -104,8 +104,8 @@ export default function MapComponent(props) {
                         {activeMarker && 
                             <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
                                 <div>
-                                    <p>{activeMarker.name}</p>
-                                    <button>view details</button>
+                                    <p className='font-bold text-sm'>{activeMarker.name}</p>
+                                    <button className='border-2 border-black p-1'>view details</button>
                                 </div>
                             </InfoWindow>
                         }                        
