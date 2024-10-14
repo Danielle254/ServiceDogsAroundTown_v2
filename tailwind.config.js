@@ -8,16 +8,12 @@ export default {
     extend: {
       spacing: {
         '500': '32rem'
-      }
-      /* colors: {
-        charcoal: "#424f51",
-        teal: "#67aea7",
-        lightTeal: "#aae8ca",
-        beige: "#f0d9bc",
-        pink: "#e3315d",
-        black: "#060606",
       },
-      fontFamily: {
+      colors: {
+        darkblue: '#0E172A',
+        lightblue: '#24ACDD'
+      },
+      /* fontFamily: {
         sans: ["Open Sans", "sans-serif"]
       },
       fontSize: {
