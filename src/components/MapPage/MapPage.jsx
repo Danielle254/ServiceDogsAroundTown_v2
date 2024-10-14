@@ -115,8 +115,8 @@ export default function MapComponent(props) {
                 <div className='col-span-3 flex flex-col gap-8 p-2 bg-yellow-100'>
                     <div className='flex flex-row justify-between'>
                         <button onClick={centerMapUserLocation} className={buttonStyling}>My City</button>
-                        <button className={buttonStyling}>All Places</button>
-                        <button className={`${buttonStyling} ${mapAction === 'add' ? 'bg-gray-500' : ''}`}>Add New Place</button>                        
+                        <button className={`${buttonStyling} ${mapAction === 'view' ? 'bg-gray-500' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
+                        <button className={`${buttonStyling} ${mapAction === 'add' ? 'bg-gray-500' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                     </div>
                     {mapAction === 'add' && 
                     <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
