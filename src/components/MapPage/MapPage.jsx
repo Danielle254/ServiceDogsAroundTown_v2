@@ -50,21 +50,6 @@ export default function MapComponent(props) {
     function handleActiveMarker(index) {        
         setActiveMarker(props.places[index]);
     }
-
-    /* const newInfoWindow = (
-        <div>
-            <p className='font-bold text-sm'>{selectedPlace.name}</p>
-            <p className='py-1'>{selectedPlace.formatted_address}</p>
-            <button className='border-2 border-black p-1'>Rate & Review</button>
-        </div>
-    )
-
-    const placeInfoWindow = (
-        <div>
-            <p>{props.places[key].name}</p>
-            <button>See Details</button>
-        </div>
-    ) */
     
     if (props.page === 'map') {
     
@@ -95,7 +80,11 @@ export default function MapComponent(props) {
                         </AdvancedMarker>
                         {infoWindowShown && 
                             <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>            
-                                <button>rate and review</button>                           
+                                <div>
+                                    <p className='font-bold text-sm'>{selectedPlace.name}</p>
+                                    <p className='py-1'>{selectedPlace.formatted_address}</p>
+                                    <button className='border-2 border-black p-1'>Rate & Review</button>
+                                </div>                           
                             </InfoWindow>
                         }
                         {props.places.map((place, index) => 
@@ -119,16 +108,14 @@ export default function MapComponent(props) {
                                     <button>view details</button>
                                 </div>
                             </InfoWindow>
-                        } 
-                              
-                        
+                        }                        
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
                 <div className='col-span-3 flex flex-col gap-8 p-2 bg-yellow-100'>
                     <div className='flex flex-row justify-between'>
                         <button onClick={centerMapUserLocation} className={buttonStyling}>My City</button>
-                        <button className={`${buttonStyling} ${mapAction === 'add' ? 'bg-gray-300' : ''}`}>Add New Place</button>
+                        <button className={`${buttonStyling} ${mapAction === 'add' ? 'bg-gray-500' : ''}`}>Add New Place</button>
                         <button className={buttonStyling}>View My Places</button>
                     </div>
                     {mapAction === 'add' && 
