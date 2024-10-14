@@ -16,9 +16,8 @@ const mapId = import.meta.env.VITE_MAPS_ID;
 export default function MapComponent(props) {
 
     const [markerRef, marker] = useAdvancedMarkerRef();
+    const [activeMarker, setActiveMarker] = useState(null);  
     const [infoWindowShown, setInfoWindowShown] = useState(false);
-    const handleMarkerClick =
-        useCallback(() => setInfoWindowShown(isShown => !isShown), []);
     const handleClose = useCallback(() => setInfoWindowShown(false), []);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [position, setPosition] = useState({lat: 41.4925 , lng: -99.9018});
@@ -26,6 +25,10 @@ export default function MapComponent(props) {
     const [mapAction, setMapAction] = useState('add');
 
     const buttonStyling = 'border-2 border-black bg-white px-2';
+
+    function handleMarkerClick() {        
+        setInfoWindowShown(isShown => !isShown);
+    }
 
     function centerMapUserLocation() {
         if (navigator.geolocation) {
@@ -43,6 +46,25 @@ export default function MapComponent(props) {
     function fail() {
         alert("Unable to retrieve your location");
     }
+
+    function handleActiveMarker(index) {        
+        setActiveMarker(props.places[index]);
+    }
+
+    /* const newInfoWindow = (
+        <div>
+            <p className='font-bold text-sm'>{selectedPlace.name}</p>
+            <p className='py-1'>{selectedPlace.formatted_address}</p>
+            <button className='border-2 border-black p-1'>Rate & Review</button>
+        </div>
+    )
+
+    const placeInfoWindow = (
+        <div>
+            <p>{props.places[key].name}</p>
+            <button>See Details</button>
+        </div>
+    ) */
     
     if (props.page === 'map') {
     
@@ -65,28 +87,41 @@ export default function MapComponent(props) {
                         fullscreenControl: true
                     }}
                     >                   
-                        <AdvancedMarker ref={markerRef} position={null} onClick={handleMarkerClick}/> 
-                        {infoWindowShown && (
-                        <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>
-                            <p className='font-bold text-sm'>{selectedPlace.name}</p>
-                            <p className='py-1'>{selectedPlace.formatted_address}</p>
-                            <button className='border-2 border-black p-1'>Rate & Review</button>
-                        </InfoWindow>  
-                        )}      
-                        {props.places.map((coords, index) => 
-                        <AdvancedMarker 
-                        position={coords} 
-                        key={index}
-                        clickable={true}>
-                            <Pin
-                                background={'#00008B'}
-                                borderColor={'#FFFFFF'}
-                                glyphColor={'#90D5FF'}
-                                scale={1.2}
-                            />                        
+                        <AdvancedMarker ref={markerRef} position={null} clickable={true} onClick={() => handleMarkerClick()}>
+                        <Pin
+                                background={'#808080'}                                
+                                glyphColor={'#FFFFFF'}                                
+                        />
                         </AdvancedMarker>
-                        )
+                        {infoWindowShown && 
+                            <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>            
+                                <button>rate and review</button>                           
+                            </InfoWindow>
                         }
+                        {props.places.map((place, index) => 
+                            <AdvancedMarker                         
+                                position={place.coords} 
+                                key={index}
+                                clickable={true} 
+                                onClick={() => handleActiveMarker(index)}>
+                                <Pin
+                                    background={'#00008B'}
+                                    borderColor={'#FFFFFF'}
+                                    glyphColor={'#90D5FF'}
+                                    scale={1.2}
+                                />                   
+                            </AdvancedMarker>)
+                        }
+                        {activeMarker && 
+                            <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
+                                <div>
+                                    <p>{activeMarker.name}</p>
+                                    <button>view details</button>
+                                </div>
+                            </InfoWindow>
+                        } 
+                              
+                        
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
