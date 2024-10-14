@@ -9,6 +9,7 @@ import {
 } from '@vis.gl/react-google-maps'
 import MapHandler from './MapHandler'
 import PlaceAutocomplete from './PlaceAutocomplete';
+import PlaceCardList from './PlaceCardList';
 
 const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
@@ -119,7 +120,12 @@ export default function MapComponent(props) {
                         <button className={`${buttonStyling} ${mapAction === 'add' ? 'underline' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                     </div>
                     {mapAction === 'add' && 
-                    <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                        <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                    }
+                    {mapAction === 'view' &&
+                        <PlaceCardList 
+                        places={props.places}
+                        />
                     }
                 </div> 
             </div>                         
