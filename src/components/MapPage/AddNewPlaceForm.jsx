@@ -58,29 +58,36 @@ export default function NewPlace(props) {
                 <label>Rate the Staff</label>
                 <ReactStars
                 count={5}
-                size={20}
+                size={24}
                 isHalf={false}
+                activeColor={'#24ACDD'}
                 /></div>
                 <div className='flex flex-row justify-between'>
                 <label title='was there sufficient room for your Service Dog to be out of the way of traffic?'>Rate the Space Ⓘ</label>
                 <ReactStars
                 count={5}
-                size={20}
+                size={24}
                 isHalf={false}
+                activeColor={'#24ACDD'}
                 /></div>
                 <div className='flex flex-row justify-between'>
                 <label title='what was the condition of the floor?'>Rate the Floor Ⓘ</label>
                 <ReactStars
                 count={5}
-                size={20}
+                size={24}
                 isHalf={false}
+                activeColor={'#24ACDD'}
                 /></div>
-                <label htmlFor='public-note'>Notes for Other Visitors</label>
+                <label htmlFor='public-note'>Note for Other Visitors:</label>
                 <br/>
                 <textarea 
                 id='public-note'
                 className='w-full'
                 ></textarea>
+                <input 
+                type='submit'
+                className='text-center border-white border px-4 rounded'
+                />
             </form>
         </div>
         )
