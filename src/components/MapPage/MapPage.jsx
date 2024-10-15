@@ -125,10 +125,9 @@ export default function MapComponent(props) {
                         <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                     }
                     {mapAction === 'add' && addFormVisible &&
-                        <AddNewPlaceForm 
-                        name={"Sammy's Steak Shack"}
-                        /* name={selectedPlace.name}
-                        address={selectedPlace.formatted_address} */
+                        <AddNewPlaceForm                        
+                        name={selectedPlace ? selectedPlace.name : "Sammy's Steak Shack"}
+                        address={selectedPlace ? selectedPlace.formatted_address : '210 Main St'}
                         />
                     }
                     {mapAction === 'view' &&
