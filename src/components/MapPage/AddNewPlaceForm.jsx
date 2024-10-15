@@ -3,12 +3,28 @@ import ReactStars from 'react-rating-stars-component'
 
 export default function NewPlace(props) {
     
-    const [placeToAdd, setPlaceToAdd] = useState({});
+    const [newPlaceData, setNewPlaceData] = useState({
+        businessName: props.name,
+        location: props.address,
+        dateVisited: '',
+        deniedAccess: false,
+        deniedAccessDetails: '',
+        safetyIssues: false,
+        safetyIssuesDetails: '',
+        rateStaff: 0,
+        rateSpace: 0,
+        rateFloor: 0,
+        publicNote: ''
+    });
+
+    function handleFormChange(e) {
+        
+    }
 
     return (
         <div className='bg-blue-950 rounded'>
             <h2 className='text-lg text-center py-1'>Add New Place</h2>
-            <h3 className='px-1'>{props.name}</h3>
+            <h3 className='px-1'>{newPlaceData.businessName}</h3>
             <form className='p-1'>
                 <label htmlFor='visit-date'>Date Visited</label>
                 <input
