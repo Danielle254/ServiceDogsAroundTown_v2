@@ -21,6 +21,33 @@ export default function NewPlace(props) {
 
     }
 
+    function updateStaffRating(rating) {
+        setNewPlaceData((prevData) => {
+            return {
+                ...prevData,
+                rateStaff: rating
+            }
+        });
+    }
+
+    function updateSpaceRating(rating) {
+        setNewPlaceData((prevData) => {
+            return {
+                ...prevData,
+                rateSpace: rating
+            }
+        });
+    }
+
+    function updateFloorRating(rating) {
+        setNewPlaceData((prevData) => {
+            return {
+                ...prevData,
+                rateFloor: rating
+            }
+        });
+    }
+
     return (
         <div className='bg-blue-950 rounded'>
             <h2 className='text-lg text-center py-1'>Add New Place</h2>
@@ -32,6 +59,7 @@ export default function NewPlace(props) {
                 id='visit-date'
                 type='date'
                 value={newPlaceData.dateVisited}
+                name='visit-date'
                 />
                 <fieldset>
                     <legend>Were you Denied Access?</legend>
@@ -56,6 +84,7 @@ export default function NewPlace(props) {
                 id='access-issue-detail'
                 className='w-full'
                 value={newPlaceData.deniedAccessDetails}
+                name='access-issue-detail'
                 ></textarea>
                 <fieldset>
                     <legend>Were there Safety Issues that affected your Service Dog?</legend>
@@ -80,6 +109,7 @@ export default function NewPlace(props) {
                 id='safety-issue-detail'
                 className='w-full'
                 value={newPlaceData.safetyIssuesDetails}
+                name='safety-issue-detail'
                 ></textarea>
                 <div className='flex flex-row justify-between'>
                     <label>Rate the Staff</label>
@@ -90,6 +120,7 @@ export default function NewPlace(props) {
                     activeColor={'#24ACDD'}
                     a11y={true}
                     value={newPlaceData.rateStaff}
+                    onChange={updateStaffRating}
                     />
                 </div>
                 <div className='flex flex-row justify-between'>
@@ -101,6 +132,7 @@ export default function NewPlace(props) {
                     activeColor={'#24ACDD'}
                     a11y={true}
                     value={newPlaceData.rateSpace}
+                    onChange={updateSpaceRating}
                     />
                 </div>
                 <div className='flex flex-row justify-between'>
@@ -112,6 +144,7 @@ export default function NewPlace(props) {
                     activeColor={'#24ACDD'}
                     a11y={true}
                     value={newPlaceData.rateFloor}
+                    onChange={updateFloorRating}
                     />
                 </div>
                 <label htmlFor='public-note'>Note for Other Visitors:</label>
@@ -120,6 +153,7 @@ export default function NewPlace(props) {
                 id='public-note'
                 className='w-full'
                 value={newPlaceData.publicNote}
+                name='public-note'
                 ></textarea>
                 <input 
                 type='submit'
