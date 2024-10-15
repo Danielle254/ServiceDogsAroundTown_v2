@@ -61,6 +61,7 @@ export default function NewPlace(props) {
                 size={24}
                 isHalf={false}
                 activeColor={'#24ACDD'}
+                a11y={true}
                 /></div>
                 <div className='flex flex-row justify-between'>
                 <label title='was there sufficient room for your Service Dog to be out of the way of traffic?'>Rate the Space Ⓘ</label>
@@ -69,6 +70,7 @@ export default function NewPlace(props) {
                 size={24}
                 isHalf={false}
                 activeColor={'#24ACDD'}
+                a11y={true}
                 /></div>
                 <div className='flex flex-row justify-between'>
                 <label title='what was the condition of the floor?'>Rate the Floor Ⓘ</label>
@@ -77,6 +79,7 @@ export default function NewPlace(props) {
                 size={24}
                 isHalf={false}
                 activeColor={'#24ACDD'}
+                a11y={true}
                 /></div>
                 <label htmlFor='public-note'>Note for Other Visitors:</label>
                 <br/>
