@@ -25,7 +25,7 @@ export default function MapComponent(props) {
     const [position, setPosition] = useState({lat: 40 , lng: -97});
     const [zoom, setZoom] = useState(4); 
     const [mapAction, setMapAction] = useState('add');
-    const [addFormVisible, setAddFormVisible] = useState(false);
+    const [addFormVisible, setAddFormVisible] = useState(true);
 
     const buttonStyling = 'px-2 font-bold';
 
@@ -125,7 +125,11 @@ export default function MapComponent(props) {
                         <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                     }
                     {mapAction === 'add' && addFormVisible &&
-                        <AddNewPlaceForm />
+                        <AddNewPlaceForm 
+                        name={"Sammy's Steak Shack"}
+                        /* name={selectedPlace.name}
+                        address={selectedPlace.formatted_address} */
+                        />
                     }
                     {mapAction === 'view' &&
                         <PlaceCardList 
