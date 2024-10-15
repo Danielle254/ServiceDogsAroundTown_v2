@@ -1,4 +1,4 @@
-import { useMapsLibrary } from '@vis.gl/react-google-maps';
+import { useMapsLibrary } from '@vis.gl/react-google-maps'
 import React, { useEffect, useRef, useState } from 'react'
 
 export default function PlaceAutocomplete({onPlaceSelect}) {
@@ -7,7 +7,7 @@ export default function PlaceAutocomplete({onPlaceSelect}) {
     const places = useMapsLibrary('places');
 
     useEffect(() => {
-        if (!places || !inputRef.current) return;
+        if (!places || !inputRef.current) return;        
 
         const options = {
             fields: ["geometry", "name", "formatted_address"]
@@ -25,9 +25,9 @@ export default function PlaceAutocomplete({onPlaceSelect}) {
     }, [onPlaceSelect, placeAutocomplete]);
 
     return (
-        <div className='flex flex-col items-center'>
-            <label htmlFor={'search'} >Search for a Business</label>
-            <input id={'search'} ref={inputRef} className='w-96 h-10 text-lg border-black border-2' placeholder='' />
+        <div className='flex flex-col'>
+            <label htmlFor={'search'} >Type Business Name to Search, then Select</label>
+            <input id={'search'} ref={inputRef} className='text-lg rounded-full mt-1 text-black pl-1' placeholder='' />
         </div>
     )
 }
