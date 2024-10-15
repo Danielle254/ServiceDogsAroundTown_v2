@@ -54,24 +54,27 @@ export default function NewPlace(props) {
                 id='safety-issue-detail'
                 className='w-full'
                 ></textarea>
+                <div className='flex flex-row justify-between'>
                 <label>Rate the Staff</label>
                 <ReactStars
                 count={5}
                 size={20}
                 isHalf={false}
-                />
+                /></div>
+                <div className='flex flex-row justify-between'>
                 <label title='was there sufficient room for your Service Dog to be out of the way of traffic?'>Rate the Space Ⓘ</label>
                 <ReactStars
                 count={5}
                 size={20}
                 isHalf={false}
-                />
+                /></div>
+                <div className='flex flex-row justify-between'>
                 <label title='what was the condition of the floor?'>Rate the Floor Ⓘ</label>
                 <ReactStars
                 count={5}
                 size={20}
                 isHalf={false}
-                />
+                /></div>
                 <label htmlFor='public-note'>Notes for Other Visitors</label>
                 <br/>
                 <textarea 
