@@ -7,9 +7,9 @@ export default function NewPlace(props) {
         businessName: props.name,
         location: props.address,
         dateVisited: '',
-        deniedAccess: false,
+        deniedAccess: '',
         deniedAccessDetails: '',
-        safetyIssues: false,
+        safetyIssues: '',
         safetyIssuesDetails: '',
         rateStaff: 0,
         rateSpace: 0,
@@ -18,7 +18,7 @@ export default function NewPlace(props) {
     });
 
     function handleFormChange(e) {
-        
+
     }
 
     return (
@@ -31,6 +31,7 @@ export default function NewPlace(props) {
                 required
                 id='visit-date'
                 type='date'
+                value={newPlaceData.dateVisited}
                 />
                 <fieldset>
                     <legend>Were you Denied Access?</legend>
@@ -38,11 +39,15 @@ export default function NewPlace(props) {
                     <input
                     type='radio'
                     id='access-issue-yes'
+                    value={'access-issue-yes'}
+                    checked={newPlaceData.deniedAccess === 'access-issue-yes'}
                     />
                     <label for='access-issue-no'>No</label>
                     <input
                     type='radio'
                     id='access-issue-no'
+                    value={'access-issue-no'}
+                    checked={newPlaceData.deniedAccess === 'access-issue-no'}
                     />
                 </fieldset>
                 <label htmlFor='access-issue-detail'>Please describe the issue and the outcome:</label>
@@ -50,6 +55,7 @@ export default function NewPlace(props) {
                 <textarea 
                 id='access-issue-detail'
                 className='w-full'
+                value={newPlaceData.deniedAccessDetails}
                 ></textarea>
                 <fieldset>
                     <legend>Were there Safety Issues that affected your Service Dog?</legend>
@@ -57,11 +63,15 @@ export default function NewPlace(props) {
                     <input
                     type='radio'
                     id='safety-issue-yes'
+                    value={'safety-issue-yes'}
+                    checked={newPlaceData.safetyIssues === 'safety-issue-yes'}
                     />
                     <label htmlFor='safety-issue-no'>No</label>
                     <input
                     type='radio'
                     id='safety-issue-no'
+                    value={'safety-issue-no'}
+                    checked={newPlaceData.safetyIssues === 'safety-issue-no'}
                     />
                 </fieldset>
                 <label htmlFor='safety-issue-detail'>Please describe the safety issues:</label>
@@ -69,39 +79,47 @@ export default function NewPlace(props) {
                 <textarea 
                 id='safety-issue-detail'
                 className='w-full'
+                value={newPlaceData.safetyIssuesDetails}
                 ></textarea>
                 <div className='flex flex-row justify-between'>
-                <label>Rate the Staff</label>
-                <ReactStars
-                count={5}
-                size={24}
-                isHalf={false}
-                activeColor={'#24ACDD'}
-                a11y={true}
-                /></div>
+                    <label>Rate the Staff</label>
+                    <ReactStars
+                    count={5}
+                    size={24}
+                    isHalf={false}
+                    activeColor={'#24ACDD'}
+                    a11y={true}
+                    value={newPlaceData.rateStaff}
+                    />
+                </div>
                 <div className='flex flex-row justify-between'>
-                <label title='was there sufficient room for your Service Dog to be out of the way of traffic?'>Rate the Space Ⓘ</label>
-                <ReactStars
-                count={5}
-                size={24}
-                isHalf={false}
-                activeColor={'#24ACDD'}
-                a11y={true}
-                /></div>
+                    <label title='was there sufficient room for your Service Dog to be out of the way of traffic?'>Rate the Space Ⓘ</label>
+                    <ReactStars
+                    count={5}
+                    size={24}
+                    isHalf={false}
+                    activeColor={'#24ACDD'}
+                    a11y={true}
+                    value={newPlaceData.rateSpace}
+                    />
+                </div>
                 <div className='flex flex-row justify-between'>
-                <label title='what was the condition of the floor?'>Rate the Floor Ⓘ</label>
-                <ReactStars
-                count={5}
-                size={24}
-                isHalf={false}
-                activeColor={'#24ACDD'}
-                a11y={true}
-                /></div>
+                    <label title='what was the condition of the floor?'>Rate the Floor Ⓘ</label>
+                    <ReactStars
+                    count={5}
+                    size={24}
+                    isHalf={false}
+                    activeColor={'#24ACDD'}
+                    a11y={true}
+                    value={newPlaceData.rateFloor}
+                    />
+                </div>
                 <label htmlFor='public-note'>Note for Other Visitors:</label>
                 <br/>
                 <textarea 
                 id='public-note'
                 className='w-full'
+                value={newPlaceData.publicNote}
                 ></textarea>
                 <input 
                 type='submit'
