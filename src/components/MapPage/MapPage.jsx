@@ -25,7 +25,6 @@ export default function MapComponent(props) {
     const [position, setPosition] = useState({lat: 40 , lng: -97});
     const [zoom, setZoom] = useState(4); 
     const [mapAction, setMapAction] = useState('add');
-    const [addFormVisible, setAddFormVisible] = useState(true);
 
     const buttonStyling = 'px-2 font-bold';
 
@@ -86,7 +85,7 @@ export default function MapComponent(props) {
                                 <div>
                                     <p className='font-bold text-sm text-black'>{selectedPlace.name}</p>
                                     <p className='py-1 text-black'>{selectedPlace.formatted_address}</p>
-                                    <button onClick={() => setAddFormVisible(true)} className='border-2 border-black p-1 text-black'>Rate & Review</button>
+                                    <button onClick={props.handleFormVisible} className='border-2 border-black p-1 text-black'>Rate & Review</button>
                                 </div>                           
                             </InfoWindow>
                         }
@@ -124,10 +123,10 @@ export default function MapComponent(props) {
                     {mapAction === 'add' && 
                         <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                     }
-                    {mapAction === 'add' && addFormVisible &&
+                    {mapAction === 'add' && props.addFormVisible &&
                         <AddNewPlaceForm                        
-                        name={selectedPlace ? selectedPlace.name : "Sammy's Steak Shack"}
-                        address={selectedPlace ? selectedPlace.formatted_address : '210 Main St'}
+                        name={selectedPlace.name}
+                        address={selectedPlace.formatted_address}
                         handleSubmit={props.handleFormSubmit}
                         />
                     }
