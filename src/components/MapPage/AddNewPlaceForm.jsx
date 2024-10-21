@@ -19,9 +19,11 @@ export default function NewPlace(props) {
 
     function handleFormChange(e) {
         const {name, value} = e.target;
-        setNewPlaceData({
-            ...newPlaceData,
-            [name]: value
+        setNewPlaceData((prevData) => {
+            return {
+                ...prevData,
+                [name]: value
+        }
         })
     }
 
@@ -73,43 +75,54 @@ export default function NewPlace(props) {
                     <input
                     type='radio'
                     id='access-issue-yes'
-                    value={'access-issue-yes'}
-                    checked={newPlaceData.deniedAccess === 'access-issue-yes'}
+                    name='deniedAccess'
+                    value={'true'}
+                    onChange={handleFormChange}
+                    checked={newPlaceData.deniedAccess === 'true'}
                     />
                     <label for='access-issue-no'>No</label>
                     <input
                     type='radio'
                     id='access-issue-no'
-                    value={'access-issue-no'}
-                    checked={newPlaceData.deniedAccess === 'access-issue-no'}
+                    value={'false'}
+                    name='deniedAccess'
+                    onChange={handleFormChange}
+                    checked={newPlaceData.deniedAccess === 'false'}
                     />
                 </fieldset>
+                {newPlaceData.deniedAccess === 'true' && 
+                <>
                 <label htmlFor='access-issue-detail'>Please describe the issue and the outcome:</label>
-                <br/>
+                <br/>                
                 <textarea 
                 id='access-issue-detail'
                 className='w-full text-black'
                 value={newPlaceData.deniedAccessDetails}
                 name='deniedAccessDetails'
                 onChange={handleFormChange}
-                ></textarea>
+                ></textarea></>}
                 <fieldset>
                     <legend>Were there Safety Issues that affected your Service Dog?</legend>
                     <label htmlFor='safety-issue-yes'>Yes</label>
                     <input
                     type='radio'
-                    id='safety-issue-yes'
-                    value={'safety-issue-yes'}
-                    checked={newPlaceData.safetyIssues === 'safety-issue-yes'}
+                    id='safety-issue-yes'                     
+                    value={'true'}
+                    name='safetyIssues'
+                    onChange={handleFormChange}
+                    checked={newPlaceData.safetyIssues === 'true'}
                     />
                     <label htmlFor='safety-issue-no'>No</label>
                     <input
                     type='radio'
-                    id='safety-issue-no'
-                    value={'safety-issue-no'}
-                    checked={newPlaceData.safetyIssues === 'safety-issue-no'}
+                    id='safety-issue-no'                     
+                    value={'false'}    
+                    name='safetyIssues' 
+                    onChange={handleFormChange}             
+                    checked={newPlaceData.safetyIssues === 'false'}
                     />
                 </fieldset>
+                {newPlaceData.safetyIssues === 'true' && <>
                 <label htmlFor='safety-issue-detail'>Please describe the safety issues:</label>
                 <br/>
                 <textarea 
@@ -118,7 +131,7 @@ export default function NewPlace(props) {
                 value={newPlaceData.safetyIssuesDetails}
                 name='safetyIssuesDetails'
                 onChange={handleFormChange}
-                ></textarea>
+                ></textarea></>}
                 <div className='flex flex-row justify-between'>
                     <label>Rate the Staff</label>
                     <ReactStars
