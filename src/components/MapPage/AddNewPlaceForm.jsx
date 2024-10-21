@@ -60,38 +60,46 @@ export default function NewPlace(props) {
             <h2 className='text-lg text-center py-1'>Add New Place</h2>
             <h3 className='px-1'>{newPlaceData.businessName}</h3>
             <form className='p-1'>
-                <label htmlFor='visit-date'>Date Visited</label>
-                <input
-                required
-                id='visit-date'
-                type='date'
-                value={newPlaceData.dateVisited}
-                name='dateVisited'
-                onChange={handleFormChange}
-                className='text-black'
-                max={today}
-                />
+                <div className='flex flex-row justify-between'>
+                    <label htmlFor='visit-date'>Date Visited</label>
+                    <input
+                    required
+                    id='visit-date'
+                    type='date'
+                    value={newPlaceData.dateVisited}
+                    name='dateVisited'
+                    onChange={handleFormChange}
+                    className='text-black'
+                    max={today}
+                    />
+                </div>
                 <fieldset>
                     <legend>Were you Denied Access?</legend>
-                    <label htmlFor='access-issue-yes'>Yes</label>
-                    <input
-                    type='radio'
-                    id='access-issue-yes'
-                    name='deniedAccess'
-                    value={'true'}
-                    onChange={handleFormChange}
-                    checked={newPlaceData.deniedAccess === 'true'}
-                    required
-                    />
-                    <label for='access-issue-no'>No</label>
-                    <input
-                    type='radio'
-                    id='access-issue-no'
-                    value={'false'}
-                    name='deniedAccess'
-                    onChange={handleFormChange}
-                    checked={newPlaceData.deniedAccess === 'false'}
-                    />
+                    <div className='flex flex-row justify-between'>
+                        <div>
+                            <label htmlFor='access-issue-yes' className='pr-2'>Yes</label>
+                            <input
+                            type='radio'
+                            id='access-issue-yes'
+                            name='deniedAccess'
+                            value={'true'}
+                            onChange={handleFormChange}
+                            checked={newPlaceData.deniedAccess === 'true'}
+                            required
+                            />
+                        </div>
+                        <div>
+                            <label for='access-issue-no' className='pr-2'>No</label>
+                            <input
+                            type='radio'
+                            id='access-issue-no'
+                            value={'false'}
+                            name='deniedAccess'
+                            onChange={handleFormChange}
+                            checked={newPlaceData.deniedAccess === 'false'}
+                            />
+                        </div>
+                </div>
                 </fieldset>
                 {newPlaceData.deniedAccess === 'true' && 
                 <>
@@ -107,25 +115,31 @@ export default function NewPlace(props) {
                 ></textarea></>}
                 <fieldset>
                     <legend>Were there Safety Issues that affected your Service Dog?</legend>
-                    <label htmlFor='safety-issue-yes'>Yes</label>
-                    <input
-                    type='radio'
-                    id='safety-issue-yes'                     
-                    value={'true'}
-                    name='safetyIssues'
-                    onChange={handleFormChange}
-                    checked={newPlaceData.safetyIssues === 'true'}
-                    required
-                    />
-                    <label htmlFor='safety-issue-no'>No</label>
-                    <input
-                    type='radio'
-                    id='safety-issue-no'                     
-                    value={'false'}    
-                    name='safetyIssues' 
-                    onChange={handleFormChange}             
-                    checked={newPlaceData.safetyIssues === 'false'}
-                    />
+                    <div className='flex flex-row justify-between'>
+                        <div>
+                            <label htmlFor='safety-issue-yes' className='pr-2'>Yes</label>
+                            <input
+                            type='radio'
+                            id='safety-issue-yes'                     
+                            value={'true'}
+                            name='safetyIssues'
+                            onChange={handleFormChange}
+                            checked={newPlaceData.safetyIssues === 'true'}
+                            required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='safety-issue-no' className='pr-2'>No</label>
+                            <input
+                            type='radio'
+                            id='safety-issue-no'                     
+                            value={'false'}    
+                            name='safetyIssues' 
+                            onChange={handleFormChange}             
+                            checked={newPlaceData.safetyIssues === 'false'}
+                            />
+                        </div>
+                    </div>
                 </fieldset>
                 {newPlaceData.safetyIssues === 'true' && <>
                 <label htmlFor='safety-issue-detail'>Please describe the safety issues:</label>
