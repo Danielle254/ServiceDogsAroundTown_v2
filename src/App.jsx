@@ -12,6 +12,7 @@ function App() {
     {coords: {lat: 46.75868, lng: -114.08766}, name: 'Lolo Steakhouse'}, 
     {coords: {lat: 46.84997, lng: -114.01759}, name: "Paul's Pancake Parlour"}, 
     {coords: {lat: 46.89410, lng: -114.04103}, name: 'test'}]);
+  const [addFormVisible, setAddFormVisible] = useState(false);
   
     function togglePage (buttonId) {
       if (buttonId === "map") {
@@ -22,9 +23,14 @@ function App() {
       } 
     }
 
+    function handleFormVisible() {
+      setAddFormVisible(true);
+    }
+
     function addNewPlace(e, place) {
       e.preventDefault();
       setPlaces([...places, place]);
+      setAddFormVisible(false);
     }
 
   return (
@@ -39,6 +45,8 @@ function App() {
         places={places}
         openNewPlaceModal={() => setOpenNewPlace(true)}
         handleFormSubmit={addNewPlace}
+        addFormVisible={addFormVisible}
+        handleFormVisible={handleFormVisible}
         />
         <AboutPage
         page={page}
