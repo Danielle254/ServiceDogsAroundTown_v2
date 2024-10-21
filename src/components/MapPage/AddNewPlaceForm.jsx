@@ -65,6 +65,7 @@ export default function NewPlace(props) {
                 value={newPlaceData.dateVisited}
                 name='dateVisited'
                 onChange={handleFormChange}
+                className='text-black'
                 />
                 <fieldset>
                     <legend>Were you Denied Access?</legend>
@@ -87,7 +88,7 @@ export default function NewPlace(props) {
                 <br/>
                 <textarea 
                 id='access-issue-detail'
-                className='w-full'
+                className='w-full text-black'
                 value={newPlaceData.deniedAccessDetails}
                 name='deniedAccessDetails'
                 onChange={handleFormChange}
@@ -113,7 +114,7 @@ export default function NewPlace(props) {
                 <br/>
                 <textarea 
                 id='safety-issue-detail'
-                className='w-full'
+                className='w-full text-black'
                 value={newPlaceData.safetyIssuesDetails}
                 name='safetyIssuesDetails'
                 onChange={handleFormChange}
@@ -158,7 +159,7 @@ export default function NewPlace(props) {
                 <br/>
                 <textarea 
                 id='public-note'
-                className='w-full'
+                className='w-full text-black'
                 value={newPlaceData.publicNote}
                 name='publicNote'
                 onChange={handleFormChange}
