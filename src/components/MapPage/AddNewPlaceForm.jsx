@@ -81,6 +81,7 @@ export default function NewPlace(props) {
                     value={'true'}
                     onChange={handleFormChange}
                     checked={newPlaceData.deniedAccess === 'true'}
+                    required
                     />
                     <label for='access-issue-no'>No</label>
                     <input
@@ -114,6 +115,7 @@ export default function NewPlace(props) {
                     name='safetyIssues'
                     onChange={handleFormChange}
                     checked={newPlaceData.safetyIssues === 'true'}
+                    required
                     />
                     <label htmlFor='safety-issue-no'>No</label>
                     <input
@@ -181,6 +183,7 @@ export default function NewPlace(props) {
                 name='publicNote'
                 onChange={handleFormChange}
                 maxLength={1200}
+                required
                 ></textarea>
                 <input 
                 type='submit'
