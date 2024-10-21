@@ -18,7 +18,11 @@ export default function NewPlace(props) {
     });
 
     function handleFormChange(e) {
-
+        const {name, value} = e.target;
+        setNewPlaceData({
+            ...newPlaceData,
+            [name]: value
+        })
     }
 
     function updateStaffRating(rating) {
@@ -59,7 +63,8 @@ export default function NewPlace(props) {
                 id='visit-date'
                 type='date'
                 value={newPlaceData.dateVisited}
-                name='visit-date'
+                name='dateVisited'
+                onChange={handleFormChange}
                 />
                 <fieldset>
                     <legend>Were you Denied Access?</legend>
@@ -84,7 +89,8 @@ export default function NewPlace(props) {
                 id='access-issue-detail'
                 className='w-full'
                 value={newPlaceData.deniedAccessDetails}
-                name='access-issue-detail'
+                name='deniedAccessDetails'
+                onChange={handleFormChange}
                 ></textarea>
                 <fieldset>
                     <legend>Were there Safety Issues that affected your Service Dog?</legend>
@@ -109,7 +115,8 @@ export default function NewPlace(props) {
                 id='safety-issue-detail'
                 className='w-full'
                 value={newPlaceData.safetyIssuesDetails}
-                name='safety-issue-detail'
+                name='safetyIssuesDetails'
+                onChange={handleFormChange}
                 ></textarea>
                 <div className='flex flex-row justify-between'>
                     <label>Rate the Staff</label>
@@ -153,7 +160,8 @@ export default function NewPlace(props) {
                 id='public-note'
                 className='w-full'
                 value={newPlaceData.publicNote}
-                name='public-note'
+                name='publicNote'
+                onChange={handleFormChange}
                 ></textarea>
                 <input 
                 type='submit'
