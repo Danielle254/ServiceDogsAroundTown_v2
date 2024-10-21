@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactStars from 'react-rating-stars-component'
+import { useMapsLibrary } from '@vis.gl/react-google-maps'
 
 export default function NewPlace(props) {
-
     const today = new Date().toJSON().slice(0, 10);
+    const geo = useMapsLibrary('geocoding');
+    const address = props.address;
+    const [geocodingService, setGeocodingService] = useState(null);
     const [newPlaceData, setNewPlaceData] = useState({
-        businessName: props.name,
-        location: props.address,
+        name: '',
+        coords: {},
         dateVisited: '',
         deniedAccess: '',
         deniedAccessDetails: '',
@@ -18,15 +21,34 @@ export default function NewPlace(props) {
         publicNote: ''
     });
 
+    useEffect(() => {
+        if (!geo) return;
+        setGeocodingService(new window.google.maps.Geocoder());
+    }, [geo]);
+
+    useEffect(() => {
+        if (!geocodingService || !address) return;
+        geocodingService.geocode({ address }, (results, status) => {
+            if (results && status === "OK") {
+                setNewPlaceData({
+                    ...newPlaceData,
+                    coords: {
+                    lat: results[0].geometry.location.lat(),
+                    lng: results[0].geometry.location.lng()},
+                    name: props.name
+                });
+            }
+        });
+    }, [geocodingService]);
+
     function handleFormChange(e) {
         const {name, value} = e.target;
-        setNewPlaceData((prevData) => {
-            return {
-                ...prevData,
+        setNewPlaceData({
+                ...newPlaceData,
                 [name]: value
         }
-        })
-    }
+        );
+    };
 
     function updateStaffRating(rating) {
         setNewPlaceData((prevData) => {
@@ -58,8 +80,23 @@ export default function NewPlace(props) {
     return (
         <div className='bg-blue-950 rounded'>
             <h2 className='text-lg text-center py-1'>Add New Place</h2>
-            <h3 className='px-1'>{newPlaceData.businessName}</h3>
-            <form className='p-1' onSubmit={(e) => props.handleSubmit(e, newPlaceData)}>
+            <h3 className='px-1'>{props.name}</h3>
+            <form className='p-1' onSubmit={(e) => {
+                props.handleSubmit(e, newPlaceData);
+                setNewPlaceData({
+                    name: '',
+                    coords: {},
+                    dateVisited: '',
+                    deniedAccess: '',
+                    deniedAccessDetails: '',
+                    safetyIssues: '',
+                    safetyIssuesDetails: '',
+                    rateStaff: 0,
+                    rateSpace: 0,
+                    rateFloor: 0,
+                    publicNote: ''
+                });
+            }}>
                 <div className='flex flex-row justify-between'>
                     <label htmlFor='visit-date'>Date Visited</label>
                     <input
