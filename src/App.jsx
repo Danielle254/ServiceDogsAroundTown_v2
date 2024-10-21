@@ -7,22 +7,20 @@ import AboutPage from './components/AboutPage/AboutPage'
 
 
 function App() {
-
   const [page, setPage] = useState('map');
   const [places, setPlaces] = useState([
     {coords: {lat: 46.75868, lng: -114.08766}, name: 'Lolo Steakhouse'}, 
     {coords: {lat: 46.84997, lng: -114.01759}, name: "Paul's Pancake Parlour"}, 
     {coords: {lat: 46.89410, lng: -114.04103}, name: 'test'}]);
-
-  function togglePage (buttonId) {
-    if (buttonId === "map") {
-      setPage('map')
-    }
-    if (buttonId === 'about') {
-      setPage('about')
-    } 
-  }
   
+    function togglePage (buttonId) {
+      if (buttonId === "map") {
+        setPage('map')
+      }
+      if (buttonId === 'about') {
+        setPage('about')
+      } 
+    }
 
   return (
     <div className=''>
@@ -34,10 +32,11 @@ function App() {
         <MapPage 
         page={page}
         places={places}
+        openNewPlaceModal={() => setOpenNewPlace(true)}
         />
         <AboutPage
         page={page}
-        />
+        />        
         <Footer />
       </div>
     </div>

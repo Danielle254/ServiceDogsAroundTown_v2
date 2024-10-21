@@ -10,6 +10,7 @@ import {
 import MapHandler from './MapHandler'
 import PlaceAutocomplete from './PlaceAutocomplete';
 import PlaceCardList from './PlaceCardList';
+import AddNewPlaceForm from './AddNewPlaceForm'
 
 const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
@@ -24,6 +25,7 @@ export default function MapComponent(props) {
     const [position, setPosition] = useState({lat: 40 , lng: -97});
     const [zoom, setZoom] = useState(4); 
     const [mapAction, setMapAction] = useState('add');
+    const [addFormVisible, setAddFormVisible] = useState(true);
 
     const buttonStyling = 'px-2 font-bold';
 
@@ -84,7 +86,7 @@ export default function MapComponent(props) {
                                 <div>
                                     <p className='font-bold text-sm text-black'>{selectedPlace.name}</p>
                                     <p className='py-1 text-black'>{selectedPlace.formatted_address}</p>
-                                    <button className='border-2 border-black p-1 text-black'>Rate & Review</button>
+                                    <button onClick={() => setAddFormVisible(true)} className='border-2 border-black p-1 text-black'>Rate & Review</button>
                                 </div>                           
                             </InfoWindow>
                         }
@@ -121,6 +123,12 @@ export default function MapComponent(props) {
                     </div>
                     {mapAction === 'add' && 
                         <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                    }
+                    {mapAction === 'add' && addFormVisible &&
+                        <AddNewPlaceForm                        
+                        name={selectedPlace ? selectedPlace.name : "Sammy's Steak Shack"}
+                        address={selectedPlace ? selectedPlace.formatted_address : '210 Main St'}
+                        />
                     }
                     {mapAction === 'view' &&
                         <PlaceCardList 
