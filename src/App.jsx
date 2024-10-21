@@ -22,6 +22,11 @@ function App() {
       } 
     }
 
+    function addNewPlace(e, place) {
+      e.preventDefault();
+      setPlaces([...places, place]);
+    }
+
   return (
     <div className=''>
       <div className='min-h-screen flex flex-col bg-darkblue text-white'>
@@ -33,6 +38,7 @@ function App() {
         page={page}
         places={places}
         openNewPlaceModal={() => setOpenNewPlace(true)}
+        handleFormSubmit={addNewPlace}
         />
         <AboutPage
         page={page}

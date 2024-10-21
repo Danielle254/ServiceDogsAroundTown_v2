@@ -128,6 +128,7 @@ export default function MapComponent(props) {
                         <AddNewPlaceForm                        
                         name={selectedPlace ? selectedPlace.name : "Sammy's Steak Shack"}
                         address={selectedPlace ? selectedPlace.formatted_address : '210 Main St'}
+                        handleSubmit={props.handleFormSubmit}
                         />
                     }
                     {mapAction === 'view' &&
