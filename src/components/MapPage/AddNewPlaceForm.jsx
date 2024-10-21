@@ -100,6 +100,7 @@ export default function NewPlace(props) {
                 value={newPlaceData.deniedAccessDetails}
                 name='deniedAccessDetails'
                 onChange={handleFormChange}
+                maxLength={1000}
                 ></textarea></>}
                 <fieldset>
                     <legend>Were there Safety Issues that affected your Service Dog?</legend>
@@ -131,6 +132,7 @@ export default function NewPlace(props) {
                 value={newPlaceData.safetyIssuesDetails}
                 name='safetyIssuesDetails'
                 onChange={handleFormChange}
+                maxLength={1000}
                 ></textarea></>}
                 <div className='flex flex-row justify-between'>
                     <label>Rate the Staff</label>
@@ -176,6 +178,7 @@ export default function NewPlace(props) {
                 value={newPlaceData.publicNote}
                 name='publicNote'
                 onChange={handleFormChange}
+                maxLength={1200}
                 ></textarea>
                 <input 
                 type='submit'
