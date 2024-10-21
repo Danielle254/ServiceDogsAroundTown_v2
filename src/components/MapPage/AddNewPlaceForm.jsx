@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import ReactStars from 'react-rating-stars-component'
 
 export default function NewPlace(props) {
-    
+
+    const today = new Date().toJSON().slice(0, 10);
     const [newPlaceData, setNewPlaceData] = useState({
         businessName: props.name,
         location: props.address,
@@ -68,6 +69,7 @@ export default function NewPlace(props) {
                 name='dateVisited'
                 onChange={handleFormChange}
                 className='text-black'
+                max={today}
                 />
                 <fieldset>
                     <legend>Were you Denied Access?</legend>
