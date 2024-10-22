@@ -34,24 +34,22 @@ function App() {
     }
 
   return (
-    <div className=''>
-      <div className='min-h-screen flex flex-col bg-darkblue text-white'>
-        <Nav 
-        page={page}
-        togglePage={togglePage}
-        />
-        <MapPage 
-        page={page}
-        places={places}
-        handleFormSubmit={addNewPlace}
-        addFormVisible={addFormVisible}
-        handleFormVisible={handleFormVisible}
-        />
-        <AboutPage
-        page={page}
-        />        
-        <Footer />
-      </div>
+    <div className='h-screen flex flex-col bg-darkblue text-white'>
+      <Nav 
+      page={page}
+      togglePage={togglePage}
+      />
+      <MapPage 
+      page={page}
+      places={places}
+      handleFormSubmit={addNewPlace}
+      addFormVisible={addFormVisible}
+      handleFormVisible={handleFormVisible}
+      />
+      <AboutPage
+      page={page}
+      />        
+      <Footer />
     </div>
   )
 }
