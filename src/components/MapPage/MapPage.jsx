@@ -24,7 +24,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [position, setPosition] = useState({lat: 40 , lng: -97});
     const [zoom, setZoom] = useState(4); 
-    const [mapAction, setMapAction] = useState('add');
+    const [mapAction, setMapAction] = useState('view');
 
     const buttonStyling = 'px-2 font-bold';
 
