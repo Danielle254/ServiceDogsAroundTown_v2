@@ -1,10 +1,10 @@
 import React from 'react'
 import PlaceCard from './PlaceCard'
 
-export default function PlaceCardList(props) {
+export default function PlaceCardList({places}) {
 
     return(
-        props.places.map((place, index) =>
+        places.map((place, index) =>
             <PlaceCard 
             name={place.name}
             key={index}

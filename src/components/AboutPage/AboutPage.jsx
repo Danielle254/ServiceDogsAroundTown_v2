@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function AboutPage(props) {
-  if (props.page === 'about') {
+export default function AboutPage({ page }) {
+  if (page === 'about') {
     return (
       <div>
         <p>about page</p>
