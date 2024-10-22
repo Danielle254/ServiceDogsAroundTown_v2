@@ -71,7 +71,8 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         draggable: true,
                         disableDefaultUI: true,
                         zoomControl: true,
-                        fullscreenControl: true
+                        fullscreenControl: true,
+                        clickableIcons: false
                     }}
                     >                   
                         <AdvancedMarker ref={markerRef} position={null} clickable={true} onClick={() => handleMarkerClick()}>
