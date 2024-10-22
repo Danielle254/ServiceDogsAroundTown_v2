@@ -15,7 +15,7 @@ import AddNewPlaceForm from './AddNewPlaceForm'
 const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
 
-export default function MapComponent(props) {
+export default function MapComponent({ page, places, handleFormSubmit, addFormVisible, handleFormVisible }) {
 
     const [markerRef, marker] = useAdvancedMarkerRef();
     const [activeMarker, setActiveMarker] = useState(null);  
@@ -50,10 +50,10 @@ export default function MapComponent(props) {
     }
 
     function handleActiveMarker(index) {        
-        setActiveMarker(props.places[index]);
+        setActiveMarker(places[index]);
     }
     
-    if (props.page === 'map') {
+    if (page === 'map') {
     
         return (    
             <APIProvider apiKey={apiKey} >  
@@ -85,11 +85,11 @@ export default function MapComponent(props) {
                                 <div>
                                     <p className='font-bold text-sm text-black'>{selectedPlace.name}</p>
                                     <p className='py-1 text-black'>{selectedPlace.formatted_address}</p>
-                                    <button onClick={props.handleFormVisible} className='border-2 border-black p-1 text-black'>Rate & Review</button>
+                                    <button onClick={handleFormVisible} className='border-2 border-black p-1 text-black'>Rate & Review</button>
                                 </div>                           
                             </InfoWindow>
                         }
-                        {props.places.map((place, index) => 
+                        {places.map((place, index) => 
                             <AdvancedMarker                         
                                 position={place.coords} 
                                 key={index}
@@ -123,16 +123,16 @@ export default function MapComponent(props) {
                     {mapAction === 'add' && 
                         <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                     }
-                    {mapAction === 'add' && props.addFormVisible &&
+                    {mapAction === 'add' && addFormVisible &&
                         <AddNewPlaceForm                        
                         name={selectedPlace.name}
                         address={selectedPlace.formatted_address}
-                        handleSubmit={props.handleFormSubmit}
+                        handleSubmit={handleFormSubmit}
                         />
                     }
                     {mapAction === 'view' &&
                         <PlaceCardList 
-                        places={props.places}
+                        places={places}
                         />
                     }
                 </div> 

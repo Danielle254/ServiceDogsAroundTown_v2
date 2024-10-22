@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function PlaceCard(props) {
+export default function PlaceCard({name}) {
   return (
     <div className='bg-blue-950 p-1 rounded'>
-      <p>{props.name}</p>
+      <p>{name}</p>
     </div>
   )
 }
