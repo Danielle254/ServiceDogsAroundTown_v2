@@ -43,7 +43,6 @@ function App() {
         <MapPage 
         page={page}
         places={places}
-        openNewPlaceModal={() => setOpenNewPlace(true)}
         handleFormSubmit={addNewPlace}
         addFormVisible={addFormVisible}
         handleFormVisible={handleFormVisible}
