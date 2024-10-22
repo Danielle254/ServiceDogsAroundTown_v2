@@ -11,7 +11,8 @@ export default {
       },
       colors: {
         darkblue: '#0E1B41',
-        lightblue: '#53cbe2'
+        lightblue: '#53cbe2',
+        card: '#3d4562'
       },
       /* fontFamily: {
         sans: ["Open Sans", "sans-serif"]
