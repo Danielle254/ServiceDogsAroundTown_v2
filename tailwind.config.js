@@ -10,8 +10,8 @@ export default {
         '500': '32rem'
       },
       colors: {
-        darkblue: '#0E172A',
-        lightblue: '#24ACDD'
+        darkblue: '#0E1B41',
+        lightblue: '#53cbe2'
       },
       /* fontFamily: {
         sans: ["Open Sans", "sans-serif"]
