@@ -80,6 +80,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
         <div className='bg-blue-950 rounded'>
             <h2 className='text-lg text-center py-1'>Add New Place</h2>
             <h3 className='px-1'>{name}</h3>
+            <h3 className='px-1'>{address}</h3>
             <form className='p-1' onSubmit={(e) => {
                 handleSubmit(e, newPlaceData);
                 setNewPlaceData({
