@@ -3,14 +3,15 @@ import React, { useEffect, useRef, useState } from 'react'
 
 export default function PlaceAutocomplete({onPlaceSelect}) {
     const [placeAutocomplete, setPlaceAutocomplete] = useState(null);
-    const inputRef = useRef(null);
+    const inputRef = useRef();
     const places = useMapsLibrary('places');
 
     useEffect(() => {
         if (!places || !inputRef.current) return;        
 
         const options = {
-            fields: ["geometry", "name", "formatted_address"]
+            fields: ["geometry", "name", "formatted_address"],
+            componentRestrictions: {country: ['us']}
         };
 
         setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
@@ -21,7 +22,9 @@ export default function PlaceAutocomplete({onPlaceSelect}) {
 
         placeAutocomplete.addListener("place_changed", () => {
             onPlaceSelect(placeAutocomplete.getPlace());
+            inputRef.current.value = '';
         });
+        
     }, [onPlaceSelect, placeAutocomplete]);
 
     return (
