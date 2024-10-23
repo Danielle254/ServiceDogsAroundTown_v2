@@ -4,7 +4,7 @@
 
 @layer components {
     .btn-nav {
-        @apply px-4 rounded-full font-bold;
+        @apply px-4 rounded-full font-bold text-lg;
     }
 
     .btn-nav-selected {
