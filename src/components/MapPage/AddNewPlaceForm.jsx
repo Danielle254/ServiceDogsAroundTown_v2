@@ -228,7 +228,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                 ></textarea>
                 <input 
                 type='submit'
-                className='text-center border-white border px-4 rounded'
+                className='text-center border-white border px-4 rounded cursor-pointer'
                 />
                 <button onClick={() => {
                     handleFormVisible();
