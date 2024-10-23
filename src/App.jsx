@@ -34,7 +34,7 @@ function App() {
   }
 
   function handleFormVisible() {
-    setAddFormVisible(true);
+    setAddFormVisible(!addFormVisible);
   }
 
   async function addNewPlace(e, place) {
