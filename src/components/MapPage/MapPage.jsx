@@ -121,7 +121,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         <button className={`btn-map-nav ${mapAction === 'view' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
                         <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                     </div>
-                    {mapAction === 'add' && 
+                    {mapAction === 'add' && !addFormVisible &&
                         <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                     }
                     {mapAction === 'add' && addFormVisible &&
