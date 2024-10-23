@@ -75,10 +75,10 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                     >                   
                         <AdvancedMarker ref={markerRef} position={null} clickable={true} onClick={() => handleMarkerClick()}>
                         <Pin
-                                background={'#FFFFFF'}                                
-                                glyphColor={'#53cbe2'}   
+                                background={'#53cbe2'}                                
+                                glyphColor={'#0E1B41'}   
                                 borderColor={'#0E1B41'} 
-                                scale={1.1}                            
+                                scale={1.4}                            
                         />
                         </AdvancedMarker>
                         {infoWindowShown && 
@@ -86,7 +86,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                                 <div>
                                     <p className='font-bold text-sm text-darkblue'>{selectedPlace.name}</p>
                                     <p className='py-1 text-darkblue'>{selectedPlace.formatted_address}</p>
-                                    <button onClick={handleFormVisible} className='btn-info-window'>Rate & Review</button>
+                                    {!addFormVisible && <button onClick={handleFormVisible} className='btn-info-window'>Rate & Review</button>}
                                 </div>                           
                             </InfoWindow>
                         }
