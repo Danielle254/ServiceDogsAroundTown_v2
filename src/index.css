@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .btn-nav {
+        @apply px-4 rounded-full font-bold;
+    }
+
+    .btn-nav-selected {
+        @apply bg-lightblue text-black;
+    }
+}
