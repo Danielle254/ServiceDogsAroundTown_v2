@@ -77,16 +77,18 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                     >                   
                         <AdvancedMarker ref={markerRef} position={null} clickable={true} onClick={() => handleMarkerClick()}>
                         <Pin
-                                background={'#808080'}                                
-                                glyphColor={'#FFFFFF'}                                
+                                background={'#FFFFFF'}                                
+                                glyphColor={'#53cbe2'}   
+                                borderColor={'#0E1B41'} 
+                                scale={1.1}                            
                         />
                         </AdvancedMarker>
                         {infoWindowShown && 
                             <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>            
                                 <div>
-                                    <p className='font-bold text-sm text-black'>{selectedPlace.name}</p>
-                                    <p className='py-1 text-black'>{selectedPlace.formatted_address}</p>
-                                    <button onClick={handleFormVisible} className='border-2 border-black p-1 text-black'>Rate & Review</button>
+                                    <p className='font-bold text-sm text-darkblue'>{selectedPlace.name}</p>
+                                    <p className='py-1 text-darkblue'>{selectedPlace.formatted_address}</p>
+                                    <button onClick={handleFormVisible} className='border-2 rounded text-sm border-darkblue p-1 text-white bg-darkblue hover:bg-lightblue hover:text-darkblue'>Rate & Review</button>
                                 </div>                           
                             </InfoWindow>
                         }
@@ -97,9 +99,9 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                                 clickable={true} 
                                 onClick={() => handleActiveMarker(index)}>
                                 <Pin
-                                    background={'#00008B'}
-                                    borderColor={'#FFFFFF'}
-                                    glyphColor={'#90D5FF'}
+                                    background={'#0E1B41'}
+                                    borderColor={'#0E1B41'}
+                                    glyphColor={'#53cbe2'}
                                     scale={1.2}
                                 />                   
                             </AdvancedMarker>)
@@ -107,8 +109,8 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         {activeMarker && 
                             <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
                                 <div>
-                                    <p className='font-bold text-sm text-black'>{activeMarker.name}</p>
-                                    <button className='border-2 border-black p-1 text-black'>view details</button>
+                                    <p className='font-bold text-sm text-darkblue pb-1'>{activeMarker.name}</p>
+                                    <button className='border-2 border-darkblue p-1 bg-darkblue hover:bg-lightblue hover:text-darkblue rounded'>View Details</button>
                                 </div>
                             </InfoWindow>
                         }                        
