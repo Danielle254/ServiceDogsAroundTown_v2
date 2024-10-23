@@ -244,7 +244,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                         rateFloor: 0,
                         publicNote: ''
                     });
-                }}>Cancel</button>
+                }} className='text-center border-white border px-4 rounded ml-4'>Cancel</button>
             </form>
         </div>
         )
