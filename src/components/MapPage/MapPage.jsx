@@ -78,7 +78,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                                 background={'#53cbe2'}                                
                                 glyphColor={'#0E1B41'}   
                                 borderColor={'#0E1B41'} 
-                                scale={1.4}                            
+                                scale={1.2}                            
                         />
                         </AdvancedMarker>
                         {infoWindowShown && 
