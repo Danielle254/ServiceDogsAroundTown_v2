@@ -26,8 +26,6 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
     const [zoom, setZoom] = useState(4); 
     const [mapAction, setMapAction] = useState('view');
 
-    const buttonStyling = 'px-2 font-bold';
-
     function handleMarkerClick() {        
         setInfoWindowShown(isShown => !isShown);
     }
@@ -88,7 +86,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                                 <div>
                                     <p className='font-bold text-sm text-darkblue'>{selectedPlace.name}</p>
                                     <p className='py-1 text-darkblue'>{selectedPlace.formatted_address}</p>
-                                    <button onClick={handleFormVisible} className='border-2 rounded text-sm border-darkblue p-1 text-white bg-darkblue hover:bg-lightblue hover:text-darkblue'>Rate & Review</button>
+                                    <button onClick={handleFormVisible} className='btn-info-window'>Rate & Review</button>
                                 </div>                           
                             </InfoWindow>
                         }
@@ -110,7 +108,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                             <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
                                 <div>
                                     <p className='font-bold text-sm text-darkblue pb-1'>{activeMarker.name}</p>
-                                    <button className='border-2 border-darkblue p-1 bg-darkblue hover:bg-lightblue hover:text-darkblue rounded'>View Details</button>
+                                    <button className='btn-info-window'>View Details</button>
                                 </div>
                             </InfoWindow>
                         }                        
@@ -119,9 +117,9 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                 </div> 
                 <div className='col-span-3 flex flex-col gap-8 px-4 overflow-y-auto'>
                     <div className='flex flex-row justify-between'>
-                        <button onClick={centerMapUserLocation} className={`${buttonStyling} border-2 border-gray-400 rounded`}>My City</button>
-                        <button className={`${buttonStyling} ${mapAction === 'view' ? 'underline' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
-                        <button className={`${buttonStyling} ${mapAction === 'add' ? 'underline' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
+                        <button onClick={centerMapUserLocation} className='px-2 font-bold border-2 border-gray-400 rounded text-sm hover:border-lightblue'>My City</button>
+                        <button className={`btn-map-nav ${mapAction === 'view' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
+                        <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                     </div>
                     {mapAction === 'add' && 
                         <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />

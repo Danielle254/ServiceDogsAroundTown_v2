@@ -4,10 +4,22 @@
 
 @layer components {
     .btn-nav {
-        @apply px-4 rounded-full font-bold text-lg;
+        @apply px-4 rounded-full font-bold text-lg hover:border-2 hover:border-lightblue border-2 border-darkblue;
     }
 
     .btn-nav-selected {
-        @apply bg-lightblue text-black;
+        @apply bg-lightblue text-black border-2 border-darkblue hover:border-2 hover:border-darkblue;
+    }
+
+    .btn-info-window {
+        @apply border-2 rounded text-sm border-darkblue p-1 text-white bg-darkblue hover:bg-lightblue hover:text-darkblue;
+    }
+
+    .btn-map-nav {
+        @apply px-2 font-bold text-sm hover:underline hover:underline-offset-4;
+    }
+
+    .btn-map-nav-selected {
+        @apply underline underline-offset-4;
     }
 }
