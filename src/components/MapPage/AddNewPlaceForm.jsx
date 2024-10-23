@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactStars from 'react-rating-stars-component'
 import { useMapsLibrary } from '@vis.gl/react-google-maps'
 
-export default function NewPlace({name, address, handleSubmit}) {
+export default function NewPlace({name, address, handleSubmit, handleFormVisible}) {
     const today = new Date().toJSON().slice(0, 10);
     const geo = useMapsLibrary('geocoding');
     const [geocodingService, setGeocodingService] = useState(null);
@@ -229,6 +229,22 @@ export default function NewPlace({name, address, handleSubmit}) {
                 type='submit'
                 className='text-center border-white border px-4 rounded'
                 />
+                <button onClick={() => {
+                    handleFormVisible();
+                    setNewPlaceData({
+                        name: '',
+                        coords: {},
+                        dateVisited: '',
+                        deniedAccess: '',
+                        deniedAccessDetails: '',
+                        safetyIssues: '',
+                        safetyIssuesDetails: '',
+                        rateStaff: 0,
+                        rateSpace: 0,
+                        rateFloor: 0,
+                        publicNote: ''
+                    });
+                }}>Cancel</button>
             </form>
         </div>
         )

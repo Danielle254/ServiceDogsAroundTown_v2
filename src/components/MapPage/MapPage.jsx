@@ -129,6 +129,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         name={selectedPlace.name}
                         address={selectedPlace.formatted_address}
                         handleSubmit={handleFormSubmit}
+                        handleFormVisible={handleFormVisible}
                         />
                     }
                     {mapAction === 'view' &&
