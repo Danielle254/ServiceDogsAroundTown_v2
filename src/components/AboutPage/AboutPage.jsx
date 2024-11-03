@@ -5,6 +5,7 @@ export default function AboutPage({ page }) {
     return (
       <div>
         <p>about page</p>
+        <p>Created with React, Tailwind CSS, Google Maps API, and Firebase. <span><a href='https://github.com/Danielle254/ServiceDogsAroundTown_v2' className='underline'>View Code</a></span></p>
       </div>
     )
   }
