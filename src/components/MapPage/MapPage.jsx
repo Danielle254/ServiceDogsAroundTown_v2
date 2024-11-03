@@ -57,6 +57,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
             <APIProvider apiKey={apiKey} >  
             <div className='grid grid-cols-9 h-full overflow-hidden'>          
                 <div className='col-span-6'> 
+                    
                     <Map 
                     zoom={zoom} 
                     center={position} 
@@ -72,7 +73,8 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         fullscreenControl: true,
                         clickableIcons: false
                     }}
-                    >                   
+                    >
+                        <button onClick={centerMapUserLocation} className='px-2 py-1 font-bold bg-darkblue text-white hover:border-2 hover:border-lightblue border-2 border-darkblue rounded text-sm absolute top-4 right-16'>My City</button>          
                         <AdvancedMarker ref={markerRef} position={null} clickable={true} onClick={() => handleMarkerClick()}>
                         <Pin
                                 background={'#53cbe2'}                                
@@ -115,9 +117,8 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
-                <div className='col-span-3 flex flex-col gap-8 p-4 overflow-y-auto bg-card'>
+                <div className='col-span-3 flex flex-col gap-8 p-4 overflow-y-auto bg-lightgreen'>
                     <div className='flex flex-row justify-between'>
-                        <button onClick={centerMapUserLocation} className='px-2 font-bold border-2 border-gray-400 rounded text-sm hover:border-lightblue'>My City</button>
                         <button className={`btn-map-nav ${mapAction === 'view' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
                         <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                     </div>
