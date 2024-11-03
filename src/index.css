@@ -29,10 +29,10 @@
     }
 
     .btn-map-nav {
-        @apply px-2 font-bold text-sm hover:underline hover:underline-offset-4;
+        @apply px-2 font-bold text-sm hover:underline hover:underline-offset-4 text-darkblue;
     }
 
     .btn-map-nav-selected {
-        @apply underline underline-offset-4;
+        @apply underline underline-offset-4 text-darkblue;
     }
 }
