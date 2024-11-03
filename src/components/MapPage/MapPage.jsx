@@ -56,7 +56,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
         return (    
             <APIProvider apiKey={apiKey} >  
             <div className='grid grid-cols-9 h-full overflow-hidden'>          
-                <div className='col-span-6 pl-4'> 
+                <div className='col-span-6'> 
                     <Map 
                     zoom={zoom} 
                     center={position} 
@@ -115,7 +115,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
-                <div className='col-span-3 flex flex-col gap-8 px-4 overflow-y-auto'>
+                <div className='col-span-3 flex flex-col gap-8 p-4 overflow-y-auto bg-card'>
                     <div className='flex flex-row justify-between'>
                         <button onClick={centerMapUserLocation} className='px-2 font-bold border-2 border-gray-400 rounded text-sm hover:border-lightblue'>My City</button>
                         <button className={`btn-map-nav ${mapAction === 'view' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
