@@ -1,6 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Poppins&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Poppins', system-ui, sans-serif;
+    }
+    @font-face {
+        font-family: 'New Amsterdam';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap')
+    }
+}
 
 @layer components {
     .btn-nav {

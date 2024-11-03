@@ -14,9 +14,10 @@ export default {
         lightblue: '#53cbe2',
         card: '#3d4562'
       },
-      /* fontFamily: {
-        sans: ["Open Sans", "sans-serif"]
-      },
+      fontFamily: {
+        'title': ['"New Amsterdam"', "sans-serif"],
+        'body': ["Poppins", "sans-serif"]
+      },/* 
       fontSize: {
         para: '1.25rem',   // 20px
         button: '1.5rem',  // 24px
