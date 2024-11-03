@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import './App.css'
 import Nav from './components/Nav'
 import MapPage from './components/MapPage/MapPage';
 import AboutPage from './components/AboutPage/AboutPage'
