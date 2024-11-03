@@ -12,7 +12,7 @@ export default {
       colors: {
         darkblue: '#0E1B41',
         lightblue: '#53cbe2',
-        card: '#3d4562'
+        lightgreen: '#8bc78d'
       },
       fontFamily: {
         'title': ['"New Amsterdam"', "sans-serif"],
