@@ -13,6 +13,7 @@ export default function Nav({ page, togglePage }) {
       <nav className='flex flex-row gap-4'>
         <button className={`btn-nav ${page === 'map' ? 'btn-nav-selected' : ''}`} onClick={() => togglePage('map')}>Map</button>
         <button className={`btn-nav ${page === 'about' ? 'btn-nav-selected' : ''}`} onClick={() => togglePage('about')}>About</button>
+        <button className='btn-nav'>Login</button>
        </nav>
     </header>
     
