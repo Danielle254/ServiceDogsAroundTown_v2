@@ -12,7 +12,8 @@ export default {
       colors: {
         darkblue: '#0E1B41',
         lightblue: '#53cbe2',
-        lightgreen: '#8bc78d'
+        lightgreen: '#8bc78d',
+        accentblue: '#193076'
       },
       fontFamily: {
         'title': ['"New Amsterdam"', "sans-serif"],
