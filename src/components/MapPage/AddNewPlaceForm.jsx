@@ -228,7 +228,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                 ></textarea>
                 <input 
                 type='submit'
-                className='text-center border-white border px-4 rounded cursor-pointer'
+                className='text-center bg-lightblue text-darkblue hover:bg-lightgreen font-bold rounded cursor-pointer w-full mb-2'
                 />
                 <button onClick={() => {
                     handleFormVisible();
@@ -245,7 +245,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                         rateFloor: 0,
                         publicNote: ''
                     });
-                }} className='text-center border-white border px-4 rounded ml-4'>Cancel</button>
+                }} className='text-center font-bold border-2 border-white rounded w-full hover:bg-white hover:text-darkblue'>Cancel</button>
             </form>
         </div>
         )
