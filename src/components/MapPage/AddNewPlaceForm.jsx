@@ -77,7 +77,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
     }
 
     return (
-        <div className='bg-blue-950 rounded'>
+        <div className='px-2'>
             <h2 className='text-lg text-center py-1'>Add New Place</h2>
             <h3 className='px-1'>{name}</h3>
             <h3 className='px-1'>{address}</h3>
