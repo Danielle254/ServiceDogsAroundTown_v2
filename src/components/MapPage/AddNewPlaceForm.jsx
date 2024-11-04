@@ -96,9 +96,8 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     publicNote: ''
                 });
             }}>
-                <div>          
+                <div className='flex flex-col gap-2'>          
                     <label htmlFor='visit-date' className='text-sm'>Date Visited</label>
-                    <br/>
                     <input
                     required
                     id='visit-date'
@@ -113,8 +112,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                 <fieldset>
                     <legend className='text-sm mb-2'>Were you Denied Access?</legend> 
                     <div className='flex flex-row gap-4'>
-                        <div className='border-2 border-white w-1/6 rounded p-1 text-center cursor-pointer hover:border-lightblue hover:text-lightblue'>              
-                            <label htmlFor='access-issue-yes' className='cursor-pointer'>Yes</label>
+                        <div>     
                             <input
                                 type='radio'
                                 id='access-issue-yes'
@@ -123,11 +121,11 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                                 onChange={handleFormChange}
                                 checked={newPlaceData.deniedAccess === 'true'}
                                 required
-                                className='opacity-0 cursor-pointer h-0 w-0'
-                            />
+                                className='opacity-0 cursor-pointer h-0 w-0 peer'
+                            />         
+                            <label htmlFor='access-issue-yes' className='border-2 border-white rounded py-1 px-2 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>Yes</label>            
                         </div>    
-                        <div className='border-2 border-white rounded p-1 w-1/6 text-center cursor-pointer hover:border-lightblue hover:text-lightblue'>
-                            <label htmlFor='access-issue-no' className='cursor-pointer'>No</label> 
+                        <div>                            
                             <input
                             type='radio'
                             id='access-issue-no'
@@ -135,8 +133,9 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                             name='deniedAccess'
                             onChange={handleFormChange}
                             checked={newPlaceData.deniedAccess === 'false'}
-                            className='opacity-0 h-0 w-0 cursor-pointer'
+                            className='opacity-0 h-0 w-0 cursor-pointer peer'
                             />
+                            <label htmlFor='access-issue-no' className='border-2 border-white rounded py-1 px-3 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>No</label> 
                         </div>  
                     </div>                  
                     {newPlaceData.deniedAccess === 'true' && 
@@ -156,8 +155,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                 <fieldset>
                     <legend className='text-sm mb-2'>Were there Safety Issues that affected your Service Dog?</legend>      
                     <div className='flex flex-row gap-4'>
-                        <div className='border-2 border-white w-1/6 rounded p-1 text-center cursor-pointer hover:border-lightblue hover:text-lightblue'>
-                            <label htmlFor='safety-issue-yes' className='cursor-pointer'>Yes</label>             
+                        <div>                                                     
                             <input
                             type='radio'
                             id='safety-issue-yes'                     
@@ -166,11 +164,11 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                             onChange={handleFormChange}
                             checked={newPlaceData.safetyIssues === 'true'}
                             required
-                            className='opacity-0 h-0 w-0 cursor-pointer'
-                            />
+                            className='opacity-0 h-0 w-0 cursor-pointer peer'
+                            />   
+                            <label htmlFor='safety-issue-yes' className='border-2 border-white rounded py-1 px-2 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>Yes</label>                          
                         </div>    
-                        <div className='border-2 border-white rounded p-1 w-1/6 text-center cursor-pointer hover:border-lightblue hover:text-lightblue'>
-                            <label htmlFor='safety-issue-no' className='cursor-pointer'>No</label>
+                        <div>                            
                             <input
                                 type='radio'
                                 id='safety-issue-no'                     
@@ -178,8 +176,9 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                                 name='safetyIssues' 
                                 onChange={handleFormChange}             
                                 checked={newPlaceData.safetyIssues === 'false'}
-                                className='opacity-0 h-0 w-0 cursor-pointer'
+                                className='opacity-0 h-0 w-0 cursor-pointer peer'
                             />
+                            <label htmlFor='safety-issue-no' className='border-2 border-white rounded py-1 px-3 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>No</label>
                         </div>
                     </div>                   
                     {newPlaceData.safetyIssues === 'true' && 
