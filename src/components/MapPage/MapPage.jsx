@@ -117,7 +117,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
                 <div className='col-span-3 flex flex-col gap-4 overflow-y-auto bg-darkblue'>
-                    <div className='flex flex-row justify-between py-2 px-1 bg-lightgreen'>
+                    <div className='flex flex-row justify-between py-2 px-1 bg-lightgreen sticky top-0'>
                         <button className={`btn-map-nav ${mapAction === 'allPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('allPlaces')}>All Places</button>
                         <button className={`btn-map-nav ${mapAction === 'myPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('myPlaces')}>My Places</button> 
                         <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
