@@ -80,7 +80,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
         <div className='px-4'>
             <h3 className='text-lg font-bold'>{name}</h3>
             <h3 className='mb-4'>{address}</h3>
-            <form className='flex flex-col gap-4' onSubmit={(e) => {
+            <form className='flex flex-col gap-6' onSubmit={(e) => {
                 handleSubmit(e, newPlaceData);
                 setNewPlaceData({
                     name: '',
@@ -96,7 +96,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     publicNote: ''
                 });
             }}>
-                <div className='flex flex-col gap-2'>          
+                <div className='flex flex-col gap-1'>          
                     <label htmlFor='visit-date' className='text-sm'>Date Visited</label>
                     <input
                     required
