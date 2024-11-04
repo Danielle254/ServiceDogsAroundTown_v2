@@ -77,11 +77,10 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
     }
 
     return (
-        <div className='bg-blue-950 rounded'>
-            <h2 className='text-lg text-center py-1'>Add New Place</h2>
-            <h3 className='px-1'>{name}</h3>
-            <h3 className='px-1'>{address}</h3>
-            <form className='p-1' onSubmit={(e) => {
+        <div className='px-4'>
+            <h3 className='text-lg font-bold'>{name}</h3>
+            <h3 className='mb-4'>{address}</h3>
+            <form className='flex flex-col gap-6' onSubmit={(e) => {
                 handleSubmit(e, newPlaceData);
                 setNewPlaceData({
                     name: '',
@@ -97,8 +96,8 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     publicNote: ''
                 });
             }}>
-                <div className='flex flex-row justify-between'>
-                    <label htmlFor='visit-date'>Date Visited</label>
+                <div className='flex flex-col gap-1'>          
+                    <label htmlFor='visit-date' className='text-sm'>Date Visited</label>
                     <input
                     required
                     id='visit-date'
@@ -106,96 +105,114 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     value={newPlaceData.dateVisited}
                     name='dateVisited'
                     onChange={handleFormChange}
-                    className='text-black rounded'
+                    className='text-gray-800 w-1/2 py-2 rounded cursor-pointer'
                     max={today}
                     />
-                </div>
+                </div>                
                 <fieldset>
-                    <legend>Were you Denied Access?</legend>
-                    <label htmlFor='access-issue-yes' className='pr-2'>Yes</label>
-                    <input
-                    type='radio'
-                    id='access-issue-yes'
-                    name='deniedAccess'
-                    value={'true'}
-                    onChange={handleFormChange}
-                    checked={newPlaceData.deniedAccess === 'true'}
-                    required
-                    className='mr-6'
-                    />
-                    <label htmlFor='access-issue-no' className='pr-2'>No</label>
-                    <input
-                    type='radio'
-                    id='access-issue-no'
-                    value={'false'}
-                    name='deniedAccess'
-                    onChange={handleFormChange}
-                    checked={newPlaceData.deniedAccess === 'false'}
-                    />
-                </fieldset>
-                {newPlaceData.deniedAccess === 'true' && 
-                <>
-                <label htmlFor='access-issue-detail'>Please describe the issue and the outcome:</label>
-                <br/>                
-                <textarea 
-                id='access-issue-detail'
-                className='w-full text-black rounded'
-                value={newPlaceData.deniedAccessDetails}
-                name='deniedAccessDetails'
-                onChange={handleFormChange}
-                maxLength={1000}
-                ></textarea></>}
+                    <legend className='text-sm mb-2'>Were you Denied Access?</legend> 
+                    <div className='flex flex-row gap-4'>
+                        <div>     
+                            <input
+                                type='radio'
+                                id='access-issue-yes'
+                                name='deniedAccess'
+                                value={'true'}
+                                onChange={handleFormChange}
+                                checked={newPlaceData.deniedAccess === 'true'}
+                                required
+                                className='opacity-0 cursor-pointer h-0 w-0 peer'
+                            />         
+                            <label htmlFor='access-issue-yes' className='border-2 border-white rounded py-1 px-2 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>Yes</label>            
+                        </div>    
+                        <div>                            
+                            <input
+                            type='radio'
+                            id='access-issue-no'
+                            value={'false'}
+                            name='deniedAccess'
+                            onChange={handleFormChange}
+                            checked={newPlaceData.deniedAccess === 'false'}
+                            className='opacity-0 h-0 w-0 cursor-pointer peer'
+                            />
+                            <label htmlFor='access-issue-no' className='border-2 border-white rounded py-1 px-3 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>No</label> 
+                        </div>  
+                    </div>                  
+                    {newPlaceData.deniedAccess === 'true' && 
+                    <div className='mt-2'>
+                        <label htmlFor='access-issue-detail' className='text-sm'>Please describe the issue and the outcome:</label>            
+                        <textarea 
+                        id='access-issue-detail'
+                        className='w-full text-black rounded'
+                        value={newPlaceData.deniedAccessDetails}
+                        name='deniedAccessDetails'
+                        onChange={handleFormChange}
+                        maxLength={1000}
+                        rows={3}
+                        ></textarea>
+                    </div>}
+                </fieldset>                
                 <fieldset>
-                    <legend>Were there Safety Issues that affected your Service Dog?</legend>
-                    <label htmlFor='safety-issue-yes' className='pr-2'>Yes</label>
-                    <input
-                    type='radio'
-                    id='safety-issue-yes'                     
-                    value={'true'}
-                    name='safetyIssues'
-                    onChange={handleFormChange}
-                    checked={newPlaceData.safetyIssues === 'true'}
-                    className='mr-6'
-                    required
-                    />
-                    <label htmlFor='safety-issue-no' className='pr-2'>No</label>
-                    <input
-                    type='radio'
-                    id='safety-issue-no'                     
-                    value={'false'}    
-                    name='safetyIssues' 
-                    onChange={handleFormChange}             
-                    checked={newPlaceData.safetyIssues === 'false'}
-                    />
-                </fieldset>
-                {newPlaceData.safetyIssues === 'true' && <>
-                <label htmlFor='safety-issue-detail'>Please describe the safety issues:</label>
-                <br/>
-                <textarea 
-                id='safety-issue-detail'
-                className='w-full text-black rounded'
-                value={newPlaceData.safetyIssuesDetails}
-                name='safetyIssuesDetails'
-                onChange={handleFormChange}
-                maxLength={1000}
-                ></textarea></>}
-                <div className='flex flex-row justify-between'>
-                    <label>Rate the Staff</label>
+                    <legend className='text-sm mb-2'>Were there Safety Issues that affected your Service Dog?</legend>      
+                    <div className='flex flex-row gap-4'>
+                        <div>                                                     
+                            <input
+                            type='radio'
+                            id='safety-issue-yes'                     
+                            value={'true'}
+                            name='safetyIssues'
+                            onChange={handleFormChange}
+                            checked={newPlaceData.safetyIssues === 'true'}
+                            required
+                            className='opacity-0 h-0 w-0 cursor-pointer peer'
+                            />   
+                            <label htmlFor='safety-issue-yes' className='border-2 border-white rounded py-1 px-2 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>Yes</label>                          
+                        </div>    
+                        <div>                            
+                            <input
+                                type='radio'
+                                id='safety-issue-no'                     
+                                value={'false'}    
+                                name='safetyIssues' 
+                                onChange={handleFormChange}             
+                                checked={newPlaceData.safetyIssues === 'false'}
+                                className='opacity-0 h-0 w-0 cursor-pointer peer'
+                            />
+                            <label htmlFor='safety-issue-no' className='border-2 border-white rounded py-1 px-3 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>No</label>
+                        </div>
+                    </div>                   
+                    {newPlaceData.safetyIssues === 'true' && 
+                    <div>
+                        <label htmlFor='safety-issue-detail' className='text-sm'>Please describe the safety issues:</label>
+                        <br/>
+                        <textarea 
+                        id='safety-issue-detail'
+                        className='w-full text-black rounded'
+                        value={newPlaceData.safetyIssuesDetails}
+                        name='safetyIssuesDetails'
+                        onChange={handleFormChange}
+                        maxLength={1000}
+                        rows={3}
+                        ></textarea>
+                    </div>}  
+                </fieldset>                  
+                <div>           
+                    <label className='text-sm'>Rate the Staff</label>
                     <ReactStars
                     count={5}
-                    size={24}
+                    size={36}
                     isHalf={false}
                     activeColor={'#24ACDD'}
                     a11y={true}
                     value={newPlaceData.rateStaff}
                     onChange={updateStaffRating}
                     />
-                </div>
-                <div className='flex flex-row justify-between'>
-                    <label title='was there sufficient room for your Service Dog to be out of the way of traffic?'>Rate the Space Ⓘ</label>
+                </div> 
+                <div>
+                    <label title='was there sufficient room for your Service Dog to be out of the way of traffic?' className='text-sm'>Rate the Space Ⓘ</label>
                     <ReactStars
                     count={5}
-                    size={24}
+                    size={36}
                     isHalf={false}
                     activeColor={'#24ACDD'}
                     a11y={true}
@@ -203,32 +220,34 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     onChange={updateSpaceRating}
                     />
                 </div>
-                <div className='flex flex-row justify-between'>
-                    <label title='what was the condition of the floor?'>Rate the Floor Ⓘ</label>
+                <div>
+                    <label title='what was the condition of the floor?' className='text-sm'>Rate the Floor Ⓘ</label>
                     <ReactStars
                     count={5}
-                    size={24}
+                    size={36}
                     isHalf={false}
                     activeColor={'#24ACDD'}
                     a11y={true}
                     value={newPlaceData.rateFloor}
                     onChange={updateFloorRating}
-                    />
-                </div>
-                <label htmlFor='public-note'>Note for Other Visitors:</label>
-                <br/>
-                <textarea 
-                id='public-note'
-                className='w-full text-black rounded'
-                value={newPlaceData.publicNote}
-                name='publicNote'
-                onChange={handleFormChange}
-                maxLength={1200}
-                required
-                ></textarea>
+                    />  
+                </div>    
+                <div>         
+                    <label htmlFor='public-note' className='text-sm'>Note for Other Visitors:</label>
+                    <textarea 
+                    id='public-note'
+                    className='w-full text-black rounded'
+                    value={newPlaceData.publicNote}
+                    name='publicNote'
+                    onChange={handleFormChange}
+                    maxLength={1200}
+                    required
+                    rows={4}
+                    ></textarea>
+                </div> 
                 <input 
                 type='submit'
-                className='text-center border-white border px-4 rounded cursor-pointer'
+                className='text-center bg-lightblue text-darkblue font-bold rounded cursor-pointer w-full py-2 hover:shadow-md hover:shadow-gray-700'
                 />
                 <button onClick={() => {
                     handleFormVisible();
@@ -245,7 +264,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                         rateFloor: 0,
                         publicNote: ''
                     });
-                }} className='text-center border-white border px-4 rounded ml-4'>Cancel</button>
+                }} className='text-center font-bold rounded w-full bg-gray-600 py-2 hover:shadow-md hover:shadow-gray-700'>Cancel</button>
             </form>
         </div>
         )
