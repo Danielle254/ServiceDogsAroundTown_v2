@@ -15,7 +15,7 @@ export default function PlaceCard({place}) {
   const cityState = place.address.slice(slice1 + 2, place.address.length - 5);
 
   return (
-    <div className='bg-accentblue p-1 rounded shadow-sm shadow-gray-800 hover:shadow-gray-700'>
+    <div className='bg-accentblue p-1 rounded shadow-sm shadow-gray-800'>
       <p className='text-lg font-bold mb-1'>{place.name}</p>
       <div className='flex flex-row justify-between'>
         <div>
