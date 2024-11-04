@@ -178,32 +178,29 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                 maxLength={1000}
                 ></textarea></>}                
                 <label className='text-sm'>Rate the Staff</label>
-                <br/>
                 <ReactStars
                 count={5}
-                size={24}
+                size={30}
                 isHalf={false}
                 activeColor={'#24ACDD'}
                 a11y={true}
                 value={newPlaceData.rateStaff}
                 onChange={updateStaffRating}
                 />
-                <br/>
                 <label title='was there sufficient room for your Service Dog to be out of the way of traffic?' className='text-sm'>Rate the Space Ⓘ</label>
                 <ReactStars
                 count={5}
-                size={24}
+                size={30}
                 isHalf={false}
                 activeColor={'#24ACDD'}
                 a11y={true}
                 value={newPlaceData.rateSpace}
                 onChange={updateSpaceRating}
                 />
-                <br/>
                 <label title='what was the condition of the floor?' className='text-sm mt-4'>Rate the Floor Ⓘ</label>
                 <ReactStars
                 count={5}
-                size={24}
+                size={30}
                 isHalf={false}
                 activeColor={'#24ACDD'}
                 a11y={true}
@@ -211,7 +208,6 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                 onChange={updateFloorRating}
                 />                
                 <label htmlFor='public-note' className='text-sm'>Note for Other Visitors:</label>
-                <br/>
                 <textarea 
                 id='public-note'
                 className='w-full text-black rounded'
