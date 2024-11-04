@@ -17,11 +17,11 @@
 
 @layer components {
     .btn-nav {
-        @apply px-4 rounded-full font-bold text-lg hover:border-2 hover:border-lightblue border-2 border-darkblue;
+        @apply font-bold text-base hover:text-lightblue;
     }
 
     .btn-nav-selected {
-        @apply bg-lightblue text-black border-2 border-darkblue hover:border-2 hover:border-darkblue;
+        @apply text-lightblue; 
     }
 
     .btn-info-window {
