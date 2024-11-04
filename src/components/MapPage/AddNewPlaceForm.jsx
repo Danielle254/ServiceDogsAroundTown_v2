@@ -8,6 +8,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
     const [geocodingService, setGeocodingService] = useState(null);
     const [newPlaceData, setNewPlaceData] = useState({
         name: '',
+        address: '',
         coords: {},
         dateVisited: '',
         deniedAccess: '',
@@ -34,7 +35,8 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     coords: {
                     lat: results[0].geometry.location.lat(),
                     lng: results[0].geometry.location.lng()},
-                    name: name
+                    name: name,
+                    address: address
                 });
             }
         });
@@ -84,6 +86,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                 handleSubmit(e, newPlaceData);
                 setNewPlaceData({
                     name: '',
+                    address: address,
                     coords: {},
                     dateVisited: '',
                     deniedAccess: '',
