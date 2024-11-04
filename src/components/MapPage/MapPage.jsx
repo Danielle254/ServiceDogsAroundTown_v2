@@ -24,7 +24,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [position, setPosition] = useState({lat: 40 , lng: -97});
     const [zoom, setZoom] = useState(4); 
-    const [mapAction, setMapAction] = useState('view');
+    const [mapAction, setMapAction] = useState('allPlaces');
 
     function handleMarkerClick() {        
         setInfoWindowShown(isShown => !isShown);
@@ -55,9 +55,8 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
     
         return (    
             <APIProvider apiKey={apiKey} >  
-            <div className='grid grid-cols-9 h-full overflow-hidden'>          
-                <div className='col-span-6'> 
-                    
+            <div className='grid grid-cols-9 h-full overflow-hidden pb-4'>          
+                <div className='col-span-6 pl-4'>                     
                     <Map 
                     zoom={zoom} 
                     center={position} 
@@ -117,9 +116,10 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                     </Map>                
                     <MapHandler place={selectedPlace} marker={marker} />                    
                 </div> 
-                <div className='col-span-3 flex flex-col gap-8 p-4 overflow-y-auto bg-lightgreen'>
-                    <div className='flex flex-row justify-between'>
-                        <button className={`btn-map-nav ${mapAction === 'view' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('view')}>All Places</button>
+                <div className='col-span-3 flex flex-col gap-4 overflow-y-auto bg-darkblue'>
+                    <div className='flex flex-row justify-between py-2 px-1 bg-lightgreen'>
+                        <button className={`btn-map-nav ${mapAction === 'allPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('allPlaces')}>All Places</button>
+                        <button className={`btn-map-nav ${mapAction === 'myPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('myPlaces')}>My Places</button> 
                         <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                     </div>
                     {mapAction === 'add' && !addFormVisible &&
@@ -133,7 +133,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         handleFormVisible={handleFormVisible}
                         />
                     }
-                    {mapAction === 'view' &&
+                    {mapAction === 'allPlaces' &&
                         <PlaceCardList 
                         places={places}
                         />
