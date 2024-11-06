@@ -17,7 +17,7 @@
 
 @layer components {
     .btn-nav {
-        @apply font-bold text-base hover:text-lightblue;
+        @apply font-bold text-lg hover:text-lightblue;
     }
 
     .btn-nav-selected {
