@@ -29,7 +29,7 @@
     }
 
     .btn-map-nav {
-        @apply px-2 font-bold text-sm hover:underline hover:underline-offset-4 text-darkblue;
+        @apply px-2 font-bold text-base hover:underline hover:underline-offset-4 text-darkblue;
     }
 
     .btn-map-nav-selected {
