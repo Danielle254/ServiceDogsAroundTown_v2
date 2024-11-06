@@ -84,8 +84,8 @@ export default function PlaceCard({place}) {
       {showDetail && place.safetyIssues === 'true' && <p className='w-full bg-yellow-700 border-2 border-yellow-600 text-white text-xs rounded my-2 px-1'>{place.safetyIssuesDetails}</p>
       }
       <p className='text-xs italic rounded my-2'>{showDetail ? place.publicNote : publicNoteSummary(place.publicNote)}</p>
-      <div className='flex flex-row text-xs items-center cursor-pointer justify-self-end pl-2 pr-1 text-lightblue rounded-full'>
-        <p onClick={() => setShowDetail(!showDetail)}>{showDetail ? 'Less' : 'More'}</p>
+      <div onClick={() => setShowDetail(!showDetail)} className='flex flex-row text-xs items-center cursor-pointer justify-self-end pl-2 pr-1 text-lightblue rounded-full'>
+        <p>{showDetail ? 'Less' : 'More'}</p>
         {showDetail ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
         </svg>
