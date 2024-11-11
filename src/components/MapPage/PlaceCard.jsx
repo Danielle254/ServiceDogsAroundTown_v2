@@ -21,7 +21,7 @@ export default function PlaceCard({place}) {
         </div>
       </div> 
       <p className='text-sm'>{place.address}</p>
-      <p className='text-sm  text-lightblue'>Last Visited: {formattedDate}</p> 
+      <p className='text-sm  text-lightblue my-1'>Last Visited: {formattedDate}</p> 
       <div className="flex flex-row gap-2">     
         {place.deniedAccess === 'true' &&
         <div className='text-sm px-2 my-1 rounded-full text-red-950 border-red-950 border-2 bg-red-100 flex flex-row items-center '>
