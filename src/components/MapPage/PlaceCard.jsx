@@ -39,7 +39,7 @@ export default function PlaceCard({place}) {
           <p>Safety Issues</p>
         </div>}
       </div>
-      <button className="bg-lightblue border-2 border-darkblue rounded text-darkblue font-bold w-full my-2 shadow">VIEW DETAILS</button>
+      <button className="bg-lightblue border-2 border-darkblue rounded text-darkblue font-bold w-full my-2 shadow hover:bg-darkblue hover:text-lightblue hover:border-lightblue">VIEW DETAILS</button>
     </div>
   )
 }
