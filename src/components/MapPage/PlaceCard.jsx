@@ -39,7 +39,7 @@ export default function PlaceCard({place, openModal}) {
           <p>Safety Issues</p>
         </div>}
       </div>
-      <button className="bg-lightblue border-2 border-darkblue rounded text-darkblue font-bold w-full my-2 shadow hover:bg-darkblue hover:text-white" onClick={() => openModal(place.id)}>VIEW DETAILS</button>
+      <button className="border-2 border-lightblue rounded text-lightblue font-bold w-full my-2 shadow hover:bg-lightblue hover:text-darkblue" onClick={() => openModal(place.id)}>VIEW DETAILS</button>
     </div>
   )
 }
