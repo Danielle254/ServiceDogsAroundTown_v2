@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PlaceCard({place}) {
+export default function PlaceCard({place, openModal}) {
 
   const visitYear = place.dateVisited.slice(0, 4);
   let visitMonth = place.dateVisited.slice(5, 7);
@@ -39,7 +39,7 @@ export default function PlaceCard({place}) {
           <p>Safety Issues</p>
         </div>}
       </div>
-      <button className="bg-lightblue border-2 border-darkblue rounded text-darkblue font-bold w-full my-2 shadow hover:bg-darkblue hover:text-white">VIEW DETAILS</button>
+      <button className="bg-lightblue border-2 border-darkblue rounded text-darkblue font-bold w-full my-2 shadow hover:bg-darkblue hover:text-white" onClick={openModal}>VIEW DETAILS</button>
     </div>
   )
 }
