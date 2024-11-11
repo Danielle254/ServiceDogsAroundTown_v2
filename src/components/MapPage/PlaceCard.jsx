@@ -1,13 +1,7 @@
 import React from "react";
+import formatDate from '../../utilities/formatDate'
 
-export default function PlaceCard({place}) {
-
-  const visitYear = place.dateVisited.slice(0, 4);
-  let visitMonth = place.dateVisited.slice(5, 7);
-  if(visitMonth[0] === '0') {visitMonth = visitMonth[1]}  
-  let visitDay = place.dateVisited.slice(8);
-  if(visitDay[0] === '0') {visitDay = visitDay[1]}
-  const formattedDate = `${visitMonth}/${visitDay}/${visitYear}`;
+export default function PlaceCard({place, openModal}) {
 
   return (
     <div className='bg-accentblue p-2 rounded shadow-sm shadow-gray-800'>
@@ -21,7 +15,7 @@ export default function PlaceCard({place}) {
         </div>
       </div> 
       <p className='text-sm'>{place.address}</p>
-      <p className='text-sm  text-lightblue my-1'>Last Visited: {formattedDate}</p> 
+      <p className='text-sm  text-gray-400 my-1'>Last Visited: {formatDate(place.dateVisited)}</p> 
       <div className="flex flex-row gap-2">     
         {place.deniedAccess === 'true' &&
         <div className='text-sm px-2 my-1 rounded-full text-red-950 border-red-950 border-2 bg-red-100 flex flex-row items-center '>
@@ -39,7 +33,7 @@ export default function PlaceCard({place}) {
           <p>Safety Issues</p>
         </div>}
       </div>
-      <button className="bg-lightblue border-2 border-darkblue rounded text-darkblue font-bold w-full my-2 shadow hover:bg-darkblue hover:text-white">VIEW DETAILS</button>
+      <button className="border-2 border-lightblue rounded text-lightblue font-bold w-full my-2 shadow hover:bg-lightblue hover:text-darkblue" onClick={() => openModal(place.id)}>VIEW DETAILS</button>
     </div>
   )
 }

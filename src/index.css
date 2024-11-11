@@ -25,7 +25,7 @@
     }
 
     .btn-info-window {
-        @apply border-2 rounded text-sm font-bold w-full border-darkblue p-1 text-white bg-darkblue hover:bg-lightblue hover:text-darkblue;
+        @apply border-2 rounded text-sm font-bold w-full border-darkblue p-1 text-darkblue hover:bg-darkblue hover:text-white;
     }
 
     .btn-map-nav {
