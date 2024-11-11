@@ -158,11 +158,11 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                     }
                 </div> 
             </div>   
-            <DetailView 
+            {activeId && <DetailView 
             ref={modalTarget} 
             closeModal={closeModal} 
             place={places[findIndex(activeId)]}
-            />                                
+            />}                        
             </APIProvider>    
         )
     }
