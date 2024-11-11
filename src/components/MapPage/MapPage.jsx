@@ -73,7 +73,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         clickableIcons: false
                     }}
                     >
-                        <button onClick={centerMapUserLocation} className='px-2 py-1 font-bold bg-darkblue text-white hover:border-2 hover:border-lightblue border-2 border-darkblue rounded text-sm absolute top-4 right-16'>My City</button>          
+                        <button onClick={centerMapUserLocation} className='px-2 py-1 font-bold bg-darkblue text-white hover:border-2 hover:border-lightblue border-2 border-darkblue rounded text-base absolute top-4 right-16'>My City</button>          
                         <AdvancedMarker ref={markerRef} position={null} clickable={true} onClick={() => handleMarkerClick()}>
                         <Pin
                                 background={'#53cbe2'}                                
@@ -85,8 +85,8 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         {infoWindowShown && 
                             <InfoWindow anchor={marker} onClose={handleClose} shouldFocus={true}>            
                                 <div>
-                                    <p className='font-bold text-sm text-darkblue'>{selectedPlace.name}</p>
-                                    <p className='py-1 text-darkblue'>{selectedPlace.formatted_address}</p>
+                                    <p className='font-bold text-base text-darkblue'>{selectedPlace.name}</p>
+                                    <p className='py-1 text-darkblue text-sm'>{selectedPlace.formatted_address}</p>
                                     {!addFormVisible && <button onClick={handleFormVisible} className='btn-info-window'>Rate & Review</button>}
                                 </div>                           
                             </InfoWindow>
@@ -108,7 +108,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                         {activeMarker && 
                             <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
                                 <div>
-                                    <p className='font-bold text-sm text-darkblue pb-1'>{activeMarker.name}</p>
+                                    <p className='font-bold text-base text-darkblue pb-1'>{activeMarker.name}</p>
                                     <button className='btn-info-window'>View Details</button>
                                 </div>
                             </InfoWindow>
