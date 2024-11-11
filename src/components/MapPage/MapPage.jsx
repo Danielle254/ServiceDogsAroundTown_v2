@@ -87,7 +87,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                                 <div>
                                     <p className='font-bold text-base text-darkblue'>{selectedPlace.name}</p>
                                     <p className='py-1 text-darkblue text-sm'>{selectedPlace.formatted_address}</p>
-                                    {!addFormVisible && <button onClick={handleFormVisible} className='btn-info-window'>Rate & Review</button>}
+                                    {!addFormVisible && <button onClick={handleFormVisible} className='btn-info-window'>REVIEW THIS PLACE</button>}
                                 </div>                           
                             </InfoWindow>
                         }
@@ -109,7 +109,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                             <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
                                 <div>
                                     <p className='font-bold text-base text-darkblue pb-1'>{activeMarker.name}</p>
-                                    <button className='btn-info-window'>View Details</button>
+                                    <button className='btn-info-window'>VIEW DETAILS</button>
                                 </div>
                             </InfoWindow>
                         }                        
