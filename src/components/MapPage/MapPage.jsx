@@ -26,6 +26,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
     const [position, setPosition] = useState({lat: 40 , lng: -97});
     const [zoom, setZoom] = useState(4); 
     const [mapAction, setMapAction] = useState('allPlaces');
+    const [activeId, setActiveId] = useState(null);
     const modalTarget = useRef(null);
 
     function handleMarkerClick() {        
@@ -48,13 +49,19 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
     function fail() {
         alert("Unable to retrieve your location");
     }
-
-    function handleActiveMarker(index) {        
-        setActiveMarker(places[index]);
+    
+    function findIndex(id) {
+        const index = places.findIndex((each) => each.id === id);
+        return index;
     }
 
-    function openModal() {
+    function handleActiveMarker(id) {    
+        setActiveMarker(places[findIndex(id)]);
+    }
+
+    function openModal(id) {
         modalTarget.current?.showModal();
+        setActiveId(id);
     }
 
     function closeModal() {
@@ -101,12 +108,12 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                                 </div>                           
                             </InfoWindow>
                         }
-                        {places.map((place, index) => 
+                        {places.map((place) => 
                             <AdvancedMarker                         
                                 position={place.coords} 
-                                key={index}
+                                key={place.id}
                                 clickable={true} 
-                                onClick={() => handleActiveMarker(index)}>
+                                onClick={() => handleActiveMarker(place.id)}>
                                 <Pin
                                     background={'#0E1B41'}
                                     borderColor={'#0E1B41'}
@@ -119,7 +126,7 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                             <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
                                 <div>
                                     <p className='font-bold text-base text-darkblue pb-1'>{activeMarker.name}</p>
-                                    <button className='btn-info-window' onClick={openModal}>VIEW DETAILS</button>
+                                    <button className='btn-info-window' onClick={() => openModal(activeMarker.id)}>VIEW DETAILS</button>
                                 </div>
                             </InfoWindow>
                         }                        
@@ -151,10 +158,11 @@ export default function MapComponent({ page, places, handleFormSubmit, addFormVi
                     }
                 </div> 
             </div>   
-            <DetailView ref={modalTarget}>
-                <p>test</p>
-                <button onClick={closeModal}>Close</button>
-            </DetailView>                     
+            <DetailView 
+            ref={modalTarget} 
+            closeModal={closeModal} 
+            place={places[findIndex(activeId)]}
+            />                                
             </APIProvider>    
         )
     }
