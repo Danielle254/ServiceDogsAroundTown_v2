@@ -4,7 +4,7 @@ import tailwindcss from 'tailwindcss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/ServiceDogsAroundTown_v2',
+  base: process.env.VITE_BASE_PATH || '/ServiceDogsAroundTown_v2',
   plugins: [react()],
   css: {
     postcss: {
