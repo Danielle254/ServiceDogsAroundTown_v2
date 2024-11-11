@@ -18,14 +18,7 @@ export default {
       fontFamily: {
         'title': ['"New Amsterdam"', "sans-serif"],
         'body': ["Poppins", "sans-serif"]
-      },/* 
-      fontSize: {
-        para: '1.25rem',   // 20px
-        button: '1.5rem',  // 24px
-        title: '1.625rem', // 26px
-        heading: '3rem',   // 48px
-        hero: '4rem',      // 64px
-      }, */
+      },
     },
   },
   plugins: [],
