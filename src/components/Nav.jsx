@@ -4,8 +4,8 @@ import logo from '../../src/assets/logo.png'
 export default function Nav({ page, togglePage }) {
 
   return (
-    <header className='flex flex-row justify-between p-2'>
-      <div className='flex flex-row items-center gap-2 ml-2'>
+    <header className='flex flex-row justify-between py-2 px-4'>
+      <div className='flex flex-row items-center gap-2'>
         <img src={logo} className='h-8'/>
         <h1 className='text-title font-title'>SERVICE DOGS AROUND TOWN</h1>
       </div>      
