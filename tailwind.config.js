@@ -19,6 +19,9 @@ export default {
         'title': ['"New Amsterdam"', "sans-serif"],
         'body': ["Poppins", "sans-serif"]
       },
+      fontSize: {
+        'title': '40px'
+      }
     },
   },
   plugins: [],
