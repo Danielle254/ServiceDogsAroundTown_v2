@@ -3,11 +3,5 @@
         {"src": "/", "dest": "/"},
         {"src": "/about", "dest": "/"},
         {"src": "/login", "dest": "/"}
-    ],
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
     ]
 }
