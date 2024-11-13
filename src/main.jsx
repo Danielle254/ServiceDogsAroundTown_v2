@@ -7,6 +7,7 @@ import App from './App.jsx';
 import About from './pages/About.jsx';
 import Login from './pages/Login.jsx';
 import Nav from './components/Nav.jsx';
+import Error from './pages/Error.jsx';
 import ScrollToTop from './Components/ScrollToTop.jsx';
 import './index.css';
 
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '*',
+        element: <Error />
       }
     ],
   },
