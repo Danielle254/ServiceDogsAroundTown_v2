@@ -1,6 +1,6 @@
 import React, {forwardRef, useState} from 'react'
 import ReactStars from 'react-rating-stars-component'
-import formatDate from '../../utilities/formatDate'
+import formatDate from '../utilities/formatDate'
 
 
 const DetailView = forwardRef(({place, closeModal}, ref) => {
