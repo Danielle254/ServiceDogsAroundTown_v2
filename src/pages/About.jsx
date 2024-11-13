@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AboutPage({ page }) {
+export default function About({ page }) {
   if (page === 'about') {
     return (
       <div className='mx-8 mb-8 grid grid-cols-9 gap-10'>
