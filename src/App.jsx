@@ -1,63 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import Nav from './components/Nav'
-import MapPage from './components/MapPage/MapPage';
-import AboutPage from './components/AboutPage/AboutPage'
-import {onSnapshot, addDoc } from 'firebase/firestore'
-import { entriesCollection} from './firebase.js'
+import React from 'react'
+import { useOutletContext } from 'react-router-dom';
+import MapPage from './pages/MapPage';
 
 
-function App() {
-  const [page, setPage] = useState('map');
-  const [places, setPlaces] = useState([]);
-  const [addFormVisible, setAddFormVisible] = useState(false);
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(entriesCollection, function(snapshot) {
-      const entriesArr = snapshot.docs.map(doc => ({
-        ...doc.data(),
-        id: doc.id
-      }))
-      setPlaces(entriesArr);
-    })
-    return unsubscribe
-  }, []);
-  
-  function togglePage (buttonId) {
-    if (buttonId === "map") {
-      setPage('map')
-    }
-    if (buttonId === 'about') {
-      setPage('about')
-    } 
-  }
-
-  function handleFormVisible() {
-    setAddFormVisible(!addFormVisible);
-  }
-
-  async function addNewPlace(e, place) {
-    e.preventDefault();
-    const docRef = await addDoc(entriesCollection, place);
-    setAddFormVisible(false);
-  }
+function App() {  
+  const [places, addNewPlace, addFormVisible, handleFormVisible] = useOutletContext();
 
   return (
-    <div className='h-screen flex flex-col bg-darkblue text-white'>
-      <Nav 
-      page={page}
-      togglePage={togglePage}
-      />
-      <MapPage 
-      page={page}
-      places={places}
-      handleFormSubmit={addNewPlace}
-      addFormVisible={addFormVisible}
-      handleFormVisible={handleFormVisible}
-      />
-      <AboutPage
-      page={page}
-      />
-    </div>
+    <MapPage 
+    places={places}
+    handleFormSubmit={addNewPlace}
+    addFormVisible={addFormVisible}
+    handleFormVisible={handleFormVisible}
+    />
   )
 }
 

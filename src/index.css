@@ -16,11 +16,11 @@
 }
 
 @layer components {
-    .btn-nav {
+    .nav-link {
         @apply font-bold text-xl hover:text-lightblue;
     }
 
-    .btn-nav-selected {
+    .nav-link-active {
         @apply text-lightblue; 
     }
 

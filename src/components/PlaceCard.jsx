@@ -1,5 +1,5 @@
 import React from "react";
-import formatDate from '../../utilities/formatDate'
+import formatDate from '../utilities/formatDate'
 
 export default function PlaceCard({place, openModal}) {
 
