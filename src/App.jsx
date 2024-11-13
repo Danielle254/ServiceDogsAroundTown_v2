@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import Nav from './components/Nav'
-import MapPage from './components/MapPage/MapPage';
-import AboutPage from './components/AboutPage/AboutPage'
-import {onSnapshot, addDoc } from 'firebase/firestore'
-import { entriesCollection} from './firebase.js'
+import React from 'react'
+import MapPage from './pages/MapPage';
 
 
 function App() {
-  const [page, setPage] = useState('map');
   const [places, setPlaces] = useState([]);
   const [addFormVisible, setAddFormVisible] = useState(false);
 
@@ -21,15 +16,6 @@ function App() {
     })
     return unsubscribe
   }, []);
-  
-  function togglePage (buttonId) {
-    if (buttonId === "map") {
-      setPage('map')
-    }
-    if (buttonId === 'about') {
-      setPage('about')
-    } 
-  }
 
   function handleFormVisible() {
     setAddFormVisible(!addFormVisible);
