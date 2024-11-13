@@ -8,7 +8,6 @@ import About from './pages/About.jsx';
 import Login from './pages/Login.jsx';
 import Nav from './components/Nav.jsx';
 import Error from './pages/Error.jsx';
-import ScrollToTop from './components/ScrollToTop.jsx';
 import './index.css';
 
 const Layout = () => {
@@ -38,7 +37,6 @@ const Layout = () => {
 
   return (
     <div className='h-screen flex flex-col bg-darkblue text-white'>
-      <ScrollToTop />
       <Nav />
       <Outlet 
       context={[places, addNewPlace, addFormVisible, handleFormVisible]}
