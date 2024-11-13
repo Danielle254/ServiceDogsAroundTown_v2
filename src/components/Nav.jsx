@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../../src/assets/logo.png'
 
-export default function Nav({ page, togglePage }) {
+export default function Nav() {
 
   return (
     <header className='flex flex-row justify-between py-2 px-4'>
