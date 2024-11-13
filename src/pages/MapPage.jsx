@@ -7,16 +7,16 @@ import {
     InfoWindow,
     Pin
 } from '@vis.gl/react-google-maps'
-import MapHandler from './MapHandler'
-import PlaceAutocomplete from './PlaceAutocomplete';
-import PlaceCardList from './PlaceCardList';
-import AddNewPlaceForm from './AddNewPlaceForm'
-import DetailView from './DetailView';
+import MapHandler from '../components/MapHandler'
+import PlaceAutocomplete from '../components/PlaceAutocomplete';
+import PlaceCardList from '../components/PlaceCardList';
+import AddNewPlaceForm from '../components/AddNewPlaceForm'
+import DetailView from '../components/DetailView';
 
 const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
 
-export default function MapComponent({ page, places, handleFormSubmit, addFormVisible, handleFormVisible }) {
+export default function MapPage({ page, places, handleFormSubmit, addFormVisible, handleFormVisible }) {
 
     const [markerRef, marker] = useAdvancedMarkerRef();
     const [activeMarker, setActiveMarker] = useState(null);  
