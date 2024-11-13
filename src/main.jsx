@@ -36,7 +36,7 @@ const Layout = () => {
   }
 
   return (
-    <div>
+    <div className='h-screen flex flex-col bg-darkblue text-white'>
       <ScrollToTop />
       <Nav />
       <Outlet 
