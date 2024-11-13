@@ -7,14 +7,12 @@ function App() {
   const [places, addNewPlace, addFormVisible, handleFormVisible] = useOutletContext();
 
   return (
-    <div className='h-screen flex flex-col bg-darkblue text-white'>
-      <MapPage 
-      places={places}
-      handleFormSubmit={addNewPlace}
-      addFormVisible={addFormVisible}
-      handleFormVisible={handleFormVisible}
-      />
-    </div>
+    <MapPage 
+    places={places}
+    handleFormSubmit={addNewPlace}
+    addFormVisible={addFormVisible}
+    handleFormVisible={handleFormVisible}
+    />
   )
 }
 
