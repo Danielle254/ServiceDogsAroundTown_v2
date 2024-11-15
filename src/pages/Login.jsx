@@ -12,7 +12,7 @@ export default function Login() {
       :
       <>
       <p className='text-lg text-darkblue text-center'>Login to create and manage your own entries</p>
-      <button className='w-4/5 flex flex-row justify-center' onClick={googleLogin}><img src={googleSignInButton} className='h-16'/></button> 
+      <button className='flex flex-row justify-center' onClick={googleLogin}><img src={googleSignInButton} className='h-12'/></button> 
       </>
       }           
     </div>
