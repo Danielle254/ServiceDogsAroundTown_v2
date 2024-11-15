@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useRef } from 'react'
+import { useOutletContext } from 'react-router-dom';
 import { 
     APIProvider, 
     Map, 
@@ -16,8 +17,8 @@ import DetailView from '../components/DetailView';
 const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
 
-export default function MapPage({ places, handleFormSubmit, addFormVisible, handleFormVisible }) {
-
+export default function MapPage() {
+    const [places, addNewPlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout] = useOutletContext();
     const [markerRef, marker] = useAdvancedMarkerRef();
     const [activeMarker, setActiveMarker] = useState(null);  
     const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -145,7 +146,7 @@ export default function MapPage({ places, handleFormSubmit, addFormVisible, hand
                     <AddNewPlaceForm                        
                     name={selectedPlace.name}
                     address={selectedPlace.formatted_address}
-                    handleSubmit={handleFormSubmit}
+                    handleSubmit={addNewPlace}
                     handleFormVisible={handleFormVisible}
                     />
                 }
