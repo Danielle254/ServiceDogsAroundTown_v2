@@ -66,7 +66,9 @@ const Layout = () => {
 
   return (
     <div className='h-screen flex flex-col bg-darkblue text-white'>
-      <Nav />
+      <Nav 
+      isLoggedIn={isLoggedIn}
+      />
       <Outlet 
       context={[places, addNewPlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout]}
       />
