@@ -3,7 +3,7 @@ import ReactStars from 'react-rating-stars-component'
 import formatDate from '../utilities/formatDate'
 
 
-const DetailView = forwardRef(({place, closeModal}, ref) => {
+const DetailView = forwardRef(({place, closeModal, isLoggedIn}, ref) => {
     const [expandDeniedAccess, setExpandDeniedAccess] = useState(false);
     const [expandSafetyIssues, setExpandSafetyIssues] = useState(false);
 
@@ -19,7 +19,14 @@ const DetailView = forwardRef(({place, closeModal}, ref) => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                 </svg>
             </button>
-            <p className='text-2xl font-bold mb-4'>{place.name}</p>
+            <div className='flex flex-row gap-2'>
+                <p className='text-2xl font-bold mb-4'>{place.name}</p>
+                {isLoggedIn && place.isFavorite === 'true' &&
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#e80e0e" className="size-6 mt-1">
+                <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                </svg>
+                }
+            </div>
             <p className='text-base mb-2'>{place.address}</p>
             <p className='text-base mb-2'>{`Last Visited: ${formatDate(place.dateVisited)}`}</p>
             <div className='flex flex-row gap-2 items-center max-w-48 justify-between font-bold'>
@@ -84,6 +91,17 @@ const DetailView = forwardRef(({place, closeModal}, ref) => {
                 <p className='text-lg font-bold'>Review:</p>
                 <p className='text-base border-[1px] border-darkblue p-1 rounded'>{place.publicNote}</p>
             </div>
+            {isLoggedIn && place.privateNote.length > 1 &&
+            <div className='mt-4'>
+                <div className='flex flex-row gap-2 items-center'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 cursor-help"><title>This is only visible to you</title>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                    </svg>
+                    <p className='text-lg font-bold'>Private/Personal Note:</p>                    
+                </div>
+                <p className='text-base border-[1px] border-darkblue p-1 rounded'>{place.privateNote}</p>
+            </div>
+            }
         </dialog>
     );
 });
