@@ -8,6 +8,7 @@ import {
     InfoWindow,
     Pin
 } from '@vis.gl/react-google-maps'
+import cityState from '../utilities/cityState'
 import MapHandler from '../components/MapHandler'
 import PlaceAutocomplete from '../components/PlaceAutocomplete'
 import PlaceCardList from '../components/PlaceCardList'
@@ -104,7 +105,7 @@ export default function MapPage() {
                             <div>
                                 <p className='font-bold text-base text-darkblue'>{selectedPlace.name}</p>
                                 <p className='py-1 text-darkblue text-sm'>{selectedPlace.formatted_address}</p>
-                                {!addFormVisible && <button onClick={handleFormVisible} className='btn-info-window'>REVIEW THIS PLACE</button>}
+                                {!addFormVisible && <button onClick={handleFormVisible} className='btn-info-window'>Review This Place</button>}
                             </div>                           
                         </InfoWindow>
                     }
@@ -126,7 +127,8 @@ export default function MapPage() {
                         <InfoWindow position={activeMarker.coords} onCloseClick={() => setActiveMarker(null)}>
                             <div>
                                 <p className='font-bold text-base text-darkblue pb-1'>{activeMarker.name}</p>
-                                <button className='btn-info-window' onClick={() => openModal(activeMarker.id)}>VIEW DETAILS</button>
+                                <p className='text-sm text-darkblue pb-1'>{cityState(activeMarker.address)}</p>
+                                <button className='btn-info-window' onClick={() => openModal(activeMarker.id)}>View Details</button>
                             </div>
                         </InfoWindow>
                     }                        
