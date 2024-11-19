@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ReactStars from 'react-rating-stars-component'
-import { useMapsLibrary } from '@vis.gl/react-google-maps'
 
-export default function NewPlace({name, address, handleSubmit, handleFormVisible}) {
+export default function NewPlace({name, address, coords, handleSubmit, handleFormVisible}) {
     const today = new Date().toJSON().slice(0, 10);
-    const geo = useMapsLibrary('geocoding');
-    const [geocodingService, setGeocodingService] = useState(null);
     const [newPlaceData, setNewPlaceData] = useState({
-        name: '',
-        address: '',
-        coords: {},
+        name: name,
+        address: address,
+        coords: {
+            lat: coords.lat(),
+            lng: coords.lng()
+        },
+        isFavorite: '',
         dateVisited: '',
         deniedAccess: '',
         deniedAccessDetails: '',
@@ -18,29 +19,9 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
         rateStaff: 0,
         rateSpace: 0,
         rateFloor: 0,
+        privateNote: '',
         publicNote: ''
     });
-
-    useEffect(() => {
-        if (!geo) return;
-        setGeocodingService(new window.google.maps.Geocoder());
-    }, [geo]);
-
-    useEffect(() => {
-        if (!geocodingService || !address) return;
-        geocodingService.geocode({ address }, (results, status) => {
-            if (results && status === "OK") {
-                setNewPlaceData({
-                    ...newPlaceData,
-                    coords: {
-                    lat: results[0].geometry.location.lat(),
-                    lng: results[0].geometry.location.lng()},
-                    name: name,
-                    address: address
-                });
-            }
-        });
-    }, [geocodingService]);
 
     function handleFormChange(e) {
         const {name, value} = e.target;
@@ -80,14 +61,15 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
 
     return (
         <div className='px-4'>
-            <h3 className='text-lg font-bold'>{name}</h3>
+            <h3 className='text-xl font-bold'>{name}</h3>
             <h3 className='mb-4'>{address}</h3>
             <form className='flex flex-col gap-6' onSubmit={(e) => {
                 handleSubmit(e, newPlaceData);
                 setNewPlaceData({
                     name: '',
-                    address: address,
+                    address: '',
                     coords: {},
+                    isFavorite: '',
                     dateVisited: '',
                     deniedAccess: '',
                     deniedAccessDetails: '',
@@ -96,9 +78,21 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     rateStaff: 0,
                     rateSpace: 0,
                     rateFloor: 0,
+                    privateNote: '',
                     publicNote: ''
                 });
             }}>
+                <div className='flex flex-col gap-1'>
+                    <label htmlFor='favorite' className='text-sm'>Favorite</label>
+                    <input 
+                    type='checkbox' 
+                    id='favorite' 
+                    name='isFavorite'
+                    value={'true'}
+                    onChange={handleFormChange}
+                    checked={newPlaceData.isFavorite === 'true'} 
+                    className='w-5 h-5 rounded' />        
+                </div>
                 <div className='flex flex-col gap-1'>          
                     <label htmlFor='visit-date' className='text-sm'>Date Visited</label>
                     <input
@@ -234,7 +228,19 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     value={newPlaceData.rateFloor}
                     onChange={updateFloorRating}
                     />  
-                </div>    
+                </div>
+                <div>         
+                    <label htmlFor='private-note' className='text-sm' title='No one except you will be able to see this'>Private/Personal Note:  Ⓘ</label>
+                    <textarea 
+                    id='private-note'
+                    className='w-full text-black rounded'
+                    value={newPlaceData.privateNote}
+                    name='privateNote'
+                    onChange={handleFormChange}
+                    maxLength={1200}
+                    rows={4}
+                    ></textarea>
+                </div>     
                 <div>         
                     <label htmlFor='public-note' className='text-sm'>Note for Other Visitors:</label>
                     <textarea 
@@ -256,7 +262,9 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                     handleFormVisible();
                     setNewPlaceData({
                         name: '',
+                        address: '',
                         coords: {},
+                        isFavorite: '',
                         dateVisited: '',
                         deniedAccess: '',
                         deniedAccessDetails: '',
@@ -265,6 +273,7 @@ export default function NewPlace({name, address, handleSubmit, handleFormVisible
                         rateStaff: 0,
                         rateSpace: 0,
                         rateFloor: 0,
+                        privateNote: '',
                         publicNote: ''
                     });
                 }} className='text-center font-bold rounded w-full bg-gray-600 py-2 hover:shadow-md hover:shadow-gray-700'>Cancel</button>
