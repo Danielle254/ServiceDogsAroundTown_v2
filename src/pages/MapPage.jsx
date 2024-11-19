@@ -169,6 +169,7 @@ export default function MapPage() {
         ref={modalTarget} 
         closeModal={closeModal} 
         place={places[findIndex(activeId)]}
+        isLoggedIn={isLoggedIn}
         />}                        
         </APIProvider>    
     )
