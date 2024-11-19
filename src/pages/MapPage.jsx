@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useRef } from 'react'
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom'
 import { 
     APIProvider, 
     Map, 
@@ -9,10 +9,10 @@ import {
     Pin
 } from '@vis.gl/react-google-maps'
 import MapHandler from '../components/MapHandler'
-import PlaceAutocomplete from '../components/PlaceAutocomplete';
-import PlaceCardList from '../components/PlaceCardList';
-import AddNewPlaceForm from '../components/AddNewPlaceForm'
-import DetailView from '../components/DetailView';
+import PlaceAutocomplete from '../components/PlaceAutocomplete'
+import PlaceCardList from '../components/PlaceCardList'
+import NewPlace from '../components/NewPlace'
+import DetailView from '../components/DetailView'
 
 const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
@@ -143,9 +143,10 @@ export default function MapPage() {
                     <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                 }
                 {mapAction === 'add' && addFormVisible &&
-                    <AddNewPlaceForm                        
+                    <NewPlace                        
                     name={selectedPlace.name}
                     address={selectedPlace.formatted_address}
+                    coords={selectedPlace.geometry.location}
                     handleSubmit={addNewPlace}
                     handleFormVisible={handleFormVisible}
                     />
