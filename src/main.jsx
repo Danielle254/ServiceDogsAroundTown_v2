@@ -33,6 +33,11 @@ const Layout = () => {
     setAddFormVisible(false);
   }
 
+  async function deletePlace (id) {
+    const docRef = doc(database, "entries", id);
+    await deleteDoc(docRef);
+  }
+
   function googleLogin() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then(async(result) => {
@@ -70,7 +75,7 @@ const Layout = () => {
       isLoggedIn={isLoggedIn}
       />
       <Outlet 
-      context={[places, addNewPlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout]}
+      context={[places, addNewPlace, deletePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout]}
       />
     </div>
   )
