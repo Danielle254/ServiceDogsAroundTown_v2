@@ -21,7 +21,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, user
             </button>
             <div className='flex flex-row gap-2'>
                 <p className='text-2xl font-bold mb-4'>{place.name}</p>
-                {isLoggedIn && place.isFavorite === 'true' &&
+                {isLoggedIn && place.author === userId && place.isFavorite === 'true' &&
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#e80e0e" className="size-6 mt-1">
                 <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
                 </svg>
@@ -91,7 +91,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, user
                 <p className='text-lg font-bold'>Review:</p>
                 <p className='text-base border-[1px] border-darkblue p-1 rounded'>{place.publicNote}</p>
             </div>
-            {isLoggedIn && place.privateNote.length > 1 &&
+            {isLoggedIn && place.author === userId && place.privateNote.length > 1 &&
             <div className='mt-4'>
                 <div className='flex flex-row gap-2 items-center'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 cursor-help"><title>This is only visible to you</title>
