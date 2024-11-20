@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import {Outlet, RouterProvider, createBrowserRouter} from 'react-router-dom';
-import {onSnapshot, addDoc} from 'firebase/firestore'
-import { entriesCollection, auth } from './firebase.js'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { onSnapshot, addDoc, doc, deleteDoc } from 'firebase/firestore'
+import { entriesCollection, auth, database } from './firebase.js'
 import App from './App.jsx';
 import About from './pages/About.jsx';
 import Login from './pages/Login.jsx';
@@ -33,7 +33,7 @@ const Layout = () => {
     setAddFormVisible(false);
   }
 
-  async function deletePlace (id) {
+  async function deletePlace(id) {
     const docRef = doc(database, "entries", id);
     await deleteDoc(docRef);
   }
