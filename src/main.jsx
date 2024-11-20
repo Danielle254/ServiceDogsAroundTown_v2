@@ -26,11 +26,7 @@ const Layout = () => {
     })
     return unsubscribe
   }, []);
-
-  function handleFormVisible() {
-    setAddFormVisible(!addFormVisible);
-  }
-
+  
   async function addNewPlace(e, place) {
     e.preventDefault();
     const docRef = await addDoc(entriesCollection, place);
@@ -62,6 +58,10 @@ const Layout = () => {
   async function handleLogout() {
     await auth.signOut();    
     setIsLoggedIn(false);
+  }
+
+  function handleFormVisible() {
+    setAddFormVisible(!addFormVisible);
   }
 
   return (
