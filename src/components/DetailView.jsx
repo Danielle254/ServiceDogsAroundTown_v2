@@ -102,8 +102,11 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, user
                 <p className='text-base border-[1px] border-darkblue p-1 rounded'>{place.privateNote}</p>
             </div>
             }
-            {isLoggedIn &&
-            <button className='w-1/2 text-sm py-1 bg-darkblue text-white rounded mt-8' onClick={() => deletePlace(place.id)}>Delete Review</button>
+            {isLoggedIn && place.author === userId &&
+            <div className='flex flex-row gap-4'>
+                <button className='grow text-sm py-1 bg-gray-500 text-darkblue font-bold rounded mt-8' onClick={() => deletePlace(place.id)}>Edit Review</button>
+                <button className='grow text-sm py-1 font-bold bg-darkblue text-white rounded mt-8' onClick={() => deletePlace(place.id)}>Delete Review</button>
+            </div>
             }
         </dialog>
     );
