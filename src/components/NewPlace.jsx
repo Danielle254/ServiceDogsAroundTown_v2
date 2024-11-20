@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ReactStars from 'react-rating-stars-component'
 
-export default function NewPlace({name, address, coords, handleSubmit, handleFormVisible}) {
+export default function NewPlace({name, address, coords, handleSubmit, handleFormVisible, userId}) {
     const today = new Date().toJSON().slice(0, 10);
     const [newPlaceData, setNewPlaceData] = useState({
         name: name,
@@ -10,6 +10,7 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
             lat: coords.lat(),
             lng: coords.lng()
         },
+        author: userId,
         isFavorite: '',
         dateVisited: '',
         deniedAccess: '',
@@ -69,6 +70,7 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
                     name: '',
                     address: '',
                     coords: {},
+                    author: '',
                     isFavorite: '',
                     dateVisited: '',
                     deniedAccess: '',
@@ -268,6 +270,7 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
                         name: '',
                         address: '',
                         coords: {},
+                        author: '',
                         isFavorite: '',
                         dateVisited: '',
                         deniedAccess: '',

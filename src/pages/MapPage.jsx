@@ -19,7 +19,7 @@ const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
 
 export default function MapPage() {
-    const [places, addNewPlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout] = useOutletContext();
+    const [places, addNewPlace, deletePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId] = useOutletContext();
     const [markerRef, marker] = useAdvancedMarkerRef();
     const [activeMarker, setActiveMarker] = useState(null);  
     const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -155,6 +155,7 @@ export default function MapPage() {
                     coords={selectedPlace.geometry.location}
                     handleSubmit={addNewPlace}
                     handleFormVisible={handleFormVisible}
+                    userId={userId}
                     />
                 }
                 {mapAction === 'allPlaces' &&
@@ -170,6 +171,8 @@ export default function MapPage() {
         closeModal={closeModal} 
         place={places[findIndex(activeId)]}
         isLoggedIn={isLoggedIn}
+        deletePlace={deletePlace}
+        userId={userId}
         />}                        
         </APIProvider>    
     )

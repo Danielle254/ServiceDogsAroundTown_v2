@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import {Outlet, RouterProvider, createBrowserRouter} from 'react-router-dom';
-import {onSnapshot, addDoc} from 'firebase/firestore'
-import { entriesCollection, auth } from './firebase.js'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { onSnapshot, addDoc, doc, deleteDoc } from 'firebase/firestore'
+import { entriesCollection, auth, database } from './firebase.js'
 import App from './App.jsx';
 import About from './pages/About.jsx';
 import Login from './pages/Login.jsx';
@@ -15,6 +15,7 @@ const Layout = () => {
   const [places, setPlaces] = useState([]);
   const [addFormVisible, setAddFormVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(entriesCollection, function(snapshot) {
@@ -26,15 +27,16 @@ const Layout = () => {
     })
     return unsubscribe
   }, []);
-
-  function handleFormVisible() {
-    setAddFormVisible(!addFormVisible);
-  }
-
+  
   async function addNewPlace(e, place) {
     e.preventDefault();
     const docRef = await addDoc(entriesCollection, place);
     setAddFormVisible(false);
+  }
+
+  async function deletePlace(id) {
+    const docRef = doc(database, "entries", id);
+    await deleteDoc(docRef);
   }
 
   function googleLogin() {
@@ -51,6 +53,7 @@ const Layout = () => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setIsLoggedIn(true);
+        setUserId(user.uid);
       }
     })
   }
@@ -64,13 +67,17 @@ const Layout = () => {
     setIsLoggedIn(false);
   }
 
+  function handleFormVisible() {
+    setAddFormVisible(!addFormVisible);
+  }
+
   return (
     <div className='h-screen flex flex-col bg-darkblue text-white'>
       <Nav 
       isLoggedIn={isLoggedIn}
       />
       <Outlet 
-      context={[places, addNewPlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout]}
+      context={[places, addNewPlace, deletePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId]}
       />
     </div>
   )

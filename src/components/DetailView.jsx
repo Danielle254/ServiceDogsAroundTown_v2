@@ -3,7 +3,7 @@ import ReactStars from 'react-rating-stars-component'
 import formatDate from '../utilities/formatDate'
 
 
-const DetailView = forwardRef(({place, closeModal, isLoggedIn}, ref) => {
+const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, userId}, ref) => {
     const [expandDeniedAccess, setExpandDeniedAccess] = useState(false);
     const [expandSafetyIssues, setExpandSafetyIssues] = useState(false);
 
@@ -101,6 +101,9 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn}, ref) => {
                 </div>
                 <p className='text-base border-[1px] border-darkblue p-1 rounded'>{place.privateNote}</p>
             </div>
+            }
+            {isLoggedIn &&
+            <button className='w-1/2 text-sm py-1 bg-darkblue text-white rounded mt-8' onClick={() => deletePlace(place.id)}>Delete Review</button>
             }
         </dialog>
     );
