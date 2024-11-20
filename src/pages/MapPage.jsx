@@ -155,6 +155,7 @@ export default function MapPage() {
                     coords={selectedPlace.geometry.location}
                     handleSubmit={addNewPlace}
                     handleFormVisible={handleFormVisible}
+                    userId={userId}
                     />
                 }
                 {mapAction === 'allPlaces' &&
