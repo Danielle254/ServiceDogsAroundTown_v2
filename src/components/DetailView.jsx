@@ -3,7 +3,7 @@ import ReactStars from 'react-rating-stars-component'
 import formatDate from '../utilities/formatDate'
 
 
-const DetailView = forwardRef(({place, closeModal, isLoggedIn}, ref) => {
+const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace}, ref) => {
     const [expandDeniedAccess, setExpandDeniedAccess] = useState(false);
     const [expandSafetyIssues, setExpandSafetyIssues] = useState(false);
 

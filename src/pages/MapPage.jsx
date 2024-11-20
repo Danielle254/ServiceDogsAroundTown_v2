@@ -170,6 +170,7 @@ export default function MapPage() {
         closeModal={closeModal} 
         place={places[findIndex(activeId)]}
         isLoggedIn={isLoggedIn}
+        deletePlace={deletePlace}
         />}                        
         </APIProvider>    
     )
