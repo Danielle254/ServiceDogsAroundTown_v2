@@ -3,7 +3,7 @@ import ReactStars from 'react-rating-stars-component'
 import formatDate from '../utilities/formatDate'
 
 
-const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, userId}, ref) => {
+const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, userId, resetPlaceId}, ref) => {
     const [expandDeniedAccess, setExpandDeniedAccess] = useState(false);
     const [expandSafetyIssues, setExpandSafetyIssues] = useState(false);
 
@@ -104,8 +104,8 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, user
             }
             {isLoggedIn && place.author === userId &&
             <div className='flex flex-row gap-4'>
-                <button className='grow text-sm py-1 bg-gray-500 text-darkblue font-bold rounded mt-8' onClick={() => deletePlace(place.id)}>Edit Review</button>
-                <button className='grow text-sm py-1 font-bold bg-darkblue text-white rounded mt-8' onClick={() => deletePlace(place.id)}>Delete Review</button>
+                <button className='grow text-sm py-1 bg-gray-500 text-darkblue font-bold rounded mt-8'>Edit Review</button>
+                <button className='grow text-sm py-1 font-bold bg-darkblue text-white rounded mt-8' onClick={() => {closeModal(); deletePlace(place.id); resetPlaceId();}}>Delete Review</button>
             </div>
             }
         </dialog>
