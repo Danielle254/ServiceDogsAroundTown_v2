@@ -69,6 +69,10 @@ export default function MapPage() {
     function closeModal() {
         modalTarget.current?.close();
     }
+
+    function resetActiveId() {
+        setActiveId(null);
+    }
     
     
     return (    
@@ -173,6 +177,7 @@ export default function MapPage() {
         isLoggedIn={isLoggedIn}
         deletePlace={deletePlace}
         userId={userId}
+        resetPlaceId={resetActiveId}
         />}                        
         </APIProvider>    
     )
