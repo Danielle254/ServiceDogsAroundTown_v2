@@ -15,6 +15,7 @@ const Layout = () => {
   const [places, setPlaces] = useState([]);
   const [addFormVisible, setAddFormVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(entriesCollection, function(snapshot) {
@@ -52,6 +53,7 @@ const Layout = () => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setIsLoggedIn(true);
+        setUserId(user.uid);
       }
     })
   }
@@ -75,7 +77,7 @@ const Layout = () => {
       isLoggedIn={isLoggedIn}
       />
       <Outlet 
-      context={[places, addNewPlace, deletePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout]}
+      context={[places, addNewPlace, deletePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId]}
       />
     </div>
   )
