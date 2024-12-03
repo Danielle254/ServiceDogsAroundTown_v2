@@ -155,10 +155,10 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
             <div>
                 <form className='flex flex-col gap-6' onSubmit={(e) => {
                 updatePlace(e, editPlace);
-                setEditPlace(null);
+                setEditMode(false);
                 }}>
                 <div className='flex flex-col gap-1'>
-                    <label htmlFor='editfavorite' className='text-sm'>Favorite</label>
+                    <label htmlFor='editfavorite' className='text-sm font-bold cursor-pointer'>Favorite</label>
                     <input 
                     type='checkbox' 
                     id='editfavorite' 
@@ -166,10 +166,10 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     value={'true'}
                     onChange={handleEditFormChange}
                     checked={editPlace.isFavorite === 'true'} 
-                    className='w-5 h-5 rounded' />        
+                    className='w-5 h-5 rounded cursor-pointer' />        
                 </div>
                 <div className='flex flex-col gap-1'>          
-                    <label htmlFor='editvisit-date' className='text-sm'>Date Visited</label>
+                    <label htmlFor='editvisit-date' className='text-sm font-bold'>Date Visited</label>
                     <input
                     required
                     id='editvisit-date'
@@ -177,12 +177,12 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     value={editPlace.dateVisited}
                     name='dateVisited'
                     onChange={handleEditFormChange}
-                    className='text-gray-800 w-1/2 py-2 rounded cursor-pointer'
+                    className='text-gray-800 w-1/2 py-2 rounded cursor-pointer border-[1px] border-gray-600'
                     max={today}
                     />
                 </div>                
                 <fieldset>
-                    <legend className='text-sm mb-2'>Were you Denied Access?</legend> 
+                    <legend className='text-sm mb-2 font-bold'>Were you Denied Access?</legend> 
                     <div className='flex flex-row gap-4'>
                         <div>     
                             <input
@@ -195,7 +195,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                                 required
                                 className='opacity-0 cursor-pointer h-0 w-0 peer'
                             />         
-                            <label htmlFor='editaccess-issue-yes' className='border-2 border-white rounded py-1 px-2 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>Yes</label>            
+                            <label htmlFor='editaccess-issue-yes' className='rounded py-1 px-2 text-center cursor-pointer hover:border-darkblue hover:border-[1px] hover:text-darkblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold peer-checked:border-darkblue peer-checked:border-[1px]'>Yes</label>            
                         </div>    
                         <div>                            
                             <input
@@ -207,15 +207,15 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                             checked={editPlace.deniedAccess === 'false'}
                             className='opacity-0 h-0 w-0 cursor-pointer peer'
                             />
-                            <label htmlFor='editaccess-issue-no' className='border-2 border-white rounded py-1 px-3 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>No</label> 
+                            <label htmlFor='editaccess-issue-no' className='rounded py-1 px-2 text-center cursor-pointer hover:border-darkblue hover:border-[1px] hover:text-darkblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold peer-checked:border-darkblue peer-checked:border-[1px]'>No</label> 
                         </div>  
                     </div>                  
                     {editPlace.deniedAccess === 'true' && 
                     <div className='mt-2'>
-                        <label htmlFor='editaccess-issue-detail' className='text-sm'>Please describe the issue and the outcome:</label>            
+                        <label htmlFor='editaccess-issue-detail' className='text-sm font-bold'>Please describe the issue and the outcome:</label>            
                         <textarea 
                         id='editaccess-issue-detail'
-                        className='w-full text-black rounded'
+                        className='w-full text-black rounded border-[1px] border-gray-600'
                         value={editPlace.deniedAccessDetails}
                         name='deniedAccessDetails'
                         onChange={handleEditFormChange}
@@ -225,7 +225,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     </div>}
                 </fieldset>                
                 <fieldset>
-                    <legend className='text-sm mb-2'>Were there Safety Issues that affected your Service Dog?</legend>      
+                    <legend className='text-sm mb-2 font-bold'>Were there Safety Issues that affected your Service Dog?</legend>      
                     <div className='flex flex-row gap-4'>
                         <div>                                                     
                             <input
@@ -238,7 +238,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                             required
                             className='opacity-0 h-0 w-0 cursor-pointer peer'
                             />   
-                            <label htmlFor='editsafety-issue-yes' className='border-2 border-white rounded py-1 px-2 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>Yes</label>                          
+                            <label htmlFor='editsafety-issue-yes' className='rounded py-1 px-2 text-center cursor-pointer hover:border-darkblue hover:border-[1px] hover:text-darkblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold peer-checked:border-darkblue peer-checked:border-[1px]'>Yes</label>                          
                         </div>    
                         <div>                            
                             <input
@@ -250,16 +250,16 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                                 checked={editPlace.safetyIssues === 'false'}
                                 className='opacity-0 h-0 w-0 cursor-pointer peer'
                             />
-                            <label htmlFor='editsafety-issue-no' className='border-2 border-white rounded py-1 px-3 text-center cursor-pointer hover:border-lightblue hover:text-lightblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold'>No</label>
+                            <label htmlFor='editsafety-issue-no' className='rounded py-1 px-2 text-center cursor-pointer hover:border-darkblue hover:border-[1px] hover:text-darkblue peer-checked:bg-lightblue peer-checked:text-darkblue peer-checked:font-bold peer-checked:border-darkblue peer-checked:border-[1px]'>No</label>
                         </div>
                     </div>                   
                     {editPlace.safetyIssues === 'true' && 
                     <div>
-                        <label htmlFor='editsafety-issue-detail' className='text-sm'>Please describe the safety issues:</label>
+                        <label htmlFor='editsafety-issue-detail' className='text-sm font-bold'>Please describe the safety issues:</label>
                         <br/>
                         <textarea 
                         id='editsafety-issue-detail'
-                        className='w-full text-black rounded'
+                        className='w-full text-black rounded border-[1px] border-gray-600'
                         value={editPlace.safetyIssuesDetails}
                         name='safetyIssuesDetails'
                         onChange={handleEditFormChange}
@@ -269,7 +269,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     </div>}  
                 </fieldset>                  
                 <div>           
-                    <label className='text-sm'>Rate the Staff</label>
+                    <label className='text-sm font-bold'>Rate the Staff</label>
                     <ReactStars
                     count={5}
                     size={36}
@@ -281,7 +281,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     />
                 </div> 
                 <div>
-                    <label title='was there sufficient room for your Service Dog to be out of the way of traffic?' className='text-sm'>Rate the Space Ⓘ</label>
+                    <label title='was there sufficient room for your Service Dog to be out of the way of traffic?' className='text-sm font-bold'>Rate the Space Ⓘ</label>
                     <ReactStars
                     count={5}
                     size={36}
@@ -293,7 +293,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     />
                 </div>
                 <div>
-                    <label title='what was the condition of the floor?' className='text-sm'>Rate the Floor Ⓘ</label>
+                    <label title='what was the condition of the floor?' className='text-sm font-bold'>Rate the Floor Ⓘ</label>
                     <ReactStars
                     count={5}
                     size={36}
@@ -305,14 +305,14 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     />  
                 </div>
                 <div>         
-                    <label htmlFor='editprivate-note' className='text-sm flex flex-row gap-2 items-center'>
+                    <label htmlFor='editprivate-note' className='text-sm flex flex-row gap-2 items-center font-bold'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 cursor-help"><title>This is only visible to you</title>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
                     </svg>
                     Private/Personal Note:</label>
                     <textarea 
                     id='editprivate-note'
-                    className='w-full text-black rounded'
+                    className='w-full text-black rounded border-[1px] border-gray-600'
                     value={editPlace.privateNote}
                     name='privateNote'
                     onChange={handleEditFormChange}
@@ -321,10 +321,10 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     ></textarea>
                 </div>     
                 <div>         
-                    <label htmlFor='editpublic-note' className='text-sm'>Note for Other Visitors:</label>
+                    <label htmlFor='editpublic-note' className='text-sm font-bold'>Note for Other Visitors:</label>
                     <textarea 
                     id='editpublic-note'
-                    className='w-full text-black rounded'
+                    className='w-full text-black rounded border-[1px] border-gray-600'
                     value={editPlace.publicNote}
                     name='publicNote'
                     onChange={handleEditFormChange}
@@ -335,12 +335,13 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                 </div> 
                 <input 
                 type='submit'
+                value='Update Entry'
                 className='text-center bg-lightblue text-darkblue font-bold rounded cursor-pointer w-full py-2 hover:shadow-md hover:shadow-gray-700'
                 />
                 <button onClick={() => {
                     setEditPlace(place);
                     setEditMode(false);
-                }} className='text-center font-bold rounded w-full bg-gray-600 py-2 hover:shadow-md hover:shadow-gray-700'>Cancel</button>
+                }} className='text-center font-bold rounded w-full bg-gray-600 py-2 hover:shadow-md hover:shadow-gray-700'>Cancel Edit</button>
             </form>
             </div>
             }
