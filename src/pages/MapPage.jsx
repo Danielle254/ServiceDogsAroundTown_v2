@@ -19,7 +19,7 @@ const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
 
 export default function MapPage() {
-    const [places, addNewPlace, deletePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId] = useOutletContext();
+    const [places, addNewPlace, deletePlace, updatePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId] = useOutletContext();
     const [markerRef, marker] = useAdvancedMarkerRef();
     const [activeMarker, setActiveMarker] = useState(null);  
     const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -68,6 +68,10 @@ export default function MapPage() {
 
     function closeModal() {
         modalTarget.current?.close();
+    }
+
+    function resetActiveId() {
+        setActiveId(null);
     }
     
     
@@ -159,13 +163,25 @@ export default function MapPage() {
                     />
                 }
                 {mapAction === 'add' && !isLoggedIn &&
-                    <p className='text-center text-lg'>Please login to add new entries</p>
+                    <p className='text-center text-lg'>Please login to add new places</p>
                 }
                 {mapAction === 'allPlaces' &&
                     <PlaceCardList 
                     places={places}
                     openModal={openModal}
+                    type={'allPlaces'}
                     />
+                }
+                {mapAction === 'myPlaces' && isLoggedIn &&
+                    <PlaceCardList 
+                    places={places}
+                    openModal={openModal}
+                    userId={userId}
+                    type={'myPlaces'}
+                    />
+                }
+                {mapAction === 'myPlaces' && !isLoggedIn &&
+                    <p className='text-center text-lg'>Please login to see your places</p>
                 }
             </div> 
         </div>   
@@ -176,6 +192,8 @@ export default function MapPage() {
         isLoggedIn={isLoggedIn}
         deletePlace={deletePlace}
         userId={userId}
+        resetPlaceId={resetActiveId}
+        updatePlace={updatePlace}
         />}                        
         </APIProvider>    
     )
