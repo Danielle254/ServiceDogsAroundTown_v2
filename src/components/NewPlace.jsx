@@ -99,7 +99,6 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
                     type='checkbox' 
                     id='favorite' 
                     name='isFavorite'
-                    value={'true'}
                     onChange={toggleFavorite}
                     checked={newPlaceData.isFavorite} 
                     className='w-5 h-5 rounded cursor-pointer' />        
