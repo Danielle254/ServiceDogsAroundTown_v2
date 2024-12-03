@@ -145,10 +145,10 @@ export default function MapPage() {
                     <button className={`btn-map-nav ${mapAction === 'myPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('myPlaces')}>My Places</button> 
                     <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                 </div>
-                {mapAction === 'add' && !addFormVisible &&
+                {mapAction === 'add' && !addFormVisible && isLoggedIn &&
                     <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
                 }
-                {mapAction === 'add' && addFormVisible &&
+                {mapAction === 'add' && addFormVisible && isLoggedIn &&
                     <NewPlace                        
                     name={selectedPlace.name}
                     address={selectedPlace.formatted_address}
@@ -157,6 +157,9 @@ export default function MapPage() {
                     handleFormVisible={handleFormVisible}
                     userId={userId}
                     />
+                }
+                {mapAction === 'add' && !isLoggedIn &&
+                    <p className='text-center text-lg'>Please login to add new entries</p>
                 }
                 {mapAction === 'allPlaces' &&
                     <PlaceCardList 
