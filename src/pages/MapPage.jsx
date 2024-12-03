@@ -19,7 +19,7 @@ const apiKey = import.meta.env.VITE_MAPS_API_KEY;
 const mapId = import.meta.env.VITE_MAPS_ID;
 
 export default function MapPage() {
-    const [places, addNewPlace, deletePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId] = useOutletContext();
+    const [places, addNewPlace, deletePlace, updatePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId] = useOutletContext();
     const [markerRef, marker] = useAdvancedMarkerRef();
     const [activeMarker, setActiveMarker] = useState(null);  
     const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -178,6 +178,7 @@ export default function MapPage() {
         deletePlace={deletePlace}
         userId={userId}
         resetPlaceId={resetActiveId}
+        updatePlace={updatePlace}
         />}                        
         </APIProvider>    
     )
