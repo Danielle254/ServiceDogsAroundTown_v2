@@ -41,7 +41,7 @@ const Layout = () => {
 
   async function updatePlace(e, editedPlace) {
     e.preventDefault();
-    const docRef = doc(database, "entries", editPlace.id);
+    const docRef = doc(database, "entries", editedPlace.id);
     await setDoc(docRef, editedPlace);
   }
 
