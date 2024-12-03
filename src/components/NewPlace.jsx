@@ -11,7 +11,7 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
             lng: coords.lng()
         },
         author: userId,
-        isFavorite: '',
+        isFavorite: false,
         dateVisited: '',
         deniedAccess: '',
         deniedAccessDetails: '',
@@ -32,6 +32,15 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
         }
         );
     };
+
+    function toggleFavorite() {
+        const favValue = newPlaceData.isFavorite;
+        setNewPlaceData({
+            ...newPlaceData,
+            isFavorite: !favValue
+        }
+        );
+    }
 
     function updateStaffRating(rating) {
         setNewPlaceData((prevData) => {
@@ -71,7 +80,7 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
                     address: '',
                     coords: {},
                     author: '',
-                    isFavorite: '',
+                    isFavorite: false,
                     dateVisited: '',
                     deniedAccess: '',
                     deniedAccessDetails: '',
@@ -85,15 +94,14 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
                 });
             }}>
                 <div className='flex flex-col gap-1'>
-                    <label htmlFor='favorite' className='text-sm'>Favorite</label>
+                    <label htmlFor='favorite' className='text-sm cursor-pointer'>Favorite</label>
                     <input 
                     type='checkbox' 
                     id='favorite' 
                     name='isFavorite'
-                    value={'true'}
-                    onChange={handleFormChange}
-                    checked={newPlaceData.isFavorite === 'true'} 
-                    className='w-5 h-5 rounded' />        
+                    onChange={toggleFavorite}
+                    checked={newPlaceData.isFavorite} 
+                    className='w-5 h-5 rounded cursor-pointer' />        
                 </div>
                 <div className='flex flex-col gap-1'>          
                     <label htmlFor='visit-date' className='text-sm'>Date Visited</label>
@@ -271,7 +279,7 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
                         address: '',
                         coords: {},
                         author: '',
-                        isFavorite: '',
+                        isFavorite: false,
                         dateVisited: '',
                         deniedAccess: '',
                         deniedAccessDetails: '',
