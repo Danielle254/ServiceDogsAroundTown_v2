@@ -4,7 +4,7 @@ import MapPage from './pages/MapPage';
 
 
 function App() {  
-  const [places, addNewPlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout] = useOutletContext();
+  const [places, addNewPlace, deletePlace, updatePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId] = useOutletContext();
 
   return (
     <MapPage 
