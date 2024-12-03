@@ -41,8 +41,11 @@ const Layout = () => {
 
   async function updatePlace(e, editedPlace) {
     e.preventDefault();
-    const docRef = doc(database, "entries", editedPlace.id);
-    await setDoc(docRef, editedPlace);
+    let cleanPlace = editedPlace;
+    if (cleanPlace.safetyIssues === "false") {cleanPlace.safetyIssuesDetails = ""};
+    if (cleanPlace.deniedAccess === "false") {cleanPlace.deniedAccessDetails = ""};
+    const docRef = doc(database, "entries", cleanPlace.id);
+    await setDoc(docRef, cleanPlace);
   }
 
   function googleLogin() {
