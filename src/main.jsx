@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { onSnapshot, addDoc, doc, deleteDoc } from 'firebase/firestore'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { onSnapshot, addDoc, doc, deleteDoc, setDoc } from 'firebase/firestore'
 import { entriesCollection, auth, database } from './firebase.js'
 import App from './App.jsx';
 import About from './pages/About.jsx';
@@ -37,6 +37,12 @@ const Layout = () => {
   async function deletePlace(id) {
     const docRef = doc(database, "entries", id);
     await deleteDoc(docRef);
+  }
+
+  async function updatePlace(e, editedPlace) {
+    e.preventDefault();
+    const docRef = doc(database, "entries", editPlace.id);
+    await setDoc(docRef, editedPlace);
   }
 
   function googleLogin() {
@@ -77,7 +83,7 @@ const Layout = () => {
       isLoggedIn={isLoggedIn}
       />
       <Outlet 
-      context={[places, addNewPlace, deletePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId]}
+      context={[places, addNewPlace, deletePlace, updatePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId]}
       />
     </div>
   )
