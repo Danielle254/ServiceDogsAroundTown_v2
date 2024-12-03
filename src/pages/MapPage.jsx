@@ -159,13 +159,25 @@ export default function MapPage() {
                     />
                 }
                 {mapAction === 'add' && !isLoggedIn &&
-                    <p className='text-center text-lg'>Please login to add new entries</p>
+                    <p className='text-center text-lg'>Please login to add new places</p>
                 }
                 {mapAction === 'allPlaces' &&
                     <PlaceCardList 
                     places={places}
                     openModal={openModal}
+                    type={'allPlaces'}
                     />
+                }
+                {mapAction === 'myPlaces' && isLoggedIn &&
+                    <PlaceCardList 
+                    places={places}
+                    openModal={openModal}
+                    userId={userId}
+                    type={'myPlaces'}
+                    />
+                }
+                {mapAction === 'myPlaces' && !isLoggedIn &&
+                    <p className='text-center text-lg'>Please login to see your places</p>
                 }
             </div> 
         </div>   
