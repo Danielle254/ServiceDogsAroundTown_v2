@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 import googleSignInButton from '../assets/images/google sign in.png'
 
 export default function Login() {
-  const [places, addNewPlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout] = useOutletContext();
+  const [places, addNewPlace, deletePlace, updatePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId] = useOutletContext();
 
   return (
     <div className='rounded shadow bg-white w-96 h-96 mx-auto my-auto flex flex-col justify-center items-center gap-10'>
