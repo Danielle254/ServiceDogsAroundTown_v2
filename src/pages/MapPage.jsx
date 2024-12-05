@@ -150,7 +150,15 @@ export default function MapPage() {
                     <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
                 </div>
                 {mapAction === 'add' && !addFormVisible && isLoggedIn &&
+                    <>
                     <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                    {selectedPlace &&
+                        <div className='bg-accentblue m-2 p-2 rounded shadow-sm shadow-gray-800'>      
+                            <p className='text-lg font-bold mb-2'>{selectedPlace.name}</p>       
+                            <p className='text-sm'>{selectedPlace.formatted_address}</p>                           
+                            <button className="rounded text-darkblue text-sm bg-lightblue font-bold w-full my-2 shadow border-2 border-lightblue hover:border-2 hover:border-darkblue" onClick={handleFormVisible} >Review This Place</button>
+                      </div>
+                    }</>
                 }
                 {mapAction === 'add' && addFormVisible && isLoggedIn &&
                     <NewPlace                        
