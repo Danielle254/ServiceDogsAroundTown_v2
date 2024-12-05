@@ -6,7 +6,7 @@ export default function Login() {
   const [places, addNewPlace, deletePlace, updatePlace, addFormVisible, handleFormVisible, isLoggedIn, googleLogin, handleLogout, userId] = useOutletContext();
 
   return (
-    <div className='rounded shadow bg-white w-96 h-96 mx-auto my-auto flex flex-col justify-center items-center gap-10'>
+    <div className='rounded shadow bg-white w-full h-1/2 lg:w-96 lg:h-96 lg:mx-auto my-auto flex flex-col justify-center items-center gap-10'>
       {isLoggedIn ? 
       <button className='text-darkblue border-2 border-darkblue w-4/5 rounded-full py-1 font-bold hover:bg-darkblue hover:text-white' onClick={handleLogout}>Log Out</button>
       :

@@ -3,8 +3,8 @@ import React from 'react'
 export default function About() {
 
   return (
-    <div className='px-8 pb-8 grid grid-cols-9 gap-10 bg-darkblue'>
-      <div className='col-span-4 mt-8'>
+    <div className='px-8 pb-8 flex flex-col-reverse lg:grid lg:grid-cols-9 gap-10 bg-darkblue'>
+      <div className='lg:col-span-4 mt-8'>
         <img src='https://upload.wikimedia.org/wikipedia/commons/b/bf/Service_dogs_20181212-Library-52_%2846753606291%29.jpg' alt='yellow labrador retriever service dog wearing a green guide dogs for the blind vest looks up and to the right while laying down' className='w-full shadow-sm border-4 border-lightblue'/>
         <h3 className='text-xl mt-4 font-bold'>Easily save and reference information about local businesses as it affects the safety and comfort of your service dog.</h3>  
         <p className='text-sm mt-4'>Interested in the code? This web application was created with React, Tailwind CSS, Google Maps API, and Firebase. <span><a href='https://github.com/Danielle254/ServiceDogsAroundTown_v2' className='underline'>View Code</a></span></p>        

@@ -70,7 +70,7 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
     }
 
     return (
-        <div className='px-4'>
+        <div className='pb-4 sm:pb-0 px-4'>
             <h3 className='text-xl font-bold'>{name}</h3>
             <h3 className='mb-4'>{address}</h3>
             <form className='flex flex-col gap-6' onSubmit={(e) => {
