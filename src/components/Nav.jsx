@@ -5,13 +5,13 @@ import logo from '../../src/assets/logo.png'
 export default function Nav({isLoggedIn}) {
 
   return (
-    <header className='flex flex-row justify-between py-2 px-4 items-center'>
-      <div className='flex flex-row items-center gap-2'>
-        <img src={logo} className='h-8'/>
-        <h1 className='text-title font-title'>SERVICE DOGS AROUND TOWN</h1>
+    <header className='flex flex-col gap-1 px-1 py-1 lg:flex-row lg:justify-between lg:py-2 lg:px-4 lg:gap-0 lg:items-center'>
+      <div className='flex flex-row items-center gap-2 justify-center lg:justify-start'>
+        <img src={logo} className='h-6 lg:h-8'/>
+        <h1 className='text-2xl lg:text-title font-title'>SERVICE DOGS AROUND TOWN</h1>
       </div>      
       <nav>
-        <ul className='flex flex-row gap-14 mr-4'>
+        <ul className='flex flex-row justify-around lg:gap-14 lg:mr-4'>
           <li>
             <NavLink to="/" className={({isActive}) => (isActive ? 'nav-link-active nav-link' : 'nav-link')} end>Home</NavLink>
           </li>
