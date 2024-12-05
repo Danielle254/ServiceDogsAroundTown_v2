@@ -26,7 +26,7 @@ export default function MapPage() {
     const handleClose = useCallback(() => setInfoWindowShown(false), []);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [position, setPosition] = useState({lat: 40 , lng: -97});
-    const [zoom, setZoom] = useState(window.screen.width < 500 ? 3 : 4); 
+    const [zoom, setZoom] = useState(window.screen.width < 600 ? 3 : 4); 
     const [mapAction, setMapAction] = useState('allPlaces');
     const [activeId, setActiveId] = useState(null);
     const modalTarget = useRef(null);
@@ -78,14 +78,14 @@ export default function MapPage() {
     
     return (    
         <APIProvider apiKey={apiKey} >  
-        <div className={mobileDisplay === 'map' ? 'h-full overflow-hidden flex flex-col lg:grid lg:grid-cols-9 lg:pb-4' : 'h-full overflow-hidden flex flex-col lg:grid lg:grid-cols-9 lg:pb-4'}>  
-            {window.screen.width < 500 &&
+        <div className={mobileDisplay === 'map' ? 'h-full overflow-hidden flex flex-col sm:grid sm:grid-cols-9 sm:pb-4' : 'h-full overflow-hidden flex flex-col sm:grid sm:grid-cols-9 sm:pb-4'}>  
+            {window.screen.width < 600 &&
             <div className='bg-lightblue flex flex-row gap-4 pl-4 text-darkblue text-sm font-bold py-1'>
                 <button onClick={() => setMobileDisplay('map')} className={mobileDisplay === 'map' ? 'rounded border-[1px] border-darkblue px-1' : 'border-[1px] border-lightblue rounded px-1'}>Map</button>
                 <button onClick={() => setMobileDisplay('list')} className={mobileDisplay === 'list' ? 'rounded border-[1px] border-darkblue px-1' : 'border-[1px] border-lightblue rounded px-1'}>List</button>
             </div>
             }            
-            {window.screen.width < 500 && mobileDisplay === 'map' &&
+            {window.screen.width < 600 && mobileDisplay === 'map' &&
             <div className='h-full'>                     
                 <Map 
                 zoom={zoom} 
@@ -103,7 +103,7 @@ export default function MapPage() {
                     clickableIcons: false
                 }}
                 >
-                    <button onClick={centerMapUserLocation} className='px-2 py-1 font-bold bg-darkblue text-white lg:hover:border-2 lg:hover:border-lightblue border-2 border-darkblue rounded text-base absolute top-3 right-16 flex flex-row gap-1 items-center'>
+                    <button onClick={centerMapUserLocation} className='px-2 py-1 font-bold bg-darkblue text-white sm:hover:border-2 sm:hover:border-lightblue border-2 border-darkblue rounded text-base absolute top-3 right-16 flex flex-row gap-1 items-center'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="size-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
                     </svg>
@@ -152,7 +152,7 @@ export default function MapPage() {
                 <MapHandler place={selectedPlace} marker={marker} />                    
             </div>
             }
-            {window.screen.width > 1200 &&
+            {window.screen.width > 600 &&
             <div className='col-span-6 pl-4'>                     
                 <Map 
                 zoom={zoom} 
@@ -219,8 +219,8 @@ export default function MapPage() {
                 <MapHandler place={selectedPlace} marker={marker} />                    
             </div>
             }
-            {window.screen.width < 500 && mobileDisplay === 'list' &&
-            <div className='flex flex-col gap-4 overflow-y-auto bg-darkblue lg:col-span-3'>
+            {window.screen.width < 600 && mobileDisplay === 'list' &&
+            <div className='flex flex-col gap-4 overflow-y-auto bg-darkblue sm:col-span-3'>
                 <div className='flex flex-row justify-around py-2 px-1 bg-lightgreen sticky top-0 z-10'>
                     <button className={`btn-map-nav ${mapAction === 'allPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('allPlaces')}>All Places</button>
                     <button className={`btn-map-nav ${mapAction === 'myPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('myPlaces')}>My Places</button> 
@@ -270,9 +270,9 @@ export default function MapPage() {
                 }
             </div> 
             }
-            {window.screen.width >= 1200 &&
-            <div className=' flex flex-col gap-4 lg:col-span-3 lg:overflow-y-auto bg-darkblue'>
-            <div className='flex flex-row justify-around py-2 px-1 bg-lightgreen lg:sticky lg:top-0 z-10'>
+            {window.screen.width > 600 &&
+            <div className=' flex flex-col gap-4 sm:col-span-3 sm:overflow-y-auto bg-darkblue'>
+            <div className='flex flex-row justify-around py-2 px-1 bg-lightgreen sm:sticky sm:top-0 z-10'>
                 <button className={`btn-map-nav ${mapAction === 'allPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('allPlaces')}>All Places</button>
                 <button className={`btn-map-nav ${mapAction === 'myPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('myPlaces')}>My Places</button> 
                 <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        

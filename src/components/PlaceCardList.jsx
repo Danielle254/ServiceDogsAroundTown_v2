@@ -5,7 +5,7 @@ export default function PlaceCardList({places, openModal, type, userId}) {
 
     if (type === 'allPlaces') {
         return(
-            <div className='mx-4 flex flex-col gap-3 pb-4 lg:pb-0'>
+            <div className='mx-4 flex flex-col gap-3 pb-4 sm:pb-0'>
                 {places.map((place) =>                
                     <PlaceCard 
                     place={place}
@@ -19,7 +19,7 @@ export default function PlaceCardList({places, openModal, type, userId}) {
 
     if (type === 'myPlaces') {
         return(
-            <div className='mx-4 flex flex-col gap-3 pb-4 lg:pb-0'>
+            <div className='mx-4 flex flex-col gap-3 pb-4 sm:pb-0'>
                 {places.filter((place) => place.author === userId).map((place) =>                
                     <PlaceCard 
                     place={place}

@@ -17,7 +17,7 @@
 
 @layer components {
     .nav-link {
-        @apply font-bold text-base lg:text-xl hover:text-lightblue;
+        @apply font-bold text-base md:text-xl hover:text-lightblue;
     }
 
     .nav-link-active {
@@ -29,7 +29,7 @@
     }
 
     .btn-map-nav {
-        @apply font-bold text-sm lg:text-base hover:underline hover:underline-offset-4 text-darkblue;
+        @apply font-bold text-sm md:text-base hover:underline hover:underline-offset-4 text-darkblue;
     }
 
     .btn-map-nav-selected {
