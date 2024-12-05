@@ -17,7 +17,7 @@
 
 @layer components {
     .nav-link {
-        @apply font-bold text-xl hover:text-lightblue;
+        @apply font-bold text-base lg:text-xl hover:text-lightblue;
     }
 
     .nav-link-active {
