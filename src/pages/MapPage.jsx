@@ -78,7 +78,7 @@ export default function MapPage() {
     
     return (    
         <APIProvider apiKey={apiKey} >  
-        <div className={mobileDisplay === 'map' ? 'h-full overflow-hidden flex flex-col lg:grid lg:grid-cols-9 lg:pb-4' : 'h-full flex flex-col lg:grid lg:grid-cols-9 lg:pb-4'}>  
+        <div className={mobileDisplay === 'map' ? 'h-full overflow-hidden flex flex-col lg:grid lg:grid-cols-9 lg:pb-4' : 'h-full overflow-hidden flex flex-col lg:grid lg:grid-cols-9 lg:pb-4'}>  
             {window.screen.width < 500 &&
             <div className='bg-lightblue flex flex-row gap-4 pl-4 text-darkblue text-sm font-bold py-1'>
                 <button onClick={() => setMobileDisplay('map')} className={mobileDisplay === 'map' ? 'rounded border-[1px] border-darkblue px-1' : 'border-[1px] border-lightblue rounded px-1'}>Map</button>
