@@ -11,7 +11,7 @@ export default function Nav({isLoggedIn}) {
         <h1 className='text-2xl md:text-title font-title'>SERVICE DOGS AROUND TOWN</h1>
       </div>      
       <nav>
-        <ul className='flex flex-row justify-around sm: gap-6 md:gap-14 md:mr-4'>
+        <ul className='flex flex-row justify-around xs:justify-center xs:gap-4 sm:gap-6 md:gap-14 md:mr-4'>
           <li>
             <NavLink to="/" className={({isActive}) => (isActive ? 'nav-link-active nav-link' : 'nav-link')} end>Home</NavLink>
           </li>
