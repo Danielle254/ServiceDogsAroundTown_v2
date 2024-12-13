@@ -32,5 +32,20 @@ export default function PlaceCardList({places, openModal, type, userId}) {
         )
     }
 
+    if (type === 'myFavorites') {
+        return(
+            <div className='mx-4 flex flex-col gap-3 pb-4 sm:pb-0'>
+                {places.filter((place) => place.author === userId && place.isFavorite).map((place) =>                
+                    <PlaceCard 
+                    place={place}
+                    key={place.id}
+                    openModal={openModal}
+                    myPlacesView={true}
+                    />            
+                )}
+              </div>
+        )
+    }
+
   
 }

@@ -209,6 +209,17 @@ export default function MapPage() {
                 {filter === 'My Places' && !isLoggedIn &&
                     <p className='text-center text-lg'>Please login to see your places</p>
                 }
+                {filter === 'My Favorites' && isLoggedIn &&
+                    <PlaceCardList 
+                    places={places}
+                    openModal={openModal}
+                    userId={userId}
+                    type={'myFavorites'}
+                    />
+                }
+                {filter === 'My Favorites' && !isLoggedIn &&
+                    <p className='text-center text-lg'>Please login to see your favorite places</p>
+                }
             </div> 
             }
             {window.screen.width > 600 &&
