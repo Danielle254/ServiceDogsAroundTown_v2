@@ -8,10 +8,10 @@ export default function Nav({isLoggedIn}) {
     <header className='flex flex-col gap-1 px-1 py-1 sm:flex-row sm:justify-between sm:py-2 sm:px-4 sm:gap-0 sm:items-center'>
       <div className='flex flex-row items-center gap-2 justify-center sm:justify-start'>
         <img src={logo} className='h-6 md:h-8'/>
-        <h1 className='text-2xl md:text-title font-title'>SERVICE DOGS AROUND TOWN</h1>
+        <h1 className='text-2xl xs:text-3xl md:text-title font-title'>SERVICE DOGS AROUND TOWN</h1>
       </div>      
       <nav>
-        <ul className='flex flex-row justify-around sm: gap-6 md:gap-14 md:mr-4'>
+        <ul className='flex flex-row justify-around xs:justify-center xs:gap-4 sm:gap-6 md:gap-14 md:mr-4'>
           <li>
             <NavLink to="/" className={({isActive}) => (isActive ? 'nav-link-active nav-link' : 'nav-link')} end>Home</NavLink>
           </li>

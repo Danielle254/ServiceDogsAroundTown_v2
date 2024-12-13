@@ -27,7 +27,7 @@ export default function MapPage() {
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [position, setPosition] = useState({lat: 40 , lng: -97});
     const [zoom, setZoom] = useState(window.screen.width < 600 ? 3 : 4); 
-    const [mapAction, setMapAction] = useState('allPlaces');
+    const [filter, setFilter] = useState('All Places');
     const [activeId, setActiveId] = useState(null);
     const modalTarget = useRef(null);
     const [mobileDisplay, setMobileDisplay] = useState('map');
@@ -80,9 +80,10 @@ export default function MapPage() {
         <APIProvider apiKey={apiKey} >  
         <div className={mobileDisplay === 'map' ? 'h-full overflow-hidden flex flex-col sm:grid sm:grid-cols-9 sm:pb-4' : 'h-full overflow-hidden flex flex-col sm:grid sm:grid-cols-9 sm:pb-4'}>  
             {window.screen.width < 600 &&
-            <div className='bg-lightblue flex flex-row gap-4 pl-4 text-darkblue text-sm font-bold py-1'>
-                <button onClick={() => setMobileDisplay('map')} className={mobileDisplay === 'map' ? 'rounded border-[1px] border-darkblue px-1' : 'border-[1px] border-lightblue rounded px-1'}>Map</button>
-                <button onClick={() => setMobileDisplay('list')} className={mobileDisplay === 'list' ? 'rounded border-[1px] border-darkblue px-1' : 'border-[1px] border-lightblue rounded px-1'}>List</button>
+            <div className='bg-lightblue flex flex-row text-sm'>                
+                <button onClick={() => setMobileDisplay('map')} className={mobileDisplay === 'map' ? 'bg-accentblue py-2 w-1/3 underline underline-offset-4' : "py-2 px-2 w-1/3 text-darkblue"}>Map</button>
+                <button onClick={() => setMobileDisplay('list')} className={mobileDisplay === 'list' ? 'bg-accentblue py-2 w-1/3 underline underline-offset-4' : "py-2 px-2 w-1/3 text-darkblue"}>List</button>
+                <button className={mobileDisplay === 'add' ? 'bg-accentblue py-2 w-1/3 underline underline-offset-4' : "py-2 px-2 w-1/3 text-darkblue"} onClick={() => setMobileDisplay('add')}>Add</button>                 
             </div>
             }            
             {window.screen.width < 600 && mobileDisplay === 'map' &&
@@ -152,6 +153,77 @@ export default function MapPage() {
                 <MapHandler place={selectedPlace} marker={marker} />                    
             </div>
             }
+            {window.screen.width < 600 && mobileDisplay === 'list' &&
+            <div className='flex flex-col gap-4 overflow-y-auto bg-darkblue sm:col-span-3'>
+                <div className='py-1 bg-lightblue sticky top-0 z-10 flex flex-col items-center'>
+                    <div className='flex flex-row gap-2 items-center text-sm'>
+                        <label htmlFor="filter" className='text-darkblue' >Filter:</label>
+                        <select name='filter' id='filter' value={filter} onChange={e => setFilter(e.target.value)} className='bg-darkblue rounded'>
+                            <option value="All Places">All Places</option>
+                            <option value="My Places">My Places</option>
+                            <option value="My Favorites">My Favorites</option>
+                        </select>
+                    </div>                     
+                </div>                
+                {filter === 'All Places' &&
+                    <PlaceCardList 
+                    places={places}
+                    openModal={openModal}
+                    type={'allPlaces'}
+                    />
+                }
+                {filter === 'My Places' && isLoggedIn &&
+                    <PlaceCardList 
+                    places={places}
+                    openModal={openModal}
+                    userId={userId}
+                    type={'myPlaces'}
+                    />
+                }
+                {filter === 'My Places' && !isLoggedIn &&
+                    <p className='text-center text-lg'>Please login to see your places</p>
+                }
+                {filter === 'My Favorites' && isLoggedIn &&
+                    <PlaceCardList 
+                    places={places}
+                    openModal={openModal}
+                    userId={userId}
+                    type={'myFavorites'}
+                    />
+                }
+                {filter === 'My Favorites' && !isLoggedIn &&
+                    <p className='text-center text-lg'>Please login to see your favorite places</p>
+                }
+            </div> 
+            }
+            {window.screen.width < 600 && mobileDisplay === 'add' &&
+            <div className='flex flex-col gap-4 overflow-y-auto bg-darkblue sm:col-span-3'>
+                {!addFormVisible && isLoggedIn &&
+                    <>
+                    <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                    {selectedPlace &&
+                        <div className='bg-accentblue m-2 p-2 rounded shadow-sm shadow-gray-800'>      
+                            <p className='text-lg font-bold mb-2'>{selectedPlace.name}</p>       
+                            <p className='text-sm'>{selectedPlace.formatted_address}</p>                           
+                            <button className="rounded text-darkblue text-sm bg-lightblue font-bold w-full my-2 shadow border-2 border-lightblue hover:border-2 hover:border-darkblue" onClick={handleFormVisible} >Review This Place</button>
+                      </div>
+                    }</>
+                }
+                {addFormVisible && isLoggedIn &&
+                    <NewPlace                        
+                    name={selectedPlace.name}
+                    address={selectedPlace.formatted_address}
+                    coords={selectedPlace.geometry.location}
+                    handleSubmit={addNewPlace}
+                    handleFormVisible={handleFormVisible}
+                    userId={userId}
+                    />
+                }
+                {!isLoggedIn &&
+                    <p className='text-center text-lg'>Please login to add new places</p>
+                }
+            </div>
+            }
             {window.screen.width > 600 &&
             <div className='col-span-6 pl-4'>                     
                 <Map 
@@ -219,68 +291,28 @@ export default function MapPage() {
                 <MapHandler place={selectedPlace} marker={marker} />                    
             </div>
             }
-            {window.screen.width < 600 && mobileDisplay === 'list' &&
-            <div className='flex flex-col gap-4 overflow-y-auto bg-darkblue sm:col-span-3'>
-                <div className='flex flex-row justify-around py-2 px-1 bg-lightgreen sticky top-0 z-10'>
-                    <button className={`btn-map-nav ${mapAction === 'allPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('allPlaces')}>All Places</button>
-                    <button className={`btn-map-nav ${mapAction === 'myPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('myPlaces')}>My Places</button> 
-                    <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
-                </div>
-                {mapAction === 'add' && !addFormVisible && isLoggedIn &&
-                    <>
-                    <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
-                    {selectedPlace &&
-                        <div className='bg-accentblue m-2 p-2 rounded shadow-sm shadow-gray-800'>      
-                            <p className='text-lg font-bold mb-2'>{selectedPlace.name}</p>       
-                            <p className='text-sm'>{selectedPlace.formatted_address}</p>                           
-                            <button className="rounded text-darkblue text-sm bg-lightblue font-bold w-full my-2 shadow border-2 border-lightblue hover:border-2 hover:border-darkblue" onClick={handleFormVisible} >Review This Place</button>
-                      </div>
-                    }</>
-                }
-                {mapAction === 'add' && addFormVisible && isLoggedIn &&
-                    <NewPlace                        
-                    name={selectedPlace.name}
-                    address={selectedPlace.formatted_address}
-                    coords={selectedPlace.geometry.location}
-                    handleSubmit={addNewPlace}
-                    handleFormVisible={handleFormVisible}
-                    userId={userId}
-                    />
-                }
-                {mapAction === 'add' && !isLoggedIn &&
-                    <p className='text-center text-lg'>Please login to add new places</p>
-                }
-                {mapAction === 'allPlaces' &&
-                    <PlaceCardList 
-                    places={places}
-                    openModal={openModal}
-                    type={'allPlaces'}
-                    />
-                }
-                {mapAction === 'myPlaces' && isLoggedIn &&
-                    <PlaceCardList 
-                    places={places}
-                    openModal={openModal}
-                    userId={userId}
-                    type={'myPlaces'}
-                    />
-                }
-                {mapAction === 'myPlaces' && !isLoggedIn &&
-                    <p className='text-center text-lg'>Please login to see your places</p>
-                }
-            </div> 
-            }
             {window.screen.width > 600 &&
             <div className=' flex flex-col gap-4 sm:col-span-3 sm:overflow-y-auto bg-darkblue'>
-            <div className='flex flex-row justify-around py-2 px-1 bg-lightgreen sm:sticky sm:top-0 z-10'>
-                <button className={`btn-map-nav ${mapAction === 'allPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('allPlaces')}>All Places</button>
-                <button className={`btn-map-nav ${mapAction === 'myPlaces' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('myPlaces')}>My Places</button> 
-                <button className={`btn-map-nav ${mapAction === 'add' ? 'btn-map-nav-selected' : ''}`} onClick={() => setMapAction('add')}>Add New Place</button>                        
+            <div className='flex flex-row justify-between py-2 px-4 bg-lightblue sm:sticky sm:top-0 z-10'>
+                <button className='text-base border-2 border-darkblue rounded text-darkblue px-2 font-bold hover:bg-darkblue hover:text-white' onClick={() => setFilter('add')}>Add New Place</button>
+                <div className='flex flex-row gap-2 items-center text-sm'>
+                        <label htmlFor="filter" className='text-darkblue flex flex-row gap-1 items-center'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
+                            </svg>
+                            Filter:</label>
+                        <select name='filter' id='filter' value={filter} onChange={e => setFilter(e.target.value)} className='bg-darkblue rounded'>
+                            <option value="">--Select--</option>
+                            <option value="All Places">All Places</option>
+                            <option value="My Places">My Places</option>
+                            <option value="My Favorites">My Favorites</option>
+                        </select>
+                    </div>                                        
             </div>
-            {mapAction === 'add' && !addFormVisible && isLoggedIn &&
+            {filter === 'add' && !addFormVisible && isLoggedIn &&
                 <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
             }
-            {mapAction === 'add' && addFormVisible && isLoggedIn &&
+            {filter === 'add' && addFormVisible && isLoggedIn &&
                 <NewPlace                        
                 name={selectedPlace.name}
                 address={selectedPlace.formatted_address}
@@ -290,17 +322,17 @@ export default function MapPage() {
                 userId={userId}
                 />
             }
-            {mapAction === 'add' && !isLoggedIn &&
+            {filter === 'add' && !isLoggedIn &&
                 <p className='text-center text-lg'>Please login to add new places</p>
             }
-            {mapAction === 'allPlaces' &&
+            {filter === 'All Places' &&
                 <PlaceCardList 
                 places={places}
                 openModal={openModal}
                 type={'allPlaces'}
                 />
             }
-            {mapAction === 'myPlaces' && isLoggedIn &&
+            {filter === 'My Places' && isLoggedIn &&
                 <PlaceCardList 
                 places={places}
                 openModal={openModal}
@@ -308,8 +340,19 @@ export default function MapPage() {
                 type={'myPlaces'}
                 />
             }
-            {mapAction === 'myPlaces' && !isLoggedIn &&
+            {filter === 'My Places' && !isLoggedIn &&
                 <p className='text-center text-lg'>Please login to see your places</p>
+            }
+            {filter === 'My Favorites' && isLoggedIn &&
+                <PlaceCardList 
+                places={places}
+                openModal={openModal}
+                userId={userId}
+                type={'myFavorites'}
+                />
+            }
+            {filter === 'My Favorites' && !isLoggedIn &&
+                <p className='text-center text-lg'>Please login to see your favorite places</p>
             }
             </div>
             }             
