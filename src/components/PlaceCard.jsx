@@ -1,11 +1,19 @@
 import React from "react";
 import formatDate from '../utilities/formatDate'
 
-export default function PlaceCard({place, openModal}) {
+export default function PlaceCard({place, openModal, myPlacesView}) {
 
   return (
-    <div className='bg-accentblue p-2 rounded shadow-sm shadow-gray-800'>      
-      <p className='text-lg font-bold mb-2'>{place.name}</p>       
+    <div className='bg-accentblue p-2 rounded shadow-sm shadow-gray-800'> 
+      <div className='flex flex-row gap-2'>
+        <p className='text-lg font-bold mb-2'>{place.name}</p> 
+        {myPlacesView && place.isFavorite &&
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#e80e0e" className="size-5 mt-1">
+        <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+        </svg>
+        }
+      </div>     
+            
       <p className='text-sm'>{place.address}</p>
       <p className='text-sm  text-gray-400 my-1'>Last Visited: {formatDate(place.dateVisited)}</p> 
       <div className="flex flex-row gap-x-2 flex-wrap">     

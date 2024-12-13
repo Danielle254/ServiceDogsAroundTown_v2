@@ -25,6 +25,7 @@ export default function PlaceCardList({places, openModal, type, userId}) {
                     place={place}
                     key={place.id}
                     openModal={openModal}
+                    myPlacesView={true}
                     />            
                 )}
               </div>
