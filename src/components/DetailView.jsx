@@ -121,7 +121,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>}
                 </button>
-                {expandDeniedAccess && <p className='text-base mt-2 border-[1px] border-red-950 p-1 rounded'>{place.deniedAccessDetails}</p>}
+                {expandDeniedAccess && <p className='text-base mt-2 border-[1px] border-red-950 p-1 rounded'>{place.deniedAccessDetails.length > 0 ? place.deniedAccessDetails : 'No details provided'}</p>}
             </div>
             }
             {place.safetyIssues === "true" &&
@@ -135,7 +135,7 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>}
                 </button>
-                {expandSafetyIssues && <p className='text-base mt-2 border-[1px] border-yellow-950 rounded p-1'>{place.safetyIssuesDetails}</p>}
+                {expandSafetyIssues && <p className='text-base mt-2 border-[1px] border-yellow-950 rounded p-1'>{place.safetyIssuesDetails.length > 0 ? place.safetyIssuesDetails : 'No details provided'}</p>}
             </div>
             }
             <div className='mt-4'>
