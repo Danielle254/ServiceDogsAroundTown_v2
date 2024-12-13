@@ -80,12 +80,10 @@ export default function MapPage() {
         <APIProvider apiKey={apiKey} >  
         <div className={mobileDisplay === 'map' ? 'h-full overflow-hidden flex flex-col sm:grid sm:grid-cols-9 sm:pb-4' : 'h-full overflow-hidden flex flex-col sm:grid sm:grid-cols-9 sm:pb-4'}>  
             {window.screen.width < 600 &&
-            <div className='bg-lightblue flex flex-row justify-between px-4 py-2'>                
-                <div className='rounded-full bg-darkblue py-1 px-2'>
-                    <button onClick={() => setMobileDisplay('map')} className={mobileDisplay === 'map' ? 'rounded-full bg-lightblue text-darkblue px-2' : "px-2 text-white"}>Map</button>
-                    <button onClick={() => setMobileDisplay('list')} className={mobileDisplay === 'list' ? 'rounded-full bg-lightblue text-darkblue px-2' : "px-2 text-white"}>List</button>
-                </div>                
-                <button className='text-sm bg-darkblue text-white rounded px-2' onClick={() => {setFilter('add'); setMobileDisplay('list');}}>Add New Place</button>   
+            <div className='bg-lightblue flex flex-row text-sm'>                
+                <button onClick={() => setMobileDisplay('map')} className={mobileDisplay === 'map' ? 'bg-accentblue py-2 w-1/3 underline underline-offset-4' : "py-2 px-2 w-1/3 text-darkblue"}>Map</button>
+                <button onClick={() => setMobileDisplay('list')} className={mobileDisplay === 'list' ? 'bg-accentblue py-2 w-1/3 underline underline-offset-4' : "py-2 px-2 w-1/3 text-darkblue"}>List</button>
+                <button className={mobileDisplay === 'add' ? 'bg-accentblue py-2 w-1/3 underline underline-offset-4' : "py-2 px-2 w-1/3 text-darkblue"} onClick={() => setMobileDisplay('add')}>Add</button>                 
             </div>
             }            
             {window.screen.width < 600 && mobileDisplay === 'map' &&
@@ -157,8 +155,8 @@ export default function MapPage() {
             }
             {window.screen.width < 600 && mobileDisplay === 'list' &&
             <div className='flex flex-col gap-4 overflow-y-auto bg-darkblue sm:col-span-3'>
-                <div className='pl-4 py-1 bg-lightblue sticky top-0 z-10'>
-                    <div className='flex flex-row justify-center gap-2 items-center text-sm'>
+                <div className='py-1 bg-lightblue sticky top-0 z-10 flex flex-col items-center'>
+                    <div className='flex flex-row gap-2 items-center text-sm'>
                         <label htmlFor="filter" className='text-darkblue' >Filter:</label>
                         <select name='filter' id='filter' value={filter} onChange={e => setFilter(e.target.value)} className='bg-darkblue rounded'>
                             <option value="All Places">All Places</option>
@@ -166,31 +164,7 @@ export default function MapPage() {
                             <option value="My Favorites">My Favorites</option>
                         </select>
                     </div>                     
-                </div>
-                {filter === 'add' && !addFormVisible && isLoggedIn &&
-                    <>
-                    <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
-                    {selectedPlace &&
-                        <div className='bg-accentblue m-2 p-2 rounded shadow-sm shadow-gray-800'>      
-                            <p className='text-lg font-bold mb-2'>{selectedPlace.name}</p>       
-                            <p className='text-sm'>{selectedPlace.formatted_address}</p>                           
-                            <button className="rounded text-darkblue text-sm bg-lightblue font-bold w-full my-2 shadow border-2 border-lightblue hover:border-2 hover:border-darkblue" onClick={handleFormVisible} >Review This Place</button>
-                      </div>
-                    }</>
-                }
-                {filter === 'add' && addFormVisible && isLoggedIn &&
-                    <NewPlace                        
-                    name={selectedPlace.name}
-                    address={selectedPlace.formatted_address}
-                    coords={selectedPlace.geometry.location}
-                    handleSubmit={addNewPlace}
-                    handleFormVisible={handleFormVisible}
-                    userId={userId}
-                    />
-                }
-                {filter === 'add' && !isLoggedIn &&
-                    <p className='text-center text-lg'>Please login to add new places</p>
-                }
+                </div>                
                 {filter === 'All Places' &&
                     <PlaceCardList 
                     places={places}
@@ -221,6 +195,34 @@ export default function MapPage() {
                     <p className='text-center text-lg'>Please login to see your favorite places</p>
                 }
             </div> 
+            }
+            {window.screen.width < 600 && mobileDisplay === 'add' &&
+            <div className='flex flex-col gap-4 overflow-y-auto bg-darkblue sm:col-span-3'>
+                {!addFormVisible && isLoggedIn &&
+                    <>
+                    <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                    {selectedPlace &&
+                        <div className='bg-accentblue m-2 p-2 rounded shadow-sm shadow-gray-800'>      
+                            <p className='text-lg font-bold mb-2'>{selectedPlace.name}</p>       
+                            <p className='text-sm'>{selectedPlace.formatted_address}</p>                           
+                            <button className="rounded text-darkblue text-sm bg-lightblue font-bold w-full my-2 shadow border-2 border-lightblue hover:border-2 hover:border-darkblue" onClick={handleFormVisible} >Review This Place</button>
+                      </div>
+                    }</>
+                }
+                {addFormVisible && isLoggedIn &&
+                    <NewPlace                        
+                    name={selectedPlace.name}
+                    address={selectedPlace.formatted_address}
+                    coords={selectedPlace.geometry.location}
+                    handleSubmit={addNewPlace}
+                    handleFormVisible={handleFormVisible}
+                    userId={userId}
+                    />
+                }
+                {!isLoggedIn &&
+                    <p className='text-center text-lg'>Please login to add new places</p>
+                }
+            </div>
             }
             {window.screen.width > 600 &&
             <div className='col-span-6 pl-4'>                     
