@@ -21,8 +21,6 @@ export default function About() {
         <p className='text-base'>I wanted to create a tool for people like myself to capture these important pieces of information after a visit and easily look back on it when needed. This also makes travel easier for service dog handlers as you can look up local places you might be thinking of visiting and see if anyone's left a positive review.</p>
         <br/>
         <p className='text-base'>A final key piece of this website is noting where you encountered access issues or safety issues. Going through the experience of a business denying you and your service dog access, even though rights are protected under the ADA, can be incredibly stressful and may even trigger medical events. <span className='text-lightblue'>This website will help you know which places to avoid and see success stories of access issues being successfully resolved.</span></p>
-        <br/>
-        <h3 className='text-lg font-bold'>How to Use This Website</h3>
       </div>        
     </div>
   )
