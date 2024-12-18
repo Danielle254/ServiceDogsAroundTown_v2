@@ -11,7 +11,8 @@ export default function PlaceAutocomplete({onPlaceSelect}) {
 
         const options = {
             fields: ["geometry", "name", "formatted_address"],
-            componentRestrictions: {country: ['us']}
+            componentRestrictions: {country: ['us']},
+            types: ['establishment']
         };
 
         setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
