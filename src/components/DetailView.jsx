@@ -190,7 +190,6 @@ const DetailView = forwardRef(({place, closeModal, isLoggedIn, deletePlace, upda
                     onChange={handleEditFormChange}
                     className='text-gray-800 w-1/2 py-2 rounded cursor-pointer border-[1px] border-gray-600'
                     max={today}
-                    min='2000-01-01'
                     />
                 </div>                
                 <fieldset>
