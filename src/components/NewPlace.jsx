@@ -114,6 +114,7 @@ export default function NewPlace({name, address, coords, handleSubmit, handleFor
                     onChange={handleFormChange}
                     className='text-gray-800 w-1/2 py-2 rounded cursor-pointer'
                     max={today}
+                    min='2020-01-01'
                     />
                 </div>                
                 <fieldset>
